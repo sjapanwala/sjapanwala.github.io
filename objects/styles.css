@@ -235,6 +235,93 @@ main {
   color: #697565;
 }
 
+/* Resume Section */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  max-width: 900px;
+  background-color: #3C3D37; /* Background for the about section */
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%; /* Circular profile picture */
+  object-fit: cover;
+  border: 6px solid #3C3D37;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the profile image */
+}
+
+.profile h1 {
+  font-size: 36px;
+  color: #ECDFCC;
+  margin-top: 15px;
+  font-weight: 700; /* Emphasize the name */
+}
+
+.profile p {
+  font-size: 20px;
+  color: #697565;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.about-details {
+  width: 100%;
+}
+
+.education, .experience {
+  margin-bottom: 30px;
+}
+
+.education h2, .experience h2 {
+  font-size: 28px;
+  color: #ECDFCC;
+  border-bottom: 3px solid #697565;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.education ul, .experience ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.education li, .experience li {
+  font-size: 18px;
+  color: #ecdfccba;
+  margin-bottom: 12px;
+  line-height: 1.6; /* Improve readability */
+}
+
+.education li strong, .experience li strong {
+  font-weight: 700;
+  color: #ECDFCC; /* Darker for emphasis */
+}
+
+a {
+  color: #697565f9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  color: #63655a89;
+  text-decoration: underline;
+}
 /* Footer styling */
 footer {
   background-color: #181C14;
@@ -242,3 +329,4 @@ footer {
   text-align: center;
   padding: 10px;
 }
+
