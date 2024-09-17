@@ -390,6 +390,18 @@ main {
 .project p {
   font-size: 1rem;
 }
+
+/* about me section */
+
+section {
+  display: block; /* Make sure sections are block elements */
+  margin-bottom: 20px; /* Adds spacing between sections */
+}
+
+.about-home-text {
+  padding: 10px; /* Adds some internal padding */
+}
+
 /* Footer styling */
 footer {
   background-color: #181C14;
