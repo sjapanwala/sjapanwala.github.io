@@ -1,0 +1,426 @@
+/* Basic resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.fade-in {
+    opacity: 0; /* Start as invisible */
+    transition: opacity 1s ease-in; /* Transition for fading in and out */
+}
+
+.fade-in.visible {
+    opacity: 1; /* Fully visible when the class 'visible' is added */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    background-color: rgb(48, 71, 94);
+    color: rgb(48, 71, 94);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 30px; /* Make the nav bar thicker */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222831; /* Default color for the nav bar */
+    /*option #2 rgb(48, 71, 94)*/
+    transition: background-color 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+    height: 80px; /* Thicker height for nav bar */
+}
+
+/* Left side (Picture and Name) */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes the picture circular */
+    margin-right: 15px; /* Space between picture and name */
+}
+
+.nav-name {
+    color: #DDDDDD;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Right side (Links) */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links li a {
+    color: #DDDDDD;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #F05454; /* Hover effect */
+}
+
+
+
+/* Sections */
+section {
+    padding: 100px 20px;
+    min-height: 100vh;
+}
+/* for home styling */
+#home {
+    background-color: #222831; /* Background color */
+    color: #DDDDDD; /* Text color */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Arrange items in a column */
+    justify-content: center; /* Center items vertically */
+    align-items: flex-start; /* Align items to the left */
+    min-height: 100vh; /* Make sure it takes full height */
+    padding: 20px; /* Optional padding */
+    position: relative; /* Ensure it sits above the background */
+
+}
+
+.typing-text {
+    font-size: 36px; /* Set a larger font size */
+    text-align: left; /* Center the text */
+    color: #DDDDDD; /* Color to match your theme */
+    margin-top: 20px; /* Space above the text */
+}
+
+/* Blinking cursor */
+.cursor {
+    display: inline-block;
+    background-color: #DDDDDD;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.name-display {
+    font-family: 'Oswald', sans-serif;
+    font-size: 86px; /* Larger font size */
+    text-align: left; /* Center the name */
+    color: #F05454; /* Accent color */
+    margin-top: 20px; /* Space above the name */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+    background-color: #222831;
+    color: #222831;
+}
+
+.occ-disp {
+    font-size: 45px; /* Larger font size */
+    text-align: left; /* Center the name */
+    color: #DDDDDD; /* Accent color */
+    margin-top: 20px; /* Space above the name */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    margin-top: 100px; /* Space above the arrow */
+    text-align: center; /* Center the arrow */
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+    border-top: 15px solid #F05454;
+    animation: bounce 1s infinite;
+}
+
+
+/* Arrow Bouncing Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Original position */
+    }
+    50% {
+        transform: translateY(-10px); /* Move down */
+    }
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent; 
+    border-bottom: 15px solid #F05454;
+    animation: bounce 1s infinite;
+}
+.speech-bubble {
+    position: absolute; /* Positioning the bubble */
+    bottom: 50px; /* Position from the bottom */
+    right: 20px; /* Position from the right */
+    background-color: rgba(48, 71, 94, 0.9); /* Semi-transparent background */
+    color: #DDDDDD; /* Text color */
+    padding: 15px 20px; /* Padding for the text */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    max-width: 200px; /* Max width */
+    font-size: 16px; /* Font size */
+    animation: fade-in 1s ease; /* Fade-in animation */
+}
+
+/* Arrow Pointer */
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Position below the bubble */
+    right: 15px; /* Center it */
+    border-width: 10px; /* Size of the arrow */
+    border-style: solid;
+    border-color: rgba(48, 71, 94, 0.9) transparent transparent transparent; /* Color and style of arrow */
+}
+
+/* Fade-in Animation */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* About Section (and others) */
+#about {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    background-color: #222831; /* Dark background color */
+    color: #DDDDDD; /* Light text color */
+    padding: 100px 20px; /* Increased padding for more space */
+    min-height: 80vh; /* Ensure section takes up more vertical space */
+}
+
+.about-container {
+    display: flex; /* Flexbox for image and text alignment */
+    max-width: 1200px; /* Maximum width for the section */
+    width: 100%; /* Ensure it fills the available width up to max-width */
+    gap: 50px; /* Increased space between image and text */
+}
+
+.image-container {
+    flex: 1; /* Allow the image container to grow */
+}
+
+.about-img {
+    width: 400px; /* Increased size for the image */
+    height: 400px; /* Ensure height matches width for a square image */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    border-radius: 20px; /* Rounded corners for the image */
+    border: 10px solid rgb(48, 61, 84); /* Border around the image */
+}
+
+.about-content {
+    flex: 2; /* Allow the text container to grow */
+    position: relative; /* Make it relative to position the title above */
+}
+
+.title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 50px; /* Increased size for the title */
+    color: #F05454; /* Accent color for the title */
+    position: absolute; /* Positioning it absolutely within the content */
+    top: -30px; /* Move it up above the box */
+    left: 0; /* Align it to the left */
+}
+
+.about-text {
+    /*background-color: rgb(48, 71, 94); Dark grey box behind the text */
+    border-radius: 8px; /* Rounded corners for the text box */
+    padding: 40px; /* Increased padding inside the text box */
+    min-height: 400px; /* Ensure text box has a minimum height */
+    margin-top: 30px; /* Space below the title */
+}
+
+.about-blurb {
+    font-size: 25px; /* Increased size for the blurb text */
+    color: #DDDDDD; /* Light text color for better contrast */
+    line-height: 1.6; /* Line height for readability */
+}
+.social-media {
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: left; /* Center the icons horizontally */
+    gap: 15px; /* Space between icons */
+    margin-top: 20px; /* Space above the icons */
+}
+
+.social-media img {
+    width: 64px; /* Set a specific size for the icons */
+    height: 64px; /* Ensure height matches width for consistency */
+    object-fit: cover; /* Maintain aspect ratio */
+    transition: opacity 0.3s ease; /* Smooth hover effect */
+}
+
+.social-media img:hover {
+    opacity: 0.7; /* Slightly fade the icon on hover */
+}
+
+#projects {
+    background-color: #222831; /* Dark background color */
+    color: #DDDDDD; /* Light text color */
+    padding: 60px 20px; /* Padding for top and bottom */
+    text-align: center; /* Center-align headings */
+}
+
+.projects-container {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between cards */
+    max-width: 1200px; /* Limit max width of the container */
+    margin: 0 auto; /* Center the container */
+}
+
+.project-card {
+    background-color: #393E46; /* Card background color */
+    border-radius: 10px; /* Rounded corners */
+    height: 450px; /* Fixed height for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    overflow: hidden; /* Clip content */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.project-card:hover {
+    transform: translateY(-20px); /* Lift effect on hover */
+}
+
+.project-image {
+    width: 100%; /* Full width image */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.project-info {
+    padding: 15px; /* Padding inside the card */
+}
+
+.project-info h3 {
+    margin: 0; /* Remove margin for the title */
+    font-size: 1.5rem; /* Title size */
+    color: #F05454;
+}
+
+.project-link {
+    display: inline-block; /* Block for better spacing */
+    margin-top: 10px; /* Space above the link */
+    color: #ECDFCC; /* Light color for links */
+    text-decoration: none; /* Remove underline */
+    border: 1px solid #DDDDDD; /* Border around the link */
+    border-radius: 4px; /* Rounded corners for the button */
+    padding: 8px 12px; /* Padding for the button */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.project-link:hover {
+    background-color: #F05454; /* Change background on hover */
+    color: #FFFFFF; /* Change text color on hover */
+}
+
+#resume {
+    background-color: #222831;
+    color: #DDDDDD;
+}
+canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+
+/* Footer styles */
+footer {
+    background-color: #222831;
+    color: #DDDDDD;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links a img {
+    width: 24px;
+    margin-left: 20px;
+}
+/* Footer styles */
+footer {
+    background-color: #222831; /* Dark background for the footer */
+    color: #DDDDDD; /* Light text */
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+/* Footer styles */
+footer {
+    background-color: rgb(48, 71, 94); /* Dark background */
+    color: #000000; /* Light text */
+    padding: 20px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Space between text and links */
+    align-items: center; /* Aligns items to the same vertical level */
+}
+
+/* Text styling */
+footer p {
+    margin: 0;
+}
+
+/* Links styling */
+.footer-links a img {
+    width: 24px; /* Icon size */
+    height: auto;
+    margin-left: 20px; /* Space between icons */
+    transition: transform 0.3s ease; /* Add some interaction on hover */
+    background-color: rgb(48, 71, 94);
+}
+
+.footer-links a img:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+footer p {
+    margin: 0;
+}
