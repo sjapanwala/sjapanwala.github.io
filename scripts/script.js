@@ -22,31 +22,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reset animation when a nav link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
-            // Prevent default link behavior (smooth scroll will still work)
-            event.preventDefault();
+            const href = link.getAttribute('href');
+            
+            // Only prevent default for links that start with #
+            if (href.startsWith('#')) {
+                event.preventDefault();
 
-            // Get the target section by the href of the link
-            const targetSection = document.querySelector(link.getAttribute('href'));
+                // Get the target section by the href of the link
+                const targetSection = document.querySelector(href);
 
-            // Scroll to the section (smooth scrolling is handled by CSS)
-            window.scrollTo({
-                top: targetSection.offsetTop - 20, // Adjust for any offset
-                behavior: 'smooth'
-            });
+                // Scroll to the section (smooth scrolling is handled by CSS)
+                window.scrollTo({
+                    top: targetSection.offsetTop - 20, // Adjust for any offset
+                    behavior: 'smooth'
+                });
 
-            // Reset section's opacity and transform (re-trigger animation)
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-            });
+                // Reset section's opacity and transform (re-trigger animation)
+                sections.forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(50px)';
+                });
 
-            // Delay before re-observing the section to trigger the animation
-            setTimeout(() => {
-                observer.observe(targetSection);
-            }, 500); // Adjust delay to match the smooth scroll timing
+                // Delay before re-observing the section to trigger the animation
+                setTimeout(() => {
+                    observer.observe(targetSection);
+                }, 500); // Adjust delay to match the smooth scroll timing
+            }
         });
     });
 });
+
+// Dynamic typing effect
 document.addEventListener('DOMContentLoaded', () => {
     const textDisplay = document.getElementById('dynamic-text');
     const greetings = [
@@ -95,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the typing effect
     typeText();
 });
+
 // Function to handle fade-in and fade-out effects
 const sections = document.querySelectorAll('section');
 
@@ -119,8 +126,7 @@ sections.forEach(section => {
     observer.observe(section);
 });
 
-// Add this code to your existing script.js file
-
+// Scroll navigation with 'j' and 'k' keys
 document.addEventListener('keydown', function(event) {
     if (event.key === 'j') {
         // Scroll down by one section height
@@ -178,6 +184,7 @@ function getCurrentSection() {
     return currentSection;
 }
 
+// Smooth scrolling for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault(); // Prevent the default anchor behavior
@@ -189,3 +196,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+function toggleContent(item) {
+    const content = item.nextElementSibling; // Select the expandable content
+    const arrow = item.querySelector('.arrow'); // Select the arrow
+    
+    if (content.style.display === "block") {
+      content.style.display = "none"; // Hide content
+      arrow.style.transform = "rotate(0deg)"; // Reset arrow
+    } else {
+      content.style.display = "block"; // Show content
+      arrow.style.transform = "rotate(90deg)"; // Rotate arrow
+    }
+  }

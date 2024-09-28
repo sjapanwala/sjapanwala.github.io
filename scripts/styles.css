@@ -1,4 +1,12 @@
 /* Basic resets */
+/*
+* colour information
+* Main Titles / Accent Colour: #F05454
+* Background Color: #30475E
+* Text Colour: #DDDDDD
+* Footer / Light colour: #30475E
+* 
+*/
 * {
     margin: 0;
     padding: 0;
@@ -256,6 +264,7 @@ body {
     left: 0; /* Align it to the left */
 }
 
+
 .about-text {
     /*background-color: rgb(48, 71, 94); Dark grey box behind the text */
     border-radius: 8px; /* Rounded corners for the text box */
@@ -347,13 +356,32 @@ body {
     color: #FFFFFF; /* Change text color on hover */
 }
 
-#resume {
+#message {
     background-color: #222831;
     color: #DDDDDD;
 }
-canvas {
-    width: 100% !important;
-    height: auto !important;
+.message-box {
+    background-color: #30475E; /* Background color for the message box */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space inside the box */
+    margin: 20px auto; /* Center the box and add margin above and below */
+    max-width: 600px; /* Set a max width for the message box */
+    width: 90%; /* Allow the box to be responsive */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.message-title {
+    font-family: 'Oswald', sans-serif; /* Font style for the title */
+    font-size: 24px; /* Font size for the title */
+    color: #ffffff; /* Title color */
+    margin: 0 0 10px; /* Space below the title */
+}
+
+.message-content {
+    font-family: Arial, sans-serif; /* Font style for the content */
+    font-size: 16px; /* Font size for the content */
+    color: #ffffff; /* Content color */
+    margin: 0; /* No margin */
 }
 
 
