@@ -151,6 +151,17 @@ body {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
 
+.quick-links {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 15px; /* Makes the tags rounded */
+    background-color: rgb(48, 71, 94); /* Background color of the tag */
+    color: #FFFFFF; /* Text color */
+    font-weight: bold; /* Makes the text bold */
+    font-size: 0.9em; /* Adjusts the font size */
+}
+
 /* Scroll Indicator */
 .scroll-indicator {
     margin-top: 100px; /* Space above the arrow */
@@ -343,7 +354,7 @@ body {
 .project-link {
     display: inline-block; /* Block for better spacing */
     margin-top: 10px; /* Space above the link */
-    color: #ECDFCC; /* Light color for links */
+    color: #F05454; /* Light color for links */
     text-decoration: none; /* Remove underline */
     border: 1px solid #DDDDDD; /* Border around the link */
     border-radius: 4px; /* Rounded corners for the button */
@@ -354,6 +365,17 @@ body {
 .project-link:hover {
     background-color: #F05454; /* Change background on hover */
     color: #FFFFFF; /* Change text color on hover */
+}
+
+.tag {
+display: inline-block;
+padding: 5px 10px;
+margin: 5px;
+border-radius: 15px; /* Makes the tags rounded */
+background-color: #F05454; /* Background color of the tag */
+color: #FFFFFF; /* Text color */
+font-weight: bold; /* Makes the text bold */
+font-size: 0.9em; /* Adjusts the font size */
 }
 
 #message {
