@@ -1,11 +1,15 @@
-/* Basic resets */
+/* Welcome to The CSS of my Personal Portfolio
+ - use as inspiration if needed!
 /*
-* colour information
-* Main Titles / Accent Colour: #F05454
-* Background Color: #30475E
-* Text Colour: #DDDDDD
-* Footer / Light colour: #30475E
-* 
+ -- colour information -- 
+ ->  Main Titles / Accent Colour: #F05454
+ ->  Background Color: #30475E
+ ->  Text Colour: #DDDDDD
+ -> Footer / Light colour: #30475E
+*/
+
+/* the coloured icons are taken from 
+ https://icons8.com/icons
 */
 * {
     margin: 0;
@@ -14,11 +18,11 @@
 }
 .fade-in {
     opacity: 0; /* Start as invisible */
-    transition: opacity 1s ease-in; /* Transition for fading in and out */
+    transition: opacity 1s ease-in; 
 }
 
 .fade-in.visible {
-    opacity: 1; /* Fully visible when the class 'visible' is added */
+    opacity: 1; 
 }
 
 body {
@@ -34,18 +38,17 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 30px; /* Make the nav bar thicker */
+    padding: 15px 30px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #222831; /* Default color for the nav bar */
+    background-color: #222831; 
     /*option #2 rgb(48, 71, 94)*/
     transition: background-color 0.5s ease, opacity 0.5s ease;
     z-index: 1000;
-    height: 80px; /* Thicker height for nav bar */
+    height: 80px; 
 }
-
-/* Left side (Picture and Name) */
+/* nav bar css */
 .nav-left {
     display: flex;
     align-items: center;
@@ -54,14 +57,15 @@ nav {
 .profile-pic {
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Makes the picture circular */
-    margin-right: 15px; /* Space between picture and name */
+    border-radius: 50%;
+    margin-right: 15px; 
 }
 
 .nav-name {
     color: #DDDDDD;
     font-size: 22px;
     font-weight: bold;
+    text-decoration: none;
 }
 
 /* Right side (Links) */
@@ -75,16 +79,56 @@ nav {
     margin-left: 30px;
 }
 
-.nav-links li a {
+.nav-links li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 20px;
+  }
+  
+  .nav-links li a {
     color: #DDDDDD;
     text-decoration: none;
     font-size: 18px;
+    position: relative; /* Needed for hover effects */
     transition: color 0.3s ease;
-}
+  }
+  
+  /* Hover text color */
+  .nav-links li a:hover {
+    color: #F05454;
+  }
+  
+  /* Emoji icons with ::before */
+  .nav-links li a::before {
+    content: ""; /* Default emoji */
+    margin-right: 8px; /* Spacing between emoji and text */
+    font-size: 20px;
+    transition: opacity 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Home link */
+  
+  .nav-links li:nth-child(1) a:hover::before {
+    content: "Home";
+  }
+  
+  
+  .nav-links li:nth-child(2) a:hover::before {
+    content: "About";
+  }
+  
+  
+  .nav-links li:nth-child(3) a:hover::before {
+    content: "Projects";
+  }
+  
+  .nav-links li:nth-child(4) a:hover::before {
+    content: "Skills"
+  }
 
-.nav-links li a:hover {
-    color: #F05454; /* Hover effect */
-}
+  .nav-links li:nth-child(5) a:hover::before {
+    content: "Résumé"
+  }
 
 
 
@@ -95,26 +139,26 @@ section {
 }
 /* for home styling */
 #home {
-    background-color: #222831; /* Background color */
-    color: #DDDDDD; /* Text color */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Arrange items in a column */
-    justify-content: center; /* Center items vertically */
-    align-items: flex-start; /* Align items to the left */
-    min-height: 100vh; /* Make sure it takes full height */
-    padding: 20px; /* Optional padding */
-    position: relative; /* Ensure it sits above the background */
+    background-color: #222831; 
+    color: #DDDDDD; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+    min-height: 100vh; 
+    padding: 20px; 
+    position: relative; 
 
 }
 
 .typing-text {
-    font-size: 36px; /* Set a larger font size */
-    text-align: left; /* Center the text */
-    color: #DDDDDD; /* Color to match your theme */
-    margin-top: 20px; /* Space above the text */
+    font-size: 36px; 
+    text-align: left; 
+    color: #DDDDDD; 
+    margin-top: 20px; 
 }
 
-/* Blinking cursor */
+/* blinking cursor */
 .cursor {
     display: inline-block;
     background-color: #DDDDDD;
@@ -129,11 +173,11 @@ section {
 
 .name-display {
     font-family: 'Oswald', sans-serif;
-    font-size: 86px; /* Larger font size */
-    text-align: left; /* Center the name */
-    color: #F05454; /* Accent color */
-    margin-top: 20px; /* Space above the name */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    font-size: 86px; 
+    text-align: left; 
+    color: #F05454; 
+    margin-top: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
 }
 
 body {
@@ -144,28 +188,28 @@ body {
 }
 
 .occ-disp {
-    font-size: 45px; /* Larger font size */
-    text-align: left; /* Center the name */
-    color: #DDDDDD; /* Accent color */
-    margin-top: 20px; /* Space above the name */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+    font-size: 45px; 
+    text-align: left; 
+    color: #DDDDDD; 
+    margin-top: 20px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
 }
 
 .quick-links {
     display: inline-block;
     padding: 5px 10px;
     margin: 5px;
-    border-radius: 15px; /* Makes the tags rounded */
-    background-color: rgb(48, 71, 94); /* Background color of the tag */
-    color: #FFFFFF; /* Text color */
-    font-weight: bold; /* Makes the text bold */
-    font-size: 0.9em; /* Adjusts the font size */
+    border-radius: 15px;
+    background-color: rgb(48, 71, 94);
+    color: #FFFFFF; 
+    font-weight: bold; 
+    font-size: 0.9em;
 }
 
 /* Scroll Indicator */
 .scroll-indicator {
-    margin-top: 100px; /* Space above the arrow */
-    text-align: center; /* Center the arrow */
+    margin-top: 100px; 
+    text-align: center; 
 }
 
 .arrow-down {
@@ -197,28 +241,28 @@ body {
     animation: bounce 1s infinite;
 }
 .speech-bubble {
-    position: absolute; /* Positioning the bubble */
-    bottom: 50px; /* Position from the bottom */
-    right: 20px; /* Position from the right */
-    background-color: rgba(48, 71, 94, 0.9); /* Semi-transparent background */
-    color: #DDDDDD; /* Text color */
-    padding: 15px 20px; /* Padding for the text */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
-    max-width: 200px; /* Max width */
-    font-size: 16px; /* Font size */
-    animation: fade-in 1s ease; /* Fade-in animation */
+    position: absolute; 
+    bottom: 50px;
+    right: 20px; 
+    background-color: rgba(48, 71, 94, 0.9);
+    color: #DDDDDD; 
+    padding: 15px 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    max-width: 200px; 
+    font-size: 16px; 
+    animation: fade-in 1s ease; 
 }
 
 /* Arrow Pointer */
 .speech-bubble::after {
     content: '';
     position: absolute;
-    top: 100%; /* Position below the bubble */
-    right: 15px; /* Center it */
-    border-width: 10px; /* Size of the arrow */
+    top: 100%; 
+    right: 15px; 
+    border-width: 10px;
     border-style: solid;
-    border-color: rgba(48, 71, 94, 0.9) transparent transparent transparent; /* Color and style of arrow */
+    border-color: rgba(48, 71, 94, 0.9) transparent transparent transparent;
 }
 
 /* Fade-in Animation */
@@ -231,189 +275,264 @@ body {
     }
 }
 
-/* About Section (and others) */
+/* 1 page sections 
+- about
+- projects
+*/
 #about {
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center the content horizontally */
-    align-items: center; /* Center the content vertically */
-    background-color: #222831; /* Dark background color */
-    color: #DDDDDD; /* Light text color */
-    padding: 100px 20px; /* Increased padding for more space */
-    min-height: 80vh; /* Ensure section takes up more vertical space */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #222831; 
+    color: #DDDDDD;
+    padding: 100px 20px; 
+    min-height: 80vh; 
 }
 
 .about-container {
-    display: flex; /* Flexbox for image and text alignment */
-    max-width: 1200px; /* Maximum width for the section */
-    width: 100%; /* Ensure it fills the available width up to max-width */
-    gap: 50px; /* Increased space between image and text */
+    display: flex; 
+    max-width: 1200px; 
+    width: 100%;
+    gap: 50px;
 }
 
 .image-container {
-    flex: 1; /* Allow the image container to grow */
+    flex: 1; 
 }
 
 .about-img {
-    width: 400px; /* Increased size for the image */
-    height: 400px; /* Ensure height matches width for a square image */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    border-radius: 20px; /* Rounded corners for the image */
-    border: 10px solid rgb(48, 61, 84); /* Border around the image */
+    width: 400px; 
+    height: 400px; 
+    object-fit: cover; 
+    border-radius: 20px; 
+    border: 10px solid rgb(48, 61, 84); 
 }
 
 .about-content {
-    flex: 2; /* Allow the text container to grow */
-    position: relative; /* Make it relative to position the title above */
+    flex: 2; 
+    position: relative; 
 }
 
 .title {
     font-family: 'Oswald', sans-serif;
-    font-size: 50px; /* Increased size for the title */
-    color: #F05454; /* Accent color for the title */
-    position: absolute; /* Positioning it absolutely within the content */
-    top: -30px; /* Move it up above the box */
-    left: 0; /* Align it to the left */
+    font-size: 50px; 
+    color: #F05454; 
+    position: absolute; 
+    top: -30px; 
+    left: 0;
 }
 
 
 .about-text {
     /*background-color: rgb(48, 71, 94); Dark grey box behind the text */
-    border-radius: 8px; /* Rounded corners for the text box */
-    padding: 40px; /* Increased padding inside the text box */
-    min-height: 400px; /* Ensure text box has a minimum height */
-    margin-top: 30px; /* Space below the title */
+    border-radius: 8px;
+    padding: 40px; 
+    min-height: 400px; 
+    margin-top: 30px;
 }
 
 .about-blurb {
-    font-size: 25px; /* Increased size for the blurb text */
-    color: #DDDDDD; /* Light text color for better contrast */
-    line-height: 1.6; /* Line height for readability */
+    font-size: 25px;
+    color: #DDDDDD;
+    line-height: 1.6;
 }
 .social-media {
-    display: flex; /* Use flexbox for horizontal alignment */
-    justify-content: left; /* Center the icons horizontally */
-    gap: 15px; /* Space between icons */
-    margin-top: 20px; /* Space above the icons */
+    display: flex;
+    justify-content: left;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .social-media img {
-    width: 64px; /* Set a specific size for the icons */
-    height: 64px; /* Ensure height matches width for consistency */
-    object-fit: cover; /* Maintain aspect ratio */
-    transition: opacity 0.3s ease; /* Smooth hover effect */
+    width: 64px; 
+    height: 64px; 
+    object-fit: cover;
+    transition: opacity 0.3s ease;
 }
 
 .social-media img:hover {
-    opacity: 0.7; /* Slightly fade the icon on hover */
+    opacity: 0.7; 
 }
+
+#skills {
+    background-color: #222831;
+    padding: 50px 0;
+    color: #F0ECE5;
+  }
+  
+  #skills h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 5px;
+    color: #F05454;
+  }
+  #skills p {
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+  }
+  #skills a {
+    text-decoration: none;
+    color: #454e5c;
+}
+#skills a:hover {
+    text-decoration: none;
+    color: #F05454;
+}
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .skills-grid {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .column {
+    width: 30%;
+    text-align: center;
+  }
+  
+  .column h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Bubble styling */
+  .bubble {
+    background-color: #F05454;
+    color: #F0ECE5;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  /*.bubble:hover {
+    background-color: #B6BBC4;
+  }*/
+
+  .divider {
+    width: 1px;
+    background-color: #B6BBC4;
+    height: auto; /* Auto height to fill the container */
+    margin: 0 20px;
+  }
 
 #projects {
-    background-color: #222831; /* Dark background color */
-    color: #DDDDDD; /* Light text color */
-    padding: 60px 20px; /* Padding for top and bottom */
-    text-align: center; /* Center-align headings */
+    background-color: #222831;
+    color: #DDDDDD;
+    padding: 60px 20px;
+    text-align: center;
 }
 
+#projects h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+    color: #F05454;
+  }
+
 .projects-container {
-    display: grid; /* Use CSS Grid for layout */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: 20px; /* Space between cards */
-    max-width: 1200px; /* Limit max width of the container */
-    margin: 0 auto; /* Center the container */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .project-card {
-    background-color: #393E46; /* Card background color */
-    border-radius: 10px; /* Rounded corners */
-    height: 450px; /* Fixed height for cards */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    overflow: hidden; /* Clip content */
-    transition: transform 0.3s ease; /* Smooth hover effect */
+    background-color: #393E46;
+    border-radius: 10px;
+    height: 450px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-20px); /* Lift effect on hover */
+    transform: translateY(-20px);
 }
 
 .project-image {
-    width: 100%; /* Full width image */
-    height: 200px; /* Fixed height for images */
-    object-fit: cover; /* Maintain aspect ratio */
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
 }
 
 .project-info {
-    padding: 15px; /* Padding inside the card */
+    padding: 15px; 
 }
 
 .project-info h3 {
-    margin: 0; /* Remove margin for the title */
-    font-size: 1.5rem; /* Title size */
+    margin: 0; 
+    font-size: 1.5rem;
     color: #F05454;
 }
 
 .project-link {
-    display: inline-block; /* Block for better spacing */
-    margin-top: 10px; /* Space above the link */
-    color: #F05454; /* Light color for links */
-    text-decoration: none; /* Remove underline */
-    border: 1px solid #DDDDDD; /* Border around the link */
-    border-radius: 4px; /* Rounded corners for the button */
-    padding: 8px 12px; /* Padding for the button */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    display: inline-block;
+    margin-top: 10px;
+    color: #F05454;
+    text-decoration: none;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px; 
+    padding: 8px 12px; 
+    transition: background-color 0.3s ease;
 }
 
 .project-link:hover {
-    background-color: #F05454; /* Change background on hover */
-    color: #FFFFFF; /* Change text color on hover */
+    background-color: #F05454; 
+    color: #FFFFFF; 
 }
 
 .tag {
 display: inline-block;
 padding: 5px 10px;
 margin: 5px;
-border-radius: 15px; /* Makes the tags rounded */
-background-color: #F05454; /* Background color of the tag */
-color: #FFFFFF; /* Text color */
-font-weight: bold; /* Makes the text bold */
-font-size: 0.9em; /* Adjusts the font size */
+border-radius: 15px; 
+background-color: #F05454; 
+color: #FFFFFF; 
+font-weight: bold; 
+font-size: 0.9em; 
 }
 
-#message {
+/*#message {
     background-color: #222831;
     color: #DDDDDD;
 }
 .message-box {
-    background-color: #30475E; /* Background color for the message box */
-    border-radius: 8px; /* Rounded corners */
-    padding: 20px; /* Space inside the box */
-    margin: 20px auto; /* Center the box and add margin above and below */
-    max-width: 600px; /* Set a max width for the message box */
-    width: 90%; /* Allow the box to be responsive */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    background-color: #30475E;
+    border-radius: 8px; 
+    padding: 20px; 
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .message-title {
-    font-family: 'Oswald', sans-serif; /* Font style for the title */
-    font-size: 24px; /* Font size for the title */
-    color: #ffffff; /* Title color */
-    margin: 0 0 10px; /* Space below the title */
+    font-family: 'Oswald', sans-serif; 
+    font-size: 24px; 
+    color: #ffffff; 
+    margin: 0 0 10px; 
 }
 
 .message-content {
-    font-family: Arial, sans-serif; /* Font style for the content */
-    font-size: 16px; /* Font size for the content */
-    color: #ffffff; /* Content color */
-    margin: 0; /* No margin */
-}
+    font-family: Arial, sans-serif; 
+    font-size: 16px; 
+    color: #ffffff; 
+    margin: 0;
+} */
 
 
 /* Footer styles */
-footer {
-    background-color: #222831;
-    color: #DDDDDD;
-    padding: 20px;
-    text-align: center;
-}
+
 
 .footer-content {
     display: flex;
@@ -425,23 +544,13 @@ footer {
     width: 24px;
     margin-left: 20px;
 }
-/* Footer styles */
-footer {
-    background-color: #222831; /* Dark background for the footer */
-    color: #DDDDDD; /* Light text */
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    font-size: 16px;
-}
 
 /* Footer styles */
+
+
 footer {
-    background-color: rgb(48, 71, 94); /* Dark background */
-    color: #000000; /* Light text */
+    background-color: rgb(48, 71, 94);
+    color: #000000; 
     padding: 20px;
     width: 100%;
     font-size: 16px;
@@ -449,8 +558,8 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-between; /* Space between text and links */
-    align-items: center; /* Aligns items to the same vertical level */
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 /* Text styling */
@@ -460,15 +569,15 @@ footer p {
 
 /* Links styling */
 .footer-links a img {
-    width: 24px; /* Icon size */
+    width: 30px;
     height: auto;
-    margin-left: 20px; /* Space between icons */
-    transition: transform 0.3s ease; /* Add some interaction on hover */
+    margin-left: 20px;
+    transition: transform 0.3s ease; 
     background-color: rgb(48, 71, 94);
 }
 
 .footer-links a img:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    transform: scale(1.4);
 }
 
 footer p {

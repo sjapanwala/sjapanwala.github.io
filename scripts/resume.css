@@ -6,64 +6,7 @@ body {
   background-color: #1d232a; /* Light background */
 }
 
-/* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 30px; /* Make the nav bar thicker */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #222831; /* Default color for the nav bar */
-  /*option #2 rgb(48, 71, 94)*/
-  transition: background-color 0.5s ease, opacity 0.5s ease;
-  z-index: 1000;
-  height: 80px; /* Thicker height for nav bar */
-}
 
-/* Left side (Picture and Name) */
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.profile-pic {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%; /* Makes the picture circular */
-  margin-right: 15px; /* Space between picture and name */
-}
-
-.nav-name {
-  color: #DDDDDD;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* Right side (Links) */
-.nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-}
-
-.nav-links li {
-  margin-left: 30px;
-}
-
-.nav-links li a {
-  color: #DDDDDD;
-  text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease;
-}
-
-.nav-links li a:hover {
-  color: #F05454; /* Hover effect */
-}
 
 /* Resume Section */
 .warn {
@@ -194,40 +137,11 @@ a:hover {
 }
 
 /* Footer styles */
-footer {
-  background-color: #222831;
-  color: #DDDDDD;
-  padding: 20px;
-  text-align: left;
-}
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: left;
-}
 
-.footer-links a img {
-  width: 24px;
-  margin-left: 20px;
-}
-/* Footer styles */
 footer {
-  background-color: #222831; /* Dark background for the footer */
-  color: #DDDDDD; /* Light text */
-  text-align: center;
-  padding: 20px;
-  margin-top: 50px;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  font-size: 16px;
-}
-
-/* Footer styles */
-footer {
-  background-color: rgb(48, 71, 94); /* Dark background */
-  color: #000000; /* Light text */
+  background-color: rgb(48, 71, 94);
+  color: #000000; 
   padding: 20px;
   width: 100%;
   font-size: 16px;
@@ -235,8 +149,8 @@ footer {
 
 .footer-content {
   display: flex;
-  justify-content: space-between; /* Space between text and links */
-  align-items: center; /* Aligns items to the same vertical level */
+  justify-content: space-between; 
+  align-items: center; 
 }
 
 /* Text styling */
@@ -246,19 +160,15 @@ footer p {
 
 /* Links styling */
 .footer-links a img {
-  width: 24px; /* Icon size */
+  width: 30px;
   height: auto;
-  margin-left: 20px; /* Space between icons */
-  transition: transform 0.3s ease; /* Add some interaction on hover */
+  margin-left: 20px;
+  transition: transform 0.3s ease; 
   background-color: rgb(48, 71, 94);
 }
 
 .footer-links a img:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
-}
-
-footer p {
-  margin: 0;
+  transform: scale(1.4);
 }
 
 footer p {
