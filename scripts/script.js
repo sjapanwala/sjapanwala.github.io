@@ -209,3 +209,4 @@ function toggleContent(item) {
       arrow.style.transform = "rotate(90deg)"; // Rotate arrow
     }
   }
+
