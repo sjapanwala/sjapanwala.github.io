@@ -6,6 +6,80 @@ body {
   background-color: #1d232a; /* Light background */
 }
 
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 30px; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222831; 
+  /*rgb(48, 71, 94)*/
+  transition: background-color 0.5s ease, opacity 0.5s ease;
+  z-index: 1000;
+  height: 80px; 
+}
+/* nav bar css */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px; 
+}
+
+.nav-name {
+  color: #DDDDDD;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Right side (Links) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+}
+
+.nav-links li {
+  margin-left: 30px;
+}
+
+.nav-links li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nav-links li a {
+  color: #DDDDDD;
+  text-decoration: none;
+  font-size: 18px;
+  position: relative; /* Needed for hover effects */
+  transition: color 0.3s ease;
+}
+
+/* Hover text color */
+.nav-links li a:hover {
+  color: #F05454;
+}
+
+/* Emoji icons with ::before */
+.nav-links li a::before {
+  content: ""; /* Default emoji */
+  margin-right: 8px; /* Spacing between emoji and text */
+  font-size: 20px;
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
 
 
 /* Resume Section */

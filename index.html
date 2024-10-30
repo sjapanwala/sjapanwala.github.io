@@ -10,6 +10,16 @@
     <link rel="icon" href="elements/favicon-16x16.png" type="image/x-icon">
 </head>
 <body>
+    <script>
+    window.onload = function () {
+        const redirectWidth = 768;
+        const mobilePageUrl = "exp.html";
+
+        if (window.innerWidth < redirectWidth) {
+            window.location.href = mobilePageUrl;
+        }
+    };
+    </script>
     <nav>
         <div class="nav-left">
             <a href="#home">
@@ -57,7 +67,7 @@
                 <div class="about-text">
                     <p class="about-blurb">
                         Hello! I’m Saaim, currently a second-year student at <strong><br>The University of Alberta.</strong><br><br>
-                        My passion for programming is always growing, and I’m eager to learn more about it! When im not building projects, I enjoy playing video games and trying out different foods. I also love learning new things. Right now im eager to master ReactJS.<br><br> <strong>Connect With Me By Clicking These Cool Icons!</strong>
+                        My passion for programming is always growing, and I’m eager to learn more about it! When im not building projects, I enjoy playing video games and trying out different foods. I also love learning new things. Right now im eager to master ReactJS.<br><br>
                         <!--these icons are provided by icons8, i have to say it because they asked nicely on thier website-->
                     </p>
                     <div class="social-media">
@@ -90,15 +100,15 @@
         <h2>Projects</h2>
     <div class="projects-container">
         <div class="project-card">
-            <img src="projects/audiofy.png" alt="Audiofy, Web Audio Player" class="project-image">
+            <img src="projects/audiofy.png" alt="Audiofy" class="project-image">
             <div class="project-info">
-                <h3>Audiofy, Web Audio Player<br><br></h3>
+                <h3>Audiofy<br><br></h3>
                 <div class="tags">
                     <span class="tag">HTML</span>
                     <span class="tag">CSS</span>
                     <span class="tag">JavaScript</span>
                 </div>
-                <p>Audiofy, a webplayer built in mind for people who want to use Youtube for music, but dont want the annoying features it comes with. With a plain UI, a queue, and many more features!
+                <p>Audiofy, a webplayer built in mind for people who want to use Youtube for music, but dont want the annoying features it comes with. a queue, and many more features!
                 </p>
                 <a href="https://sjapanwala.github.io/audiofy.github.io/" target="_blank" class="project-link">Goto Site</a>
                 <a href="https://github.com/sjapanwala/audiofy.github.io" target="_blank" class="project-link">View Repository</a>
@@ -123,7 +133,7 @@
         <div class="project-card">
             <img src="projects/pyrunweb.png" alt="Pyrun, The Better Python Addon" class="project-image">
             <div class="project-info">
-                <h3>Pyrun, The Python Addon<br><br></h3>
+                <h3>Pyrun<br><br></h3>
                 <div class="tags">
                     <span class="tag">Python3</span>
                     <span class="tag">Shell Script</span>
@@ -131,6 +141,42 @@
                 <p>Introducing the Better Python Interpreter: an enhanced tool that clearly identifies errors, shows their locations, and provides insights on time complexities and more.</p>
                 <a href="https://sjapanwala.github.io/pyrun/" target="_blank" class="project-link">Goto Site</a>
                 <a href="https://github.com/sjapanwala/pyrun" target="_blank" class="project-link">View Repository</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="projects/netwise.png" alt="netwise" class="project-image">
+            <div class="project-info">
+                <h3>Netwise<br><br></h3>
+                <div class="tags">
+                    <span class="tag">Batch</span>
+                    <span class="tag">Networking</span>
+                </div>
+                <p>A tool with a focus on Cybersecurity, and Networking. Fetching data from servers and analyzing it. With various different features</p>
+                <a href="https://github.com/sjapanwala/netwise" target="_blank" class="project-link">View Repository</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="projects/repixel2.png" alt="repixel" class="project-image">
+            <div class="project-info">
+                <h3>Repixel<br><br></h3>
+                <div class="tags">
+                    <span class="tag">Python3</span>
+                    <span class="tag">Pillow</span>
+                </div>
+                <p>Using the Pillow library, creating pixelated images to appear in the terminal using ANSI colour codes</p>
+                <a href="https://github.com/sjapanwala/repixel" target="_blank" class="project-link">View Repository</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <img src="projects/gfetch.png" alt="gfetch" class="project-image">
+            <div class="project-info">
+                <h3>gfetch<br><br></h3>
+                <div class="tags">
+                    <span class="tag">Python3</span>
+                    <span class="tag">Repixel</span>
+                </div>
+                <p>Using Repixel, created a <i>Neofetch</i> inspirted terminal tool, that displayes pixelated images of your operating system, alongside with other useful information</p> 
+                <a href="https://github.com/sjapanwala/gfetch" target="_blank" class="project-link">View Repository</a>
             </div>
         </div>
         <!--<div class="project-card">
@@ -168,7 +214,6 @@
                 <h3>Front End Development</h3>
                 <div class="bubble">HTML</div>
                 <div class="bubble">CSS</div>
-                <div class="bubble">JavaScript</div>
                 <div class="bubble">React</div>
                 <div class="bubble">Swift</div>
               </div>
@@ -180,6 +225,7 @@
                 <div class="bubble">Node.js</div>
                 <div class="bubble">Python3</div>
                 <div class="bubble">C</div>
+                <div class="bubble">JavaScript</div>
                 <div class="bubble">Rust</div>
                 <div class="bubble">Batch Scripting</div>
                 <div class="bubble">Powershell Scripting</div>
@@ -207,7 +253,6 @@
                 <div class="bubble">Pandas</div>
                 <div class="bubble">R</div>
                 <div class="bubble">Microsoft Excel</div>
-                <div class="bubble">Matplotlib</div>
                 <div class="bubble">CSV</div>
               </div>
 

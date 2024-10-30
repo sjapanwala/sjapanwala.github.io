@@ -83,63 +83,59 @@ nav {
     list-style: none;
     display: inline-block;
     margin-right: 20px;
-  }
+}
   
-  .nav-links li a {
+.nav-links li a {
     color: #DDDDDD;
     text-decoration: none;
     font-size: 18px;
     position: relative; /* Needed for hover effects */
     transition: color 0.3s ease;
-  }
+}
   
-  /* Hover text color */
-  .nav-links li a:hover {
+/* Hover text color */
+.nav-links li a:hover {
     color: #F05454;
-  }
+}
   
-  /* Emoji icons with ::before */
-  .nav-links li a::before {
+/* Emoji icons with ::before */
+.nav-links li a::before {
     content: ""; /* Default emoji */
     margin-right: 8px; /* Spacing between emoji and text */
     font-size: 20px;
     transition: opacity 0.3s ease; /* Smooth transition */
-  }
+}
   
-  /* Home link */
+/* Home link */
   
-  .nav-links li:nth-child(1) a:hover::before {
+.nav-links li:nth-child(1) a:hover::before {
     content: "Home";
-  }
+}
   
-  
-  .nav-links li:nth-child(2) a:hover::before {
+.nav-links li:nth-child(2) a:hover::before {
     content: "About";
-  }
+}
   
-  
-  .nav-links li:nth-child(3) a:hover::before {
+.nav-links li:nth-child(3) a:hover::before {
     content: "Projects";
-  }
+}
   
-  .nav-links li:nth-child(4) a:hover::before {
+.nav-links li:nth-child(4) a:hover::before {
     content: "Skills"
-  }
+}
 
-  .nav-links li:nth-child(5) a:hover::before {
+.nav-links li:nth-child(5) a:hover::before {
     content: "Résumé"
-  }
-
-
+}
 
 /* Sections */
 section {
     padding: 100px 20px;
     min-height: 100vh;
 }
+
 /* for home styling */
 #home {
-    background-color: #222831; 
     color: #DDDDDD; 
     display: flex; 
     flex-direction: column;
@@ -148,7 +144,6 @@ section {
     min-height: 100vh; 
     padding: 20px; 
     position: relative; 
-
 }
 
 .typing-text {
@@ -221,7 +216,6 @@ body {
     animation: bounce 1s infinite;
 }
 
-
 /* Arrow Bouncing Animation */
 @keyframes bounce {
     0%, 100% {
@@ -240,6 +234,7 @@ body {
     border-bottom: 15px solid #F05454;
     animation: bounce 1s infinite;
 }
+
 .speech-bubble {
     position: absolute; 
     bottom: 50px;
@@ -322,7 +317,6 @@ body {
     left: 0;
 }
 
-
 .about-text {
     /*background-color: rgb(48, 71, 94); Dark grey box behind the text */
     border-radius: 8px;
@@ -336,6 +330,7 @@ body {
     color: #DDDDDD;
     line-height: 1.6;
 }
+
 .social-media {
     display: flex;
     justify-content: left;
@@ -531,8 +526,6 @@ font-size: 0.9em;
     color: #ffffff; 
     margin: 0;
 } */
-
-
 /* Footer styles */
 
 
