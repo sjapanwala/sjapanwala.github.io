@@ -15,7 +15,7 @@ html, body {
 
 .container {
     display: flex;
-    height: 135vh;
+    height: 145vh;
     width: 100%;
 }
 
@@ -37,6 +37,14 @@ html, body {
     color: #0ec520; 
 }
 
+.divider {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    height: 1px;
+    background-color: #ccc; /* Light gray */
+  }
+
+  
 .static-section {
     width: 40%;
     padding: 2rem;
@@ -322,4 +330,209 @@ html, body {
     color: #6B7280;
     font-size: 0.9rem;
     margin-bottom: 2rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-0.313rem);
+    box-shadow: 0 0.25rem 0.938rem rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.938rem;
+}
+
+.project-date {
+    color: #8fcbff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-title {
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.project-description {
+    color: #bcbcbc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.938rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap to next line */
+    gap: 0.5rem;
+    margin-bottom: 0.938rem;
+}
+
+.project-tag, .project-tag-special {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem; /* Add some vertical spacing between wrapped tags */
+}
+
+.project-tag {
+    background: #8fcbff;
+    box-shadow: 0 0 1.25rem rgba(107, 218, 255, 0.8);
+}
+
+.project-tag-special {
+    background: #ff8ff8;
+    box-shadow: 0 0 1.25rem rgba(248, 107, 255, 0.8);
+}
+
+.project-links {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.project-link {
+    color: #8fcbff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.project-image {
+    width: 100%;
+    height: 12.5rem;
+    margin-bottom: 0.938rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.others h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.others p {
+    color: #bcbcbc;
+    font-size: 1rem;
+}
+
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-0.313rem);
+    box-shadow: 0 0.25rem 0.938rem rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.938rem;
+}
+
+.blog-date {
+    color: #8fcbff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.blog-title {
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.blog-description {
+    color: #bcbcbc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.938rem;
+    flex-grow: 1;
+}
+
+.blog-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-tag {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: #ff8fee;
+    box-shadow: 0 0 1.25rem rgba(255, 107, 248, 0.8);
+}
+
+.blog-links {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.blog-link {
+    color: #8fcbff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
 }
