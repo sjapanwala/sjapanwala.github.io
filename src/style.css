@@ -2,7 +2,6 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'verdana', sans-serif;
-    /*background-image: url("../assets/backdrop.png");*/
     background-color: #121212;
     background-size: cover;
     background-repeat: no-repeat;
@@ -13,6 +12,36 @@ html, body {
     --textcolor: #F5F7F8;
 }
 
+/* this little chunk is used for the scrollbar */
+.scrollable-section::-webkit-scrollbar {
+    width: 4px; 
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 2px;
+}
+
+.static-section::-webkit-scrollbar {
+    width: 4px; 
+}
+
+.static-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.static-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 2px;
+}
+
+/* css for the left most part of the site
+   for the picture, text, icons, status badges 
+   this also has dividor css and the scrolling logic*/
 .container {
     display: flex;
     height: 145vh;
@@ -29,12 +58,22 @@ html, body {
     transition: all 0.2s ease;
     cursor: default;
     margin-bottom: .2rem;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-.bubble.text {
+.bubble.textocc {
     background-color: rgba(107, 255, 117, 0.1);
     border: 1px solid rgba(107, 255, 117, 0.2);
     color: #0ec520; 
+}
+
+.bubble.textinterest {
+    background-color: rgba(255, 107, 142, 0.1);
+    border: 1px solid rgba(255, 107, 142, 0.2);
+    color: #c50e3f; 
 }
 
 .divider {
@@ -49,11 +88,15 @@ html, body {
     width: 40%;
     padding: 2rem;
     position: relative;
+    overflow: hidden;
+    overscroll-behavior: none; 
 }
 
 .static-content {
     position: sticky;
     top: 2rem;
+    max-height: 100%; 
+    overflow: visible; 
 }
 
 .scrollable-section {
@@ -70,6 +113,10 @@ html, body {
     object-fit: cover;
     border: 3px solid white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .profile-text {
@@ -77,6 +124,10 @@ html, body {
     line-height: 1.6;
     font-size: 1.1rem;
     color: #bcbcbc;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .name-tag {
@@ -84,14 +135,51 @@ html, body {
     line-height: 1.6;
     font-size: 2rem;
     color: var(--textcolor);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .profile-links {
     object-fit: cover;
     margin-bottom: 0.5rem;
+    gap: 1.5rem;
+    
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
-/* Responsive design */
+.resume-download-btn {
+    display: inline-flex;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--textcolor);
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    gap: 0.5rem;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.resume-download-btn:hover {
+    color: #bcbcbc;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.resume-download-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+
+/* this is for the scrollable section for the right side of the site */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -114,6 +202,7 @@ html, body {
 
 }
 
+/* about me section, this is just plain text with some basic styling*/
 .aboutme h2 {
     color: var(--textcolor);
     font-size: 2rem;
@@ -125,6 +214,7 @@ html, body {
     font-size: 1rem;
 }
 
+/* skills section, this is a little more aesthetic with some "bubble" style elements*/
 .skills h2 {
     color: var(--textcolor);
     font-size: 2rem;
@@ -171,7 +261,7 @@ html, body {
 }
 
 
-
+/* this is the experience section, this took way to long to write, and i wont lie, i used a little bit of claude for this ;) */
 .experience h2 {
     color: var(--textcolor);
     font-size: 2rem;
@@ -197,7 +287,7 @@ html, body {
     margin-top: 30px;
 }
 
-/* Line down the middle */
+
 .timeline::after {
     content: '';
     position: absolute;
@@ -222,7 +312,6 @@ html, body {
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Dot on the timeline */
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -313,6 +402,7 @@ html, body {
     }
 }
 
+/* this is the project section, this is not that complicated*/
 .projects h2 {
     color: var(--textcolor);
     font-size: 2rem;
@@ -323,14 +413,7 @@ html, body {
     font-size: 1rem;
 }
 
-.footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    color: #6B7280;
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-}
+
 
 .projects-grid {
     display: grid;
@@ -380,7 +463,7 @@ html, body {
 
 .project-tags {
     display: flex;
-    flex-wrap: wrap; /* Allow tags to wrap to next line */
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 0.938rem;
 }
@@ -389,7 +472,7 @@ html, body {
     padding: 0.25rem 0.625rem;
     border-radius: 0.938rem;
     font-size: 0.8rem;
-    margin-bottom: 0.25rem; /* Add some vertical spacing between wrapped tags */
+    margin-bottom: 0.25rem;
 }
 
 .project-tag {
@@ -438,6 +521,8 @@ html, body {
     transform: scale(1.05);
 }
 
+
+/* this is the blogs section, this section is named "others" but its really like a blog section*/
 .others h2 {
     color: var(--textcolor);
     font-size: 2rem;
@@ -535,4 +620,13 @@ html, body {
 .blog-link:hover {
     color: #ffffff;
     text-decoration: underline;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    color: var(--textcolor);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
 }
