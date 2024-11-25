@@ -693,6 +693,13 @@ html, body {
     box-shadow: 0 0 1.25rem rgba(127, 225, 212, 0.8);
 }
 
+.blog-tag-readtime {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: #FFFACC;
+    box-shadow: 0 0 1.25rem rgba(255, 250, 204 0.8);
+}
 .blog-links {
     display: flex;
     gap: 0.625rem;
