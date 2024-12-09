@@ -529,10 +529,9 @@ html, body {
 }
 
 .embed {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  width: 10rem;
 }
+
 /* this is the blogs section, this section is named "others" but its really like a blog section*/
 .others h2 {
     color: var(--textcolor);
