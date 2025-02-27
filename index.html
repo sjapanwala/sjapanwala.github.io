@@ -94,7 +94,9 @@
                             <div class="timeline-role">👨‍💻 | Full Stack Developer</div>
                             <div class="timeline-company">Segmentation Faulters; HackED 2025.</div>
                             <div class="timeline-description">
-                                Created a chrome extention that checks if information on the internet is authentically verified or a fabrication. Levereged the Google Fact Check API, alongside multiple algorithms to ensure the accuracy of the information.
+                                Created a chrome extention that checks if information on the internet is authentically
+                                verified or a fabrication. Levereged the Google Fact Check API, alongside multiple
+                                algorithms to ensure the accuracy of the information.
                             </div>
                             <div class="timeline-tags">
                                 <span class="timeline-tag-special">Hackathon</span>
@@ -126,7 +128,7 @@
                         </div>
 
 
-                        <div class="timeline-item">
+                        <!--<div class="timeline-item">
                             <div class="timeline-date">Nov 9-10, 2024</div>
                             <div class="timeline-role">👨‍💻 | Full Stack Developer</div>
                             <div class="timeline-company">HackED Beta</div>
@@ -141,7 +143,7 @@
                                 <span class="timeline-tag">Electron.JS</span>
                                 <span class="timeline-tag">JavaScript</span>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="timeline-item">
                             <div class="timeline-date">2024 - Present</div>
@@ -172,7 +174,6 @@
                                 <span class="timeline-tag">Post Secondary</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -191,7 +192,9 @@
                             <div class="project-date">2025</div>
                         </div>
                         <div class="project-description">
-                            The internet has a problem. Its full of misinformation and false content. With <i>Fact or Cap</i> you can effeciently and securely check if a claim is authentic or fabricated. With trusted sources.
+                            The internet has a problem. Its full of misinformation and false content. With <i>Fact or
+                                Cap</i> you can effeciently and securely check if a claim is authentic or fabricated.
+                            With trusted sources.
                         </div>
                         <div class="project-tags">
                             <span class="project-tag-special">HackED 2025</span>
@@ -439,6 +442,28 @@
                 </footer>
         </div>
     </div>
+
+
+    <script>
+        function toggleExpand(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // Optionally auto-collapse other cards when one is expanded
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.timeline-card');
+
+            cards.forEach(card => {
+                card.querySelector('.timeline-card-header').addEventListener('click', function () {
+                    cards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('expanded');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 <script src="src/script.js"></script>
 

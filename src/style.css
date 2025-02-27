@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     font-family: 'verdana', sans-serif;
@@ -16,7 +17,7 @@ html, body {
 
 /* this little chunk is used for the scrollbar */
 .scrollable-section::-webkit-scrollbar {
-    width: 1px; 
+    width: 1px;
 }
 
 .scrollable-section::-webkit-scrollbar-track {
@@ -24,12 +25,12 @@ html, body {
 }
 
 .scrollable-section::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
 }
 
 .static-section::-webkit-scrollbar {
-    width: 4px; 
+    width: 4px;
 }
 
 .static-section::-webkit-scrollbar-track {
@@ -37,7 +38,7 @@ html, body {
 }
 
 .static-section::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2); 
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
 }
 
@@ -69,36 +70,37 @@ html, body {
 .bubble.textocc {
     background-color: rgba(107, 255, 117, 0.1);
     border: 1px solid rgba(107, 255, 117, 0.2);
-    color: #0ec520; 
+    color: #0ec520;
 }
 
 .bubble.textinterest {
     background-color: rgba(255, 107, 142, 0.1);
     border: 1px solid rgba(255, 107, 142, 0.2);
-    color: #c50e3f; 
+    color: #c50e3f;
 }
 
 .divider {
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
     height: 1px;
-    background-color: #ccc; /* Light gray */
-  }
+    background-color: #ccc;
+    /* Light gray */
+}
 
-  
+
 .static-section {
     width: 40%;
     padding: 2rem;
     position: relative;
     overflow: hidden;
-    overscroll-behavior: none; 
+    overscroll-behavior: none;
 }
 
 .static-content {
     position: sticky;
     top: 2rem;
-    max-height: 100%; 
-    overflow: visible; 
+    max-height: 100%;
+    overflow: visible;
 }
 
 .scrollable-section {
@@ -147,7 +149,7 @@ html, body {
     object-fit: cover;
     margin-bottom: 0.5rem;
     gap: 1.5rem;
-    
+
     display: flex;
     justify-content: center;
     text-align: center;
@@ -158,10 +160,10 @@ html, body {
     justify-content: center;
     text-decoration: none;
     color: var(--textcolor);
-    padding: 0.5rem 1rem; 
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
     gap: 0.5rem;
 
@@ -172,7 +174,7 @@ html, body {
 
 .resume-download-btn:hover {
     color: #bcbcbc;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .resume-download-btn img {
@@ -244,22 +246,26 @@ html, body {
     cursor: default;
 }
 
+
 .skill-bubble.langs {
-    background-color: rgba(255, 107, 233, 0.1); 
-    border: 1px solid rgba(255, 107, 233, 0.2);
-    color: #ff6bf3; 
+    background-color: rgba(106, 204, 255, 0.1);
+    border: 1px solid rgba(106, 204, 255, 0.2);
+    background: #ff6bf3;
+    box-shadow: 0 0 1.25rem rgba(248, 107, 255, 0.8);
 }
 
 .skill-bubble.frameworks {
     background-color: rgba(106, 204, 255, 0.1);
     border: 1px solid rgba(106, 204, 255, 0.2);
-    color: #6accff; 
+    background: #6accff;
+    box-shadow: 0 0 1.25rem rgba(127, 225, 212, 0.8);
 }
 
 .skill-bubble.tools {
-    background-color: rgba(144, 238, 144, 0.1);
-    border: 1px solid rgba(144, 238, 144, 0.3);
-    color: #90ee90;
+    background-color: rgba(106, 204, 255, 0.1);
+    border: 1px solid rgba(106, 204, 255, 0.2);
+    background: #90ee90;
+    box-shadow: 0 0 1.25rem rgba(144, 238, 144, 1);
 }
 
 
@@ -297,10 +303,10 @@ html, body {
     top: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.2) 50%,
-        rgba(255, 255, 255, 0.1) 100%);
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.1) 100%);
 }
 
 .timeline-item {
@@ -322,8 +328,8 @@ html, body {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #8fcbff;
-    box-shadow: 0 0 20px rgba(107, 218, 255, 0.8);
+    background: var(--textcolor);
+    box-shadow: 0 0 20px var(--textcolor);
     z-index: 1;
     transition: all 0.3s ease;
 }
@@ -351,7 +357,7 @@ html, body {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 5px;
-    color:var(--textcolor)
+    color: var(--textcolor)
 }
 
 .timeline-company {
@@ -470,7 +476,8 @@ html, body {
     margin-bottom: 0.938rem;
 }
 
-.project-tag, .project-tag-special {
+.project-tag,
+.project-tag-special {
     padding: 0.25rem 0.625rem;
     border-radius: 0.938rem;
     font-size: 0.8rem;
@@ -529,7 +536,7 @@ html, body {
 }
 
 .embed {
-  width: 10rem;
+    width: 10rem;
 }
 
 /* this is the blogs section, this section is named "others" but its really like a blog section*/
@@ -630,6 +637,7 @@ html, body {
     background: #FFFACC;
     box-shadow: 0 0 1.25rem rgba(255, 250, 204 0.8);
 }
+
 .blog-links {
     display: flex;
     gap: 0.625rem;
