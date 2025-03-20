@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Saaim Japanwala</title>
+  <link rel="stylesheet" href="objects/styles.css">
+  <link rel="icon" href="objects/favicon-16x16.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lets Connect! | Saaim Japanwala's Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="objects/favicon-16x16.png" type="image/x-icon">
+  <link rel="icon" href="objects/favicon-16x16.png" type="image/png">
+  <link rel="icon" href="/path/to/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="objects/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+
+</head>
+<body>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #ECDFCC;
+      margin: 0;
+      padding: 0;
+    }
+    .contact-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #3C3D37;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .contact-container h2 {
+      margin-top: 0;
+      color: #ECDFCC;
+    }
+    .contact-container form {
+      display: flex;
+      flex-direction: column;
+      color: #ECDFCC;
+    }
+    .contact-container input,
+    .contact-container textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ECDFCC;
+      border-radius: 4px;
+    }
+    .contact-container button {
+      padding: 10px;
+      background-color: #ECDFCC;
+      color: #3C3D37;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .contact-container button:hover {
+      background-color: #697565;
+    }
+  </style>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">
+          <img src="objects/personal_image.JPG" alt="Your Picture" />
+        </a>
+        <span class="site-name">Saaim Japanwala<span class="cursor">|</span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" id="nav-home">Home</a></li>
+        <li><a href="blog.html" id="nav-blog">Blog</a></li>
+        <!--<li><a href="about.html" id="nav-about">About Me</a></li>-->
+        <li><a href="experience.html" id="nav-experience">Resume</a></li>
+        <li><a href="projects.html" id="nav-contact">Projects</a></li>
+        <li><a href="contact.html" id="nav-contact">Connect</a></li>
+      </ul>
+    </nav>
+  </head>
+  </header>
+  <p></p>
+  <section class="blog-section">
+    <h1 align="center">Lets Connect! 🤝</h1>
+    <div class="blog-posts">
+      <article class="blog-post">
+        <h2 align="center" class="post-excerpt"><strong></strong></h2>
+        <div class="about-details">
+          <div class="about-details">
+            <section class="skills">
+                <div class="social-media">
+                  <a href="https://www.linkedin.com/in/sjapanwala/" target="_blank" rel="noopener noreferrer">
+                  <img src="objects/linkedin.png" alt="LinkedIn" class="social-icon">
+                </a>
+                <a href="https://github.com/sjapanwala" target="_blank" rel="noopener noreferrer">
+                  <img src="objects/github.png" alt="GitHub" class="social-icon">
+                </a>
+                <a href="mailto:saaim.japanwala125@gmail.com" target="_blank" rel="noopener noreferrer">
+                  <img src="objects/gmail.png" alt="Gmail" class="social-icon">
+                </a>
+                <a href="https://x.com/JapanwalaSaaim" target="_blank" rel="noopener noreferrer">
+                  <img src="objects/x_logo.png" alt="X / Foremerly Known As Twitter" class="social-icon">
+                </a>
+                <!--<a href="https://www.instagram.com/saaimm_/" target="_blank" rel="noopener noreferrer">
+                  <img src="objects/insta.png" alt="X / Foremerly Known As Twitter" class="social-icon">
+                </a>-->
+              </div>
+            </section>
+        </div>
+      </article>
+    </div>
+    </section>
+  <main>
+    <div class="contact-container">
+      <h2>Contact Me</h2>
+      <form id="contact-form" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Saaim Japanwala. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      fetch('https://formspree.io/f/your-form-id', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: new FormData(this)
+      }).then(response => {
+        if (response.ok) {
+          alert('Message sent successfully!');
+          document.getElementById('contact-form').reset();
+        } else {
+          alert('Oops! There was a problem.');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
