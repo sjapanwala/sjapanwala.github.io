@@ -40,16 +40,16 @@
                 </div>
             </div>
             <div class="mode-toggle">
-                <i class="fa fa-sun light-icon">🌕</i>
-                <i class="fa fa-moon dark-icon">☀️</i>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
             </div>
             <script>
-                // Get the toggle button and current theme
                 const themeToggle = document.querySelector('.mode-toggle');
-                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: light)');
                 const currentTheme = localStorage.getItem('theme');
 
-                // Set the initial theme based on user preference or system default
                 if (currentTheme === 'dark') {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 } else if (currentTheme === 'light') {
@@ -60,8 +60,7 @@
                     document.documentElement.setAttribute('data-theme', 'light');
                 }
 
-                // Toggle the theme when the button is clicked
-                themeToggle.addEventListener('click', function () {
+                themeToggle.addEventListener('change', function () {
                     let theme = document.documentElement.getAttribute('data-theme');
                     if (theme === 'dark') {
                         document.documentElement.setAttribute('data-theme', 'light');
@@ -82,11 +81,13 @@
                     👋 Hello World, my name is <strong>Saaim Japanwala</strong>. Im a full time student at <i>The
                         University of Alberta</i> graduating class of 2027. Pursuing a bachelors in <strong>Computing
                         Science</strong> and <strong>Psychology</strong>.
-                </p>
-                <p>
+                    <br><br>
                     My journey in tech started back in highschool, and since then, I have been hooked to the world of
                     coding and software development. Lets create a world where technology becomes our best asset to
                     solve our problems.
+                    <br><br>
+                    Aside from programming, I love photography, fitness, politics. Come checkout my personal side
+                    <strong><a class="link-person" href="personal/index.html">here</a></strong> :)
                 </p>
             </section>
             <div class="divider"></div>
