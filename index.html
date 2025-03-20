@@ -13,19 +13,21 @@
     <div class="container">
         <div class="static-section">
             <div class="static-content">
-                <img src="assets/picture.png" alt="Profile Picture" class="profile-pic">
+                <div class="profile-pic">
+                    <img src="assets/picture.png" alt="Profile Picture" class="profile-pic">
+                </div>
                 <h2 class="name-tag">Saaim Japanwala</h2>
                 <p class="profile-text">
-                    Computer Science & Psychology @ University of Alberta
-                    <br>
-                    📍🇨🇦 Alberta, Canada
+                    Computer Science & Psychology <br>@ University of Alberta
+                    <br><br>
+                    📍Alberta, Canada
                 </p>
                 <div class="profile-links">
-                    <a href="https://github.com/sjapanwala" target="_blank"><img src="assets/icons8-github-50 (2).png"
-                            alt="github"></a>
-                    <a href="https://linkedin.com/in/sjapanwala" target="_blank"><img
+                    <a class="profile-links github" href="https://github.com/sjapanwala" target="_blank"><img
+                            src="assets/icons8-github-50 (2).png" alt="github"></a>
+                    <a class="profile-links linkedin" href="https://linkedin.com/in/sjapanwala" target="_blank"><img
                             src="assets/icons8-linkedin-50.png" alt="linkedin"></a>
-                    <a href="mailto:saaim.japanwala125@gmail.com" target="_blank"><img
+                    <a class="profile-links mail" href="mailto:saaim.japanwala125@gmail.com" target="_blank"><img
                             src="assets/icons8-mail-50 (1).png" alt="mailme"></a>
                 </div>
                 <div>
@@ -35,9 +37,41 @@
                     </a>
                 </div>
                 <div class="bubble">
-                    <span class="bubble textocc">• Currently Developing CarbonScript!</span>
                 </div>
             </div>
+            <div class="mode-toggle">
+                <i class="fa fa-sun light-icon">🌕</i>
+                <i class="fa fa-moon dark-icon">☀️</i>
+            </div>
+            <script>
+                // Get the toggle button and current theme
+                const themeToggle = document.querySelector('.mode-toggle');
+                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+                const currentTheme = localStorage.getItem('theme');
+
+                // Set the initial theme based on user preference or system default
+                if (currentTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else if (currentTheme === 'light') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                } else if (prefersDarkScheme.matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+
+                // Toggle the theme when the button is clicked
+                themeToggle.addEventListener('click', function () {
+                    let theme = document.documentElement.getAttribute('data-theme');
+                    if (theme === 'dark') {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+            </script>
         </div>
 
 
@@ -60,12 +94,12 @@
                 <h2>Technology & Skills</h2>
                 <div class="skill-bubbles">
                     <h4>Languages</h4>
-                    <span class="skill-bubble langs">Python3</span>
-                    <span class="skill-bubble langs">JavaScript</span>
-                    <span class="skill-bubble langs">HTML5</span>
-                    <span class="skill-bubble langs">CSS</span>
-                    <span class="skill-bubble langs">C</span>
-                    <span class="skill-bubble langs">Powershell</span>
+                    <span class="skill-bubble python">Python3</span>
+                    <span class="skill-bubble javascript">JavaScript</span>
+                    <span class="skill-bubble html">HTML5</span>
+                    <span class="skill-bubble css">CSS</span>
+                    <span class="skill-bubble clang">C</span>
+                    <span class="skill-bubble bash">Bash</span>
                 </div>
                 <div class="skill-bubbles">
                     <h4>Frameworks</h4>
@@ -96,9 +130,9 @@
                             </div>
                             <div class="timeline-tags">
                                 <span class="timeline-tag">ReactJS</span>
-                                <span class="timeline-tag">JavaScript</span>
-                                <span class="timeline-tag">HTML5</span>
-                                <span class="timeline-tag">CSS</span>
+                                <span class="timeline-tag javascript">JavaScript</span>
+                                <span class="timeline-tag html">HTML5</span>
+                                <span class="timeline-tag css">CSS</span>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -112,9 +146,9 @@
                             </div>
                             <div class="timeline-tags">
                                 <span class="timeline-tag-special">Hackathon</span>
-                                <span class="timeline-tag">JavaScript</span>
-                                <span class="timeline-tag">HTML5</span>
-                                <span class="timeline-tag">CSS</span>
+                                <span class="timeline-tag javascript">JavaScript</span>
+                                <span class="timeline-tag html">HTML5</span>
+                                <span class="timeline-tag css">CSS</span>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -128,11 +162,10 @@
                             </div>
                             <div class="timeline-tags">
                                 <span class="timeline-tag-special">Hackathon</span>
-                                <span class="timeline-tag">JavaScript</span>
-                                <span class="timeline-tag">Python3</span>
-                                <span class="timeline-tag">React + Vite</span>
+                                <span class="timeline-tag javascript">JavaScript</span>
+                                <span class="timeline-tag python">Python3</span>
+                                <span class="timeline-tag">React</span>
                                 <span class="timeline-tag">OpenBCI</span>
-                                <span class="timeline-tag">Google Gemini</span>
                             </div>
                         </div>
 
@@ -144,8 +177,6 @@
                                 Started at <i>University of Alberta</i>, Studying Psychology and Computer Science
                             </div>
                             <div class="timeline-tags">
-                                <span class="timeline-tag">Education</span>
-                                <span class="timeline-tag">Post Secondary</span>
                             </div>
                         </div>
                     </div>
@@ -164,6 +195,14 @@
                         </div>
                         <div class="project-header">
                             <div class="project-date">2025</div>
+                            <div class="project-links">
+                                <a href="https://github.com/Segmentation-Faulters-HackED-2025/fact-or-cap/tree/main"
+                                    class="project-link">GitHub</a>
+                                <a href="https://devpost.com/software/fact-or-cap-the-truth-checking-chrome-extention"
+                                    class="project-link">Devpost</a>
+                                <a href="https://www.linkedin.com/posts/sjapanwala_hackathons-javascript-computerscience-activity-7297890931242844160-lnmt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEiWxqYBczl-v88H5_4N9oDL_IRCQ8uQ0jA"
+                                    class="project-link">LinkedIn</a>
+                            </div>
                         </div>
                         <div class="project-description">
                             The internet has a problem. Its full of misinformation and false content. With <i>Fact or
@@ -171,16 +210,36 @@
                             With trusted sources.
                         </div>
                         <div class="project-tags">
-                            <span class="project-tag-special">HackED 2025</span>
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">HTML5</span>
-                            <span class="project-tag">CSS</span>
+                            <span class="project-tag-special">HackED</span>
+                            <span class="timeline-tag javascript">JavaScript</span>
+                            <span class="timeline-tag html">HTML5</span>
+                            <span class="timeline-tag css">CSS</span>
                         </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Segmentation-Faulters-HackED-2025/fact-or-cap/tree/main"
-                                class="project-link">GitHub</a>
-                            <a href="https://devpost.com/software/fact-or-cap-the-truth-checking-chrome-extention"
-                                class="project-link">Devpost</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="assets/carbonscript.png" alt="Project Screenshot">
+                        </div>
+                        <div class="project-header">
+                            <div class="project-title">CarbonScript</div>
+                        </div>
+                        <div class="project-header">
+                            <div class="project-date">2025</div>
+                            <div class="project-links">
+                                <a href="https://github.com/sjapanwala/carbonscript" class="project-link">GitHub</a>
+                                <a href="https://sjapanwala.github.io/carbonscript/" class="project-link">WebDocs</a>
+
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            CarbonScript is a fast, structured, and intuitive scripting language designed for efficiency
+                            and ease of use. With a unique syntax and built-in functions, CarbonScript makes programming
+                            more readable, flexible, and dynamic.
+                        </div>
+                        <div class="project-tags">
+                            <span class="timeline-tag python">Python3</span>
+                            <span class="timeline-tag clang">CarbonScript</span>
+
                         </div>
                     </div>
                     <div class="project-card">
@@ -192,6 +251,14 @@
                         </div>
                         <div class="project-header">
                             <div class="project-date">2024</div>
+                            <div class="project-links">
+                                <a href="https://github.com/NatHacks-2024/alcohol_withdrawal_software"
+                                    class="project-link">GitHub</a>
+                                <a href="https://devpost.com/software/alcohol-withdrawal-monitoring-system"
+                                    class="project-link">Devpost</a>
+                                <a href="https://youtu.be/ifwXW8ANqR0" class="project-link">Demo</a>
+
+                            </div>
                         </div>
                         <div class="project-description">
                             With Reference to the CIWA Scale, Created a monitoring device with a front end and back end
@@ -199,22 +266,14 @@
                         </div>
                         <div class="project-tags">
                             <span class="project-tag-special">natHACKS</span>
-                            <span class="project-tag">Python3</span>
-                            <span class="project-tag">React</span>
-                            <span class="project-tag">OpenBCI</span>
-                            <span class="project-tag">Python3</span>
-                            <span class="project-tag">JavaScript</span>
-                            <span class="project-tag">Node.JS</span>
+                            <span class="timeline-tag python">Python3</span>
+                            <span class="timeline-tag javascript">JavaScript</span>
+                            <span class="timeline-tag clang">BCI</span>
+                            <span class="timeline-tag">React</span>
+                            <span class="timeline-tag">Node.JS</span>
 
                         </div>
-                        <div class="project-links">
-                            <a href="https://github.com/NatHacks-2024/alcohol_withdrawal_software"
-                                class="project-link">GitHub</a>
-                            <a href="https://devpost.com/software/alcohol-withdrawal-monitoring-system"
-                                class="project-link">Devpost</a>
-                            <a href="https://youtu.be/ifwXW8ANqR0" class="project-link">Demo</a>
 
-                        </div>
                     </div>
 
                     <div class="project-card">
@@ -226,50 +285,25 @@
                         </div>
                         <div class="project-header">
                             <div class="project-date">2024</div>
+                            <div class="project-links">
+                                <a href="https://github.com/sjapanwala/pyrun" class="project-link">GitHub</a>
+                                <a href="https://sjapanwala.github.io/pyrun/" class="project-link">Website</a>
+
+                            </div>
+
                         </div>
                         <div class="project-description">
                             The old Python interpretor is boring, why not add a couple of features that make coding
                             python easy and fun!
                         </div>
                         <div class="project-tags">
-                            <span class="project-tag">Python3</span>
-                            <span class="project-tag">Bash</span>
-                            <span class="project-tag">Batch</span>
-
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/sjapanwala/pyrun" class="project-link">GitHub</a>
-                            <a href="https://sjapanwala.github.io/pyrun/" class="project-link">Website</a>
+                            <span class="timeline-tag python">Python3</span>
+                            <span class="timeline-tag bash">Bash</span>
 
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="assets/carbonscript.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">CarbonScript</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2025</div>
-                        </div>
-                        <div class="project-description">
-                            CarbonScript is a fast, structured, and intuitive scripting language designed for efficiency
-                            and ease of use. With a unique syntax and built-in functions, CarbonScript makes programming
-                            more readable, flexible, and dynamic.
-                        </div>
-                        <div class="project-tags">
-                            <span class="project-tag">Python3</span>
-                            <span class="project-tag">CarbonScript</span>
 
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/sjapanwala/carbonscript" class="project-link">GitHub</a>
-                            <a href="https://sjapanwala.github.io/carbonscript/" class="project-link">WebDocs</a>
-
-                        </div>
-                    </div>
 
                     <div class="project-card">
                         <div class="project-image">
@@ -280,6 +314,9 @@
                         </div>
                         <div class="project-header">
                             <div class="project-date">2024</div>
+                            <div class="project-links">
+                                <a href="https://github.com/sjapanwala/career_trail" class="project-link">GitHub</a>
+                            </div>
                         </div>
                         <div class="project-description">
                             Using webscrapers, and data analysis, created a tool that helps users find jobs more
@@ -287,14 +324,8 @@
                             in one intuitive platform.
                         </div>
                         <div class="project-tags">
-                            <span class="project-tag">Python3</span>
-                            <span class="project-tag">Electron.JS</span>
-                            <span class="project-tag">Node.JS</span>
-
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/sjapanwala/career_trail" class="project-link">GitHub</a>
-
+                            <span class="timeline-tag">Electron.JS</span>
+                            <span class="timeline-tag javascript">JavaScript</span>
                         </div>
                     </div>
                 </div>
@@ -404,7 +435,8 @@
                 <div class="divider"></div>
                 <footer>
                     <div class="footer-bottom">
-                        <p>Built With ❤️ by Saaim Japanwala <br>&copy; 2025 Saaim Japanwala. All rights reserved.</p>
+                        <p>Built With ☕️ && ❤️ by Saaim Japanwala <br>&copy; 2025 Saaim Japanwala. All rights reserved.
+                        </p>
                         <br><br>
                     </div>
                 </footer>

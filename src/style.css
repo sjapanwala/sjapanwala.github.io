@@ -1,18 +1,90 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
-    font-family: 'verdana', sans-serif;
-    background-color: #121212;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
+/* Light theme (default) */
 :root {
-    --textcolor: #F5F7F8;
+    --background-color: #FaFaFa;
+    --textcolor: #121212;
+    --secondary-bg: #f0f0f0;
+    --secondary-bg-rgb: rgba(31, 31, 31, 1);
+    --divider: #1f1f1f;
+    --border-color: #dfdfdf;
+    --border-color-rgb: rgba(204, 204, 204);
+    --green: #339933;
+    --purple: #e04ad0;
+    --blue: #4fa6e6;
+    --orange: #FF8800;
+    --bubble-color: #121212;
+    --itemback-ground: rgba(240, 240, 240, 0.9);
+    --itemback-ground-hover: rgba(150, 150, 150, 0.1);
+    --textcolor-accent: #1c1c1c;
 }
 
+/* Dark theme */
+[data-theme="dark"] {
+    --divider: #f0f0f0;
+    --background-color: #121212;
+    --textcolor: #F5F7F8;
+    --secondary-bg: #1f1f1f;
+    --secondary-bg-rgb: (240, 240, 240, 1);
+    --border-color: #333333;
+    --border-color-rgb: rgba(51, 51, 51, 1);
+    --green: #90ee90;
+    --purple: #ff6bf3;
+    --blue: #6accff;
+    --orange: #FF8800;
+    --bubble-color: #dedede;
+    --itemback-ground: rgba(255, 255, 255, 0.03);
+    --itemback-ground: rgba(255, 255, 255, 0.01);
+    --textcolor-accent: #bcbcbc;
+}
+
+/* Apply the background color and text color */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Verdana', sans-serif;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+/* Toggle button styling */
+.mode-toggle {
+
+    color: #fff;
+    position: fixed;
+    bottom: 1rem;
+    font-size: 0.5rem;
+
+}
+
+.mode-toggle:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Icon styling */
+.light-icon {
+    transition: opacity 0.5s ease-in-out;
+    display: inline-block;
+    font-size: 20px;
+    color: #ffd700;
+    /* yellow for sun */
+}
+
+.dark-icon {
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+    font-size: 20px;
+    color: #ffffff;
+    /* white for moon */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show the correct icon based on the theme */
+[data-theme="dark"] .light-icon {
+    display: none;
+}
+
+[data-theme="dark"] .dark-icon {
+    display: inline-block;
+}
 
 
 /* this little chunk is used for the scrollbar */
@@ -68,10 +140,10 @@ body {
 }
 
 .bubble.textocc {
-    background-color: rgba(106, 204, 255, 0.1);
-    border: 1px solid rgba(106, 204, 255, 0.2);
-    background: #90ee90;
-    box-shadow: 0 0 1.25rem rgba(144, 238, 144, 1);
+    background-color: rgba(106, 204, 255, 0.4);
+    border: 1px solid rgba(106, 204, 255, 0.6);
+    background: var(--green);
+    box-shadow: 0 0 1.25rem rgba(144, 238, 144, 0.5);
 }
 
 .bubble.textinterest {
@@ -85,7 +157,7 @@ body {
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
     height: 1px;
-    background-color: #ccc;
+    background-color: var(--divider);
 }
 
 
@@ -99,6 +171,7 @@ body {
 
 .static-content {
     position: sticky;
+    color: var(--textcolor);
     top: 2rem;
     max-height: 100%;
     overflow: visible;
@@ -116,30 +189,23 @@ body {
     border-radius: 50%;
     margin: 0 auto 0rem;
     object-fit: cover;
-    border: 3px solid white;
+    border: 3px solid var(--border-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
-.profile-pic:hover {
-    /*possibly add something?*/
-    display: flex;
-}
 
 
 
-.strobing {
-    animation: strobe 0.5s infinite alternate;
-}
+
 
 .profile-text {
     margin-bottom: 1rem;
     line-height: 1.6;
     font-size: 1.1rem;
-    color: #bcbcbc;
+    color: var(--textcolor-accent);
 
     display: flex;
     justify-content: center;
@@ -167,26 +233,37 @@ body {
     text-align: center;
 }
 
+.profile-links.github:hover {
+    opacity: 0.8;
+}
+
+.profile-links.linkedin:hover {
+    opacity: 0.8;
+}
+
+.profile-links.mail:hover {
+    opacity: 0.8;
+}
+
 .resume-download-btn {
     display: inline-flex;
     justify-content: center;
     text-decoration: none;
-    color: var(--textcolor);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
-    gap: 0.5rem;
-
+    gap: 1rem;
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
 .resume-download-btn:hover {
+    opacity: 0.8;
     color: #bcbcbc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .resume-download-btn img {
@@ -226,7 +303,7 @@ body {
 
 
 .aboutme p {
-    color: #bcbcbc;
+    color: var(--textcolor-accent);
     font-size: 1rem;
 }
 
@@ -237,12 +314,12 @@ body {
 }
 
 .skills p {
-    color: #bcbcbc;
+    color: var(--textcolor);
     font-size: 1rem;
 }
 
 .skills h4 {
-    color: #bcbcbc;
+    color: var(--textcolor);
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
 }
@@ -250,8 +327,10 @@ body {
 .skill-bubble {
     display: inline-flex;
     align-items: center;
+    gap: 0.5rem;
     padding: 6px 12px;
     border-radius: 20px;
+    margin: 0.2rem;
     font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.2s ease;
@@ -259,25 +338,60 @@ body {
 }
 
 
-.skill-bubble.langs {
-    background-color: rgba(106, 204, 255, 0.1);
-    border: 1px solid rgba(106, 204, 255, 0.2);
-    background: #ff6bf3;
-    box-shadow: 0 0 1.25rem rgba(248, 107, 255, 0.8);
+.skill-bubble.javascript {
+    background: #f7df1e;
+    box-shadow: 0 0 20px rgba(247, 223, 30, 0.5);
+    border: 1px solid rgba(247, 223, 30, 0.2);
+    color: var(--textcolor);
+}
+
+.skill-bubble.python {
+    background: #306998;
+    box-shadow: 0 0 20px rgba(48, 105, 152, 0.8);
+    border: 1px solid rgba(48, 105, 152, 0.1);
+    color: var(--textcolor);
+}
+
+.skill-bubble.html {
+    background: #e44b23;
+    box-shadow: 0 0 20px rgba(228, 75, 35, 1);
+    border: 1px solid rgba(228, 75, 35, 0.2);
+    color: var(--textcolor)
+}
+
+.skill-bubble.css {
+    background: #563d7c;
+    box-shadow: 0 0 20px rgba(86, 61, 124, 1);
+    border: 1px solid rgba(86, 61, 124, 0.2);
+    color: var(--textcolor)
+}
+
+.skill-bubble.clang {
+    background: #555555;
+    box-shadow: 0 0 20px rgba(85, 85, 85, 0.8);
+    border: 1px solid rgba(85, 85, 85, 0.2);
+    color: var(--textcolor);
+}
+
+.skill-bubble.bash {
+    background: #10e055;
+    box-shadow: 0 0 20px rgba(137, 224, 81, 0.4);
+    border: 1px solid rgba(137, 224, 81, 0.2);
+    color: var(--textcolor);
 }
 
 .skill-bubble.frameworks {
     background-color: rgba(106, 204, 255, 0.1);
     border: 1px solid rgba(106, 204, 255, 0.2);
-    background: #6accff;
+    background: var(--blue);
     box-shadow: 0 0 1.25rem rgba(127, 225, 212, 0.8);
 }
 
 .skill-bubble.tools {
-    background-color: rgba(106, 204, 255, 0.1);
-    border: 1px solid rgba(106, 204, 255, 0.2);
-    background: #90ee90;
-    box-shadow: 0 0 1.25rem rgba(144, 238, 144, 1);
+    background-color: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.8);
+    background: var(--orange);
+    box-shadow: 0 0 1.25rem rgba(255, 136, 0, 1);
 }
 
 
@@ -288,7 +402,7 @@ body {
 }
 
 .experience p {
-    color: #bcbcbc;
+    color: var(--textcolor);
     font-size: 1rem;
 }
 
@@ -315,21 +429,18 @@ body {
     top: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.2) 50%,
-            rgba(255, 255, 255, 0.1) 100%);
+    background: var(--border-color-rgb);
 }
 
 .timeline-item {
     position: relative;
     margin-left: 20px;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--itemback-ground);
     border-radius: 8px;
     margin-bottom: 30px;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color-rgb);
 }
 
 .timeline-item::before {
@@ -349,18 +460,18 @@ body {
 /* Hover effects */
 .timeline-item:hover {
     transform: translateX(10px);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--itemback-ground-hover);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .timeline-item:hover::before {
-    background: #800080;
+    background: var(--purple);
     box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
 }
 
 .timeline-date {
     font-size: 0.9rem;
-    color: #8fcbff;
+    color: var(--textcolor-accent);
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -373,13 +484,13 @@ body {
 }
 
 .timeline-company {
-    color: #bcbcbc;
+    color: var(--textcolor);
     font-size: 1rem;
     margin-bottom: 15px;
 }
 
 .timeline-description {
-    color: #bcbcbc;
+    color: var(--textcolor-accent);
     font-size: 0.95rem;
     line-height: 1.6;
 }
@@ -392,7 +503,6 @@ body {
 }
 
 .timeline-tag {
-    background: rgba(255, 255, 255, 0.05);
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -401,8 +511,51 @@ body {
     border: 1px solid rgba(107, 218, 255, 0.1);
 }
 
+
+
+.timeline-tag.javascript {
+    background: #f7df1e;
+    box-shadow: 0 0 20px rgba(247, 223, 30, 0.8);
+    border: 1px solid rgba(247, 223, 30, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.python {
+    background: #306998;
+    box-shadow: 0 0 20px rgba(48, 105, 152, 0.8);
+    border: 1px solid rgba(48, 105, 152, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.html {
+    background: #e44b23;
+    box-shadow: 0 0 20px rgba(228, 75, 35, 0.8);
+    border: 1px solid rgba(228, 75, 35, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.clang {
+    background: #555555;
+    box-shadow: 0 0 20px rgba(85, 85, 85, 0.8);
+    border: 1px solid rgba(85, 85, 85, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.css {
+    background: #563d7c;
+    box-shadow: 0 0 20px rgba(86, 61, 124, 0.8);
+    border: 1px solid rgba(86, 61, 124, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.bash {
+    background: #10e055;
+    box-shadow: 0 0 20px rgba(137, 224, 81, 0.4);
+    border: 1px solid rgba(137, 224, 81, 0.2);
+    color: var(--textcolor);
+}
+
 .timeline-tag-special {
-    background: rgba(255, 255, 255, 0.05);
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -429,7 +582,7 @@ body {
 }
 
 .projects p {
-    color: #bcbcbc;
+    color: var(--textcolor-accent);
     font-size: 1rem;
 }
 
@@ -442,8 +595,9 @@ body {
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--itemback-ground);
     border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color-rgb);
     border-radius: 0.5rem;
     padding: 1.25rem;
     transition: all 0.3s ease;
@@ -463,7 +617,7 @@ body {
 }
 
 .project-date {
-    color: #8fcbff;
+    color: var(--blue);
     font-size: 0.9rem;
     font-weight: 500;
 }
@@ -475,7 +629,7 @@ body {
 }
 
 .project-description {
-    color: #bcbcbc;
+    color: var(--textcolor-accent);
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 0.938rem;
@@ -512,14 +666,14 @@ body {
 }
 
 .project-link {
-    color: #8fcbff;
+    color: var(--blue);
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
 }
 
 .project-link:hover {
-    color: #ffffff;
+    color: var(--textcolor-accent);
     text-decoration: underline;
 }
 
