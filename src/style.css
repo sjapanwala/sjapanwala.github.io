@@ -41,8 +41,10 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Verdana', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     transition: background-color 0.5s, color 0.5s;
 }
+
 
 /* Toggle button styling */
 .mode-toggle {
