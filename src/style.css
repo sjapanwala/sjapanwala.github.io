@@ -67,7 +67,6 @@ body {
     display: inline-block;
     font-size: 20px;
     color: #ffd700;
-    /* yellow for sun */
 }
 
 .dark-icon {
@@ -75,7 +74,6 @@ body {
     display: none;
     font-size: 20px;
     color: #ffffff;
-    /* white for moon */
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -135,7 +133,6 @@ body {
     transition: all 0.2s ease;
     cursor: default;
     margin-bottom: .2rem;
-
     display: flex;
     justify-content: center;
     text-align: center;
@@ -199,10 +196,6 @@ body {
 }
 
 
-
-
-
-
 .profile-text {
     margin-bottom: 1rem;
     line-height: 1.6;
@@ -261,6 +254,21 @@ body {
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.location a {
+    text-decoration: none;
+    color: var(--textcolor-accent)
+}
+
+.location:hover {
+    opacity: 0.8;
 }
 
 .resume-download-btn:hover {
@@ -388,6 +396,7 @@ body {
 }
 
 .skill-bubble.frameworks {
+    color: var(--textcolor);
     background-color: rgba(106, 204, 255, 0.1);
     border: 1px solid rgba(106, 204, 255, 0.2);
     background: var(--blue);
@@ -395,6 +404,8 @@ body {
 }
 
 .skill-bubble.tools {
+
+    color: var(--textcolor);
     background-color: rgba(255, 165, 0, 0.1);
     border: 1px solid rgba(255, 140, 0, 0.8);
     background: var(--orange);
@@ -510,6 +521,7 @@ body {
 }
 
 .timeline-tag {
+    color: var(--textcolor);
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -563,6 +575,7 @@ body {
 }
 
 .timeline-tag-special {
+    color: var(--textcolor);
     padding: 4px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -658,11 +671,13 @@ body {
 }
 
 .project-tag {
+    color: var(--textcolor);
     background: #8fcbff;
     box-shadow: 0 0 1.25rem rgba(107, 218, 255, 0.8);
 }
 
 .project-tag-special {
+    color: var(--textcolor);
     background: #ff8ff8;
     box-shadow: 0 0 1.25rem rgba(248, 107, 255, 0.8);
 }
