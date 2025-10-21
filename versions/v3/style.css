@@ -1,0 +1,1030 @@
+/* Light theme (default) */
+:root {
+    --background-color: #FaFaFa;
+    --textcolor: #121212;
+    --secondary-bg: #f0f0f0;
+    --secondary-bg-rgb: rgba(31, 31, 31, 1);
+    --divider: #1f1f1f;
+    --border-color: #dfdfdf;
+    --border-color-rgb: rgba(204, 204, 204);
+    --green: #339933;
+    --purple: #e04ad0;
+    --blue: #4fa6e6;
+    --orange: #FF8800;
+    --bubble-color: #121212;
+    --itemback-ground: rgba(240, 240, 240, 0.9);
+    --itemback-ground-hover: rgba(150, 150, 150, 0.1);
+    --textcolor-accent: #1c1c1c;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --divider: #f0f0f0;
+    --background-color: #121212;
+    --textcolor: #F5F7F8;
+    --secondary-bg: #1f1f1f;
+    --secondary-bg-rgb: (240, 240, 240, 1);
+    --border-color: #333333;
+    --border-color-rgb: rgba(51, 51, 51, 1);
+    --green: #90ee90;
+    --purple: #ff6bf3;
+    --blue: #6accff;
+    --orange: #FF8800;
+    --bubble-color: #dedede;
+    --itemback-ground: rgba(255, 255, 255, 0.03);
+    --itemback-ground: rgba(255, 255, 255, 0.01);
+    --textcolor-accent: #bcbcbc;
+}
+
+/* Apply the background color and text color */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Verdana', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+
+/* Toggle button styling */
+.mode-toggle {
+
+    color: #fff;
+    position: fixed;
+    bottom: 1rem;
+    font-size: 0.5rem;
+
+}
+
+.mode-toggle:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* Icon styling */
+.light-icon {
+    transition: opacity 0.5s ease-in-out;
+    display: inline-block;
+    font-size: 20px;
+    color: #ffd700;
+}
+
+.dark-icon {
+    transition: opacity 0.5s ease-in-out;
+    display: none;
+    font-size: 20px;
+    color: #ffffff;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Show the correct icon based on the theme */
+[data-theme="dark"] .light-icon {
+    display: none;
+}
+
+[data-theme="dark"] .dark-icon {
+    display: inline-block;
+}
+
+
+/* this little chunk is used for the scrollbar */
+.scrollable-section::-webkit-scrollbar {
+    width: 1px;
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.static-section::-webkit-scrollbar {
+    width: 4px;
+}
+
+.static-section::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.static-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+/* css for the left most part of the site
+   for the picture, text, icons, status badges 
+   this also has dividor css and the scrolling logic*/
+.container {
+    display: flex;
+    height: 145vh;
+    width: 100%;
+}
+
+.bubble {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: default;
+    margin-bottom: .2rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.bubble.textocc {
+    background-color: rgba(106, 204, 255, 0.4);
+    border: 1px solid rgba(106, 204, 255, 0.6);
+    background: var(--green);
+    box-shadow: 0 0 1.25rem rgba(144, 238, 144, 0.5);
+}
+
+.bubble.textinterest {
+    background-color: rgba(106, 204, 255, 0.1);
+    border: 1px solid rgba(106, 204, 255, 0.2);
+    background: #800080;
+    box-shadow: 0 0 1.25rem rgba(128, 0, 128, 1);
+}
+
+.divider {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    height: 1px;
+    background-color: var(--divider);
+}
+
+
+.static-section {
+    width: 40%;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+.static-content {
+    position: sticky;
+    color: var(--textcolor);
+    top: 2rem;
+    max-height: 100%;
+    overflow: visible;
+}
+
+.scrollable-section {
+    width: 70%;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 0rem;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.profile-text {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: var(--textcolor-accent);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.name-tag {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 2rem;
+    color: var(--textcolor);
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-links {
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    gap: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-links.github:hover {
+    opacity: 0.8;
+}
+
+.profile-links.linkedin:hover {
+    opacity: 0.8;
+}
+
+.profile-links.mail:hover {
+    opacity: 0.8;
+}
+
+.resume-download-btn {
+    display: inline-flex;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.location {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.location a {
+    text-decoration: none;
+    color: var(--textcolor-accent)
+}
+
+.location:hover {
+    opacity: 0.8;
+}
+
+.resume-download-btn:hover {
+    opacity: 0.8;
+    color: #bcbcbc;
+}
+
+.resume-download-btn img {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+
+/* this is for the scrollable section for the right side of the site */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .static-section,
+    .scrollable-section {
+        width: 100%;
+    }
+
+    .static-section {
+        height: auto;
+        min-height: 200px;
+    }
+
+    .scrollable-section {
+        height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+
+}
+
+/* about me section, this is just plain text with some basic styling*/
+.aboutme h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+
+.aboutme p {
+    color: var(--textcolor-accent);
+    font-size: 1rem;
+}
+
+.link-person {
+    text-decoration: none;
+    color: var(--textcolor)
+}
+
+/* skills section, this is a little more aesthetic with some "bubble" style elements*/
+.skills h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.skills p {
+    color: var(--textcolor);
+    font-size: 1rem;
+}
+
+.skills h4 {
+    color: var(--textcolor);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: default;
+}
+
+
+.skill-bubble.javascript {
+    background: #f7df1e;
+    box-shadow: 0 0 20px rgba(247, 223, 30, 0.5);
+    border: 1px solid rgba(247, 223, 30, 0.2);
+    color: var(--textcolor);
+}
+
+.skill-bubble.python {
+    background: #306998;
+    box-shadow: 0 0 20px rgba(48, 105, 152, 0.8);
+    border: 1px solid rgba(48, 105, 152, 0.1);
+    color: var(--textcolor);
+}
+
+.skill-bubble.html {
+    background: #e44b23;
+    box-shadow: 0 0 20px rgba(228, 75, 35, 1);
+    border: 1px solid rgba(228, 75, 35, 0.2);
+    color: var(--textcolor)
+}
+
+.skill-bubble.css {
+    background: #563d7c;
+    box-shadow: 0 0 20px rgba(86, 61, 124, 1);
+    border: 1px solid rgba(86, 61, 124, 0.2);
+    color: var(--textcolor)
+}
+
+.skill-bubble.clang {
+    background: #555555;
+    box-shadow: 0 0 20px rgba(85, 85, 85, 0.8);
+    border: 1px solid rgba(85, 85, 85, 0.2);
+    color: var(--textcolor);
+}
+
+.skill-bubble.bash {
+    background: #10e055;
+    box-shadow: 0 0 20px rgba(137, 224, 81, 0.4);
+    border: 1px solid rgba(137, 224, 81, 0.2);
+    color: var(--textcolor);
+}
+
+.skill-bubble.frameworks {
+    color: var(--textcolor);
+    background-color: rgba(106, 204, 255, 0.1);
+    border: 1px solid rgba(106, 204, 255, 0.2);
+    background: var(--blue);
+    box-shadow: 0 0 1.25rem rgba(127, 225, 212, 0.8);
+}
+
+.skill-bubble.tools {
+
+    color: var(--textcolor);
+    background-color: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.8);
+    background: var(--orange);
+    box-shadow: 0 0 1.25rem rgba(255, 136, 0, 1);
+}
+
+
+/* this is the experience section, this took way to long to write, and i wont lie, i used a little bit of claude for this ;) */
+.experience h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.experience p {
+    color: var(--textcolor);
+    font-size: 1rem;
+}
+
+.experience-section {
+    padding: 20px 0;
+    color: var(--textcolor);
+}
+
+.experience-container {
+    position: relative;
+    max-width: 100%;
+}
+
+.timeline {
+    position: relative;
+    margin-top: 30px;
+}
+
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--border-color-rgb);
+}
+
+.timeline-item {
+    position: relative;
+    margin-left: 20px;
+    padding: 20px;
+    background: var(--itemback-ground);
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color-rgb);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 30px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--textcolor);
+    box-shadow: 0 0 20px var(--textcolor);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.timeline-item:hover {
+    transform: translateX(10px);
+    background: var(--itemback-ground-hover);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item:hover::before {
+    background: var(--purple);
+    box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--textcolor-accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.timeline-role {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--textcolor)
+}
+
+.timeline-company {
+    color: var(--textcolor);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.timeline-description {
+    color: var(--textcolor-accent);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.timeline-tag {
+    color: var(--textcolor);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    background: #8fcbff;
+    box-shadow: 0 0 20px rgba(107, 218, 255, 0.8);
+    border: 1px solid rgba(107, 218, 255, 0.1);
+}
+
+
+
+.timeline-tag.javascript {
+    background: #f7df1e;
+    box-shadow: 0 0 20px rgba(247, 223, 30, 0.8);
+    border: 1px solid rgba(247, 223, 30, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.python {
+    background: #306998;
+    box-shadow: 0 0 20px rgba(48, 105, 152, 0.8);
+    border: 1px solid rgba(48, 105, 152, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.html {
+    background: #e44b23;
+    box-shadow: 0 0 20px rgba(228, 75, 35, 0.8);
+    border: 1px solid rgba(228, 75, 35, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.clang {
+    background: #555555;
+    box-shadow: 0 0 20px rgba(85, 85, 85, 0.8);
+    border: 1px solid rgba(85, 85, 85, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.css {
+    background: #563d7c;
+    box-shadow: 0 0 20px rgba(86, 61, 124, 0.8);
+    border: 1px solid rgba(86, 61, 124, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag.bash {
+    background: #10e055;
+    box-shadow: 0 0 20px rgba(137, 224, 81, 0.4);
+    border: 1px solid rgba(137, 224, 81, 0.2);
+    color: var(--textcolor);
+}
+
+.timeline-tag-special {
+    color: var(--textcolor);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    background: #ff8ff8;
+    box-shadow: 0 0 20px rgba(248, 107, 255, 0.8);
+    border: 1px solid rgba(107, 218, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        margin-left: 15px;
+        padding: 15px;
+    }
+
+    .timeline-item::before {
+        left: -21px;
+    }
+}
+
+/* this is the project section, this is not that complicated*/
+.projects h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.projects p {
+    color: var(--textcolor-accent);
+    font-size: 1rem;
+}
+
+
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+}
+
+.project-card {
+    background: var(--itemback-ground);
+    border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color-rgb);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-0.313rem);
+    box-shadow: 0 0.25rem 0.938rem rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.938rem;
+}
+
+.project-date {
+    color: var(--blue);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.project-title {
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.project-description {
+    color: var(--textcolor-accent);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.938rem;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.938rem;
+}
+
+.project-tag,
+.project-tag-special {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.project-tag {
+    color: var(--textcolor);
+    background: #8fcbff;
+    box-shadow: 0 0 1.25rem rgba(107, 218, 255, 0.8);
+}
+
+.project-tag-special {
+    color: var(--textcolor);
+    background: #ff8ff8;
+    box-shadow: 0 0 1.25rem rgba(248, 107, 255, 0.8);
+}
+
+.project-links {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.project-link {
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--textcolor-accent);
+    text-decoration: underline;
+}
+
+.project-image {
+    width: 100%;
+    height: 12.5rem;
+    margin-bottom: 0.938rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.gh-embed h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.embed {
+    width: 10rem;
+}
+
+/* this is the blogs section, this section is named "others" but its really like a blog section*/
+.others h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.others p {
+    color: #bcbcbc;
+    font-size: 1rem;
+}
+
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+}
+
+.blog-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-0.313rem);
+    box-shadow: 0 0.25rem 0.938rem rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.938rem;
+}
+
+.blog-date {
+    color: #8fcbff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.blog-title {
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.blog-description {
+    color: #bcbcbc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.938rem;
+    flex-grow: 1;
+}
+
+.blog-bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+}
+
+.blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-tag-phil {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: #ff8fee;
+    box-shadow: 0 0 1.25rem rgba(255, 107, 248, 0.8);
+}
+
+.blog-tag-tech {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: #7fffd4;
+    box-shadow: 0 0 1.25rem rgba(127, 225, 212, 0.8);
+}
+
+.blog-tag-readtime {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: #FFFACC;
+    box-shadow: 0 0 1.25rem rgba(255, 250, 204 0.8);
+}
+
+.blog-links {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.blog-link {
+    color: #8fcbff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.blog-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.awards h2 {
+    color: var(--textcolor);
+    font-size: 2rem;
+}
+
+.awards p {
+    color: #bcbcbc;
+    font-size: 1rem;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 1.25rem;
+}
+
+.award-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 0.063rem solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-card:hover {
+    transform: translateY(-0.313rem);
+    box-shadow: 0 0.25rem 0.938rem rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.award-icon {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    color: #ffd700;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.award-date {
+    color: #ffd700;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.625rem;
+}
+
+.award-title {
+    color: var(--textcolor);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.625rem;
+}
+
+.award-issuer {
+    color: #8fcbff;
+    font-size: 0.95rem;
+    margin-bottom: 0.625rem;
+}
+
+.award-description {
+    color: #bcbcbc;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0.938rem;
+}
+
+.award-badge {
+    width: 3.75rem;
+    height: 3.75rem;
+    margin-bottom: 0.938rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 0.125rem solid #ffd700;
+    box-shadow: 0 0 1.25rem rgba(255, 215, 0, 0.3);
+}
+
+.award-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.award-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.938rem;
+}
+
+.award-category {
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.938rem;
+    font-size: 0.8rem;
+    background: linear-gradient(45deg, #ffd700, #ffa500);
+    color: #000000;
+    font-weight: 500;
+    box-shadow: 0 0 1.25rem rgba(255, 215, 0, 0.2);
+}
+
+.award-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.313rem;
+}
+
+.award-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    color: var(--textcolor);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* From Uiverse.io by satyamchaudharydev */
+/* The switch - the box around the slider */
+.switch {
+    display: block;
+    --width-of-switch: 4.5em;
+    --height-of-switch: 3em;
+    /* size of sliding icon -- sun and moon */
+    --size-of-icon: 1.4em;
+    /* it is like a inline-padding of switch */
+    --slider-offset: 0.3em;
+    position: relative;
+    width: var(--width-of-switch);
+    height: var(--height-of-switch);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--textcolor);
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: var(--size-of-icon, 1.4em);
+    width: var(--size-of-icon, 1.4em);
+    border-radius: 20px;
+    left: var(--slider-offset, 0.3em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+    ;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--textcolor);
+}
+
+input:checked+.slider:before {
+    left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+    background: #303136;
+    /* change the value of second inset in box-shadow to change the angle and direction of the moon  */
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}

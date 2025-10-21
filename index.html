@@ -1,484 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/style.css">
-    <link rel="icon" href="assets/" type="image/x-icon">
-    <title>Saaim Japanwala</title>
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saaim Japanwala</title>
+  <meta name="description" content="Persistent overview on top; sub‑tabs expand the whole page instead of inner scrolling. Hash‑linkable tabs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== THEME (your palette) ===== */
+    :root {
+      --bg: #FBF3D1;         /* parchment */
+      --surface: #DEDED1;    /* stone */
+      --muted-surface: #f6f4e5;
+      --ink: #1a1a1a;
+      --muted: #5b5b5f;
+      --border: #e1dfd2;
+      --primary: #B6AE9F;    /* sage */
+      --accent: #C5C7BC;     /* moss */
+      --ring: rgba(182,174,159,.35);
 
+      --font: 'Crimson Pro', Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, serif;
+      --radius-lg: 20px; --radius: 14px;
+      --shadow: 0 20px 60px rgba(0,0,0,.12);
+
+      --fs-h1: clamp(1.6rem, 3vw, 2.2rem);
+      --fs-h2: clamp(1.2rem, 2.5vw, 1.6rem);
+      --fs-p: clamp(.98rem, 1.2vw, 1.08rem);
+
+      --board-w: min(1100px, 92vw); /* width only — height grows with content */
+    }
+    [data-theme="dark"] {
+      --bg: #0f1010; --surface: #171817; --muted-surface: #121312; --ink: #f4f5f3; --muted: #a4a59f; --border: #232422; --primary:#B6AE9F; --accent:#C5C7BC; --ring: rgba(197,199,188,.35); --shadow: 0 24px 70px rgba(0,0,0,.5);
+    }
+
+    * { box-sizing: border-box; }
+    html { height: 100%; scroll-behavior: smooth; }
+    body { margin:0; min-height:100svh; display:grid; grid-template-rows:auto 1fr auto; background: radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent), var(--bg); color: var(--ink); font-family: var(--font); line-height:1.6 }
+    a { color: inherit; text-decoration: none; }
+
+    header { position: sticky; top:0; z-index:10; backdrop-filter: blur(8px) saturate(120%); background: color-mix(in srgb, var(--bg) 85%, transparent); border-bottom:1px solid var(--border); }
+    .bar { width:var(--board-w); margin:0 auto; padding:.8rem 0; display:flex; align-items:center; justify-content:space-between; }
+    .brand { font-weight:800; letter-spacing:.2px }
+    .icon-btn { display:inline-flex; width:2.6rem; height:2.6rem; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:12px; background: var(--muted-surface); }
+
+    /* ===== BOARD ===== */
+    .wrap { display:grid; place-items:center; padding: clamp(1rem, 4svh, 3rem); }
+    .board { width: var(--board-w); background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); overflow:hidden }
+
+    /* overview stays on top */
+    .overview { padding: clamp(14px, 2.4vw, 20px); background: var(--muted-surface); border-bottom:1px solid var(--border); display:grid; gap: clamp(10px, 2vw, 14px); }
+    .ov-head { display:flex; align-items:center; gap: clamp(12px, 2vw, 16px); }
+    .pfp { width: clamp(64px, 9vmin, 86px); aspect-ratio:1/1; border-radius: 16px; border:1px solid var(--border); background: linear-gradient(135deg, var(--accent), transparent); }
+    .ov-title { margin:0; font-size: var(--fs-h1); line-height:1.2 }
+    .ov-sub { margin:0; color: var(--muted) }
+
+    .ov-grid { display:grid; gap: clamp(10px, 1.6vw, 14px); grid-template-columns: repeat(12, 1fr); }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    .card { padding: clamp(12px, 1.8vw, 16px); background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); }
+    .socials {display: flex;gap: 1rem;align-items: center;justify-content: flex-start;}
+    .socials img {width: 28px;height: 28px;transition: transform 0.2s ease, opacity 0.2s ease;opacity: 0.85;}
+    .socials img:hover {transform: scale(1.1);opacity: 1;}
+    .chip { display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .7rem; border-radius:999px; border:1px solid var(--border); background: color-mix(in srgb, var(--primary) 12%, var(--muted-surface)); color: var(--muted); font-weight:600; font-size:.86rem; }
+
+    .divider { height:1px; background:linear-gradient(90deg, transparent, var(--border), transparent); }
+
+    /* sub-tabs area beneath overview */
+    .subtabs { width:100%; display:flex; gap:.5rem; flex-wrap:wrap; padding: .7rem; border-bottom:1px dashed var(--border); background: color-mix(in srgb, var(--muted-surface) 60%, transparent); }
+    .subtab { appearance:none; border:1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 12px; padding:.6rem 1rem; font-weight:700; cursor:pointer; }
+    .subtab[aria-selected="true"] { background: var(--primary); color:#151513; }
+
+    /* Panels expand the PAGE (no inner scroll) */
+    .panels { padding: clamp(14px, 2.2vw, 18px); }
+    .panel[hidden] { display:none; }
+
+    h2 { font-size: var(--fs-h2); margin:.2rem 0 .6rem }
+    p { font-size: var(--fs-p); }
+
+    @media (max-width: 960px) {
+      .col-6 { grid-column: span 12; }
+    }
+    .solid-divider {
+    border: none;
+    height: 2px;
+    background-color: var(--border);
+    margin: clamp(1rem, 3vw, 2rem) 0;
+    border-radius: 1px;
+    transition: background-color 0.3s ease;
+    }
+/* ---------- Layout ---------- */
+.timeline-wrap {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  gap: clamp(14px, 2.4vw, 22px);
+  align-items: start;
+}
+
+/* ---------- Left rail ---------- */
+.tline {
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+/* vertical spine */
+.tline::before {
+  content: "";
+  position: absolute;
+  left: .55rem;
+  top: .2rem;
+  bottom: .2rem;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--border) 0%,
+    color-mix(in srgb, var(--border) 60%, transparent) 100%
+  );
+  border-radius: 2px;
+  transition: background-color .2s ease;
+}
+
+/* list container */
+#tline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .45rem;
+}
+
+/* ---------- Items ---------- */
+.tline-btn {
+  position: relative;
+  display: grid;
+  gap: .2rem;
+  padding: .65rem .8rem .65rem 1.4rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  color: var(--ink);
+  font: inherit;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+/* dot */
+.tline-btn::before {
+  content: "";
+  position: absolute;
+  left: -.05rem;
+  top: .95rem;
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primary) 28%, transparent);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+
+/* hover state */
+.tline-btn:hover {
+  background: var(--muted-surface);
+  border-color: var(--border);
+  transform: translateY(-1px);
+}
+
+/* focus ring */
+.tline-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 8px var(--ring);
+}
+
+/* active (selected) */
+.tline-btn[aria-selected="true"] {
+  background: color-mix(in srgb, var(--muted-surface) 70%, transparent);
+  border-color: var(--border);
+}
+.tline-btn[aria-selected="true"]::before {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--primary) 34%, transparent);
+}
+
+/* tiny connector glow above/below active item */
+.tline-btn[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: .58rem;
+  top: -8px;
+  bottom: -8px;
+  width: 2px;
+  background: color-mix(in srgb, var(--primary) 38%, transparent);
+  filter: saturate(1.1);
+  border-radius: 2px;
+  z-index: -1;
+}
+
+/* text bits */
+.tline-brief {
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+.tline-date {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* ---------- Right detail card ---------- */
+#tline-detail {
+  padding: clamp(14px, 2.2vw, 18px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+#tline-detail .tline-title {
+  margin: 0 0 .25rem;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.25;
+}
+
+#tline-detail .tline-meta {
+  display: inline-flex;
+  gap: .6rem;
+  align-items: center;
+  margin: 0 0 .7rem;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.tline-badge {
+  display: inline-flex;
+  padding: .2rem .55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--muted-surface);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .8rem;
+}
+
+#tline-detail .tline-desc {
+  color: var(--muted);
+  line-height: 1.65;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tline-btn,
+  .tline-btn::before,
+  .tline-btn[aria-selected="true"]::before {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .timeline-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+/* Bento layout */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(12px, 2vw, 20px);
+}
+/* intro tile — cozy headline + subtext layout */
+.bento-card.intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 20%, transparent),
+    color-mix(in srgb, var(--surface) 100%, transparent)
+  );
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background 0.4s ease;
+}
+
+/* title & subtitle */
+.intro-title {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  color: var(--text);
+  margin: 0;
+}
+
+/* body text */
+.intro-text {
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  color: var(--text);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+
+/* hover animation (soft lift) */
+.bento-card.intro:hover {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 25%, transparent),
+    color-mix(in srgb, var(--surface) 100%, transparent)
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+}
+/* Generic card styling */
+.bento-card {
+  position: relative;
+  border: 1px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 180px;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.bento-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+
+/* Optional variants (purely visual — content is up to you) */
+
+.bento-card.stats ul { margin: .4rem 0 0; padding: 0; list-style: none; display: grid; gap: .3rem; color: var(--muted); }
+
+/* Media-first tile */
+.bento-card.project { padding: 0; }
+.bento-card .bento-media {
+  aspect-ratio: 16/9;
+  border-bottom: 1px solid var(--border);
+}
+.bento-card .bento-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bento-card .bento-body { padding: clamp(12px, 1.6vw, 16px); display: grid; gap: .5rem; }
+.bento-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .2rem; }
+
+/* Quote / Embed box */
+.bento-card.quote-box { padding: 0; min-height: 180px; }
+
+/* Socials */
+.bento-card.socials .social-links { display: flex; gap: 1rem; align-items: center; }
+.bento-card.socials img { width: 28px; height: 28px; opacity: .85; transition: transform .2s ease, opacity .2s ease; }
+.bento-card.socials img:hover { transform: scale(1.1); opacity: 1; }
+
+/* Extra tile — feel free to retheme */
+
+/* Desktop bento areas (optional but nice) */
+@media (min-width: 900px) {
+  .bento-grid {
+    grid-template-areas:
+      "intro intro project"
+      "stats quote socials"
+      "extra extra socials";
+    grid-auto-rows: minmax(200px, auto);
+  }
+  .bento-card.intro { grid-area: intro; }
+  .bento-card.project { grid-area: project; }
+  .bento-card.stats { grid-area: stats; }
+  .bento-card.quote-box { grid-area: quote; }
+  .bento-card.socials { grid-area: socials; }
+  .bento-card.extra { grid-area: extra; }
+}
+
+.bento-card.video {
+  padding: 0;
+  overflow: hidden;
+}
+.bento-card.video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bento-card.image {
+  min-height: 280px;
+  max-height: 280px;
+}
+
+.bento-card.song {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.bento-card.song iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+  </style>
+</head>
 <body>
-    <div class="container">
-        <div class="static-section">
-            <div class="static-content">
-                <div class="profile-pic">
-                    <img src="assets/picture.png" alt="Profile Picture" class="profile-pic">
-                </div>
-                <h2 class="name-tag">Saaim Japanwala</h2>
-                <p class="profile-text">
-                    Computer Science & Psychology <br>@ University of Alberta
-                    <br><br>
-                <div class="location">
-                    <strong>
-                        <a href="https://en.wikipedia.org/wiki/Alberta">📍Alberta, Canada</a>
-                    </strong>
-                </div>
-                </p>
-                <div class="profile-links">
-                    <a class="profile-links github" href="https://github.com/sjapanwala" target="_blank"><img
-                            src="assets/icons8-github-50 (2).png" alt="github"></a>
-                    <a class="profile-links linkedin" href="https://linkedin.com/in/sjapanwala" target="_blank"><img
-                            src="assets/icons8-linkedin-50.png" alt="linkedin"></a>
-                    <a class="profile-links mail" href="mailto:saaim.japanwala125@gmail.com" target="_blank"><img
-                            src="assets/icons8-mail-50 (1).png" alt="mailme"></a>
-                </div>
-                <div>
-                    <a href="assets/Saaim-Resume-2025.pdf" class="resume-download-btn" download>
-                        <img src="assets/icons8-download-64.png" alt="Download Resume">
-                        Download My Resume
-                    </a>
-                </div>
-                <div class="bubble">
-                </div>
-            </div>
-            <div class="mode-toggle">
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
+  <header>
+    <div class="bar">
+      <div class="brand">Saaim<span style="color:var(--primary)"> Japanwala</span></div>
+      <button id="theme" class="icon-btn" title="Toggle light/dark">🌓</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="board" aria-label="Cozy board with persistent overview and expanding tabs">
+      <!-- OVERVIEW (always visible) -->
+      <div class="overview">
+        <div class="ov-head">
+          <div class="pfp" style="background: url('assets/profile_picture.jpg') center/cover no-repeat, linear-gradient(135deg, var(--accent), transparent);"></div>
+          <div>
+            <h1 class="ov-title">Saaim Japanwala</h1>
+                <p class="ov-sub"> Psychology & Political Science Student @ <a href="https://www.ualberta.ca" target="_blank" rel="noopener noreferrer">University of Alberta</a><br> 📍🇨🇦 Alberta, Canada </p>
+          </div>
+        </div>
+        <div class="ov-grid">
+          <div class="card col-6" id="quote-card">
+            <h2>Wisdom Corner</h2>
+            <hr class="divider-line">
+            <iframe
+                id="quote-frame"
+                src="https://notion-quotes-asnhvg7g6-hiscodesmells.vercel.app/quote?theme=light&fontSize=text&quoteType=wisdom"
+                style="width:100%; height:160px; border:none; border-radius:12px; overflow:hidden;"
+                loading="lazy"
+            ></iframe>
             </div>
             <script>
-                const themeToggle = document.querySelector('.mode-toggle');
-                const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: light)');
-                const currentTheme = localStorage.getItem('theme');
+             
+        </script>
+          <div class="card col-6">
+            <h2>Introduction To Saaim</h2>
+            <hr class="divider-line">
+             <p style="margin:.2rem 0 0">Hey there I’m Saaim, a student who’s equal parts curious about people and the systems they live in. I study Psychology and Political Science at the University of Alberta, but most of my learning happens outside the classroom — through building, writing, and reflecting. This space is a snapshot of the things I create and the ideas that keep me moving.</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
 
-                if (currentTheme === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else if (currentTheme === 'light') {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                } else if (prefersDarkScheme.matches) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                }
+      <!-- SUB TABS -->
+      <div class="subtabs" role="tablist" aria-label="Details tabs">
+        <button class="subtab" role="tab" aria-selected="true" aria-controls="p-overview" data-hash="overview">Overview</button>
+        <button class="subtab" role="tab" aria-selected="true" aria-controls="p-career" data-hash="career">My Career</button>
+       <!-- <button class="subtab" role="tab" aria-selected="false" aria-controls="p-projects" data-hash="projects">Projects</button>
+        <button class="subtab" data-hash="writing" onclick="window.location.href='writing.html'">Writing</button>-->
+      </div>
 
-                themeToggle.addEventListener('change', function () {
-                    let theme = document.documentElement.getAttribute('data-theme');
-                    if (theme === 'dark') {
-                        document.documentElement.setAttribute('data-theme', 'light');
-                        localStorage.setItem('theme', 'light');
-                    } else {
-                        document.documentElement.setAttribute('data-theme', 'dark');
-                        localStorage.setItem('theme', 'dark');
-                    }
-                });
-            </script>
+      <!-- PANELS that expand page height -->
+      <div class="panels">
+        <section id="p-overview" class="panel" role="tabpanel">
+          <h2>Home Page</h2>
+          <hr class="divider-line">
+          <!-- Bento grid skeleton -->
+        <div class="bento-grid">
+        <div class="bento-card intro">
+  <h2 class="intro-title">Great To See You Here 👋</h2>
+  <p class="intro-text">
+    This website is a window into my life. It's a space where my professional work and personal reflections come together. It’s more than just a showcase of what I’ve built or achieved; it’s a look into how I think, what inspires me, and how I spend my time when the world quiets down. You’ll find a blend of my academic journey, creative projects, and experiments in design and technology, alongside the thoughts, photos, and ideas that shape who I am. It’s a collection of moments, both big and small, that reflect how I see the world and my place in it.
+  </p>
+</div>
+
+        <div class="bento-card stats">
+            <div class="bento-card image">
+                <img src="assets/hike.JPG" alt="ilovemountains">
+            </div>
         </div>
 
+        <!-- Feature / Image -->
+        <div class="bento-card project">
+            <div class="bento-card video">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/guitar.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
-        <div class="scrollable-section">
-            <section class="aboutme">
-                <h2>About Me</h2>
-                <p>
-                    👋 Hello World, my name is <strong>Saaim Japanwala</strong>. Im a full time student at <i>The
-                        University of Alberta</i> graduating class of 2027. Pursuing a bachelors in
-                    <strong>Computing
-                        Science</strong> and <strong>Psychology</strong>.
-                    <br><br>
-                    My journey in tech started back in highschool, and since then, I have been hooked to the world
-                    of
-                    coding and software development. Lets create a world where technology becomes our best asset to
-                    solve our problems.
-                    <br><br>
-                    Aside from programming, I love photography, fitness, politics. Come checkout my personal side
-                    <strong><a class="link-person" href="personal/index.html">here</a></strong> :)
-                </p>
-            </section>
-            <div class="divider"></div>
-            <section class="skills">
-                <h2>Technology & Skills</h2>
-                <div class="skill-bubbles">
-                    <h4>Languages</h4>
-                    <span class="skill-bubble python">Python3</span>
-                    <span class="skill-bubble javascript">JavaScript</span>
-                    <span class="skill-bubble html">HTML5</span>
-                    <span class="skill-bubble css">CSS</span>
-                    <span class="skill-bubble clang">C</span>
-                    <span class="skill-bubble bash">Bash</span>
-                </div>
-                <div class="skill-bubbles">
-                    <h4>Frameworks</h4>
-                    <span class="skill-bubble frameworks">Electron.JS</span>
-                    <span class="skill-bubble frameworks">React.JS</span>
-                    <span class="skill-bubble frameworks">Django</span>
-                </div>
-                <div class="skill-bubbles">
-                    <h4>Utilities</h4>
-                    <span class="skill-bubble tools">Git</span>
-                    <span class="skill-bubble tools">Node.JS</span>
-                    <span class="skill-bubble tools">Docker</span>
-                </div>
-            </section>
-            <div class="divider"></div>
-            <section class="experience">
-                <h2>Experience & Education</h2>
-                <div class="experience-container">
-                    <div class="timeline">
+        <!-- Quote / Embed -->
+        <div class="bento-card quote-box">
+            <div class="bento-card image">
+                <img src="assets/drawing.jpeg" alt="iliketodraw">
+            </div>
+        </div>
 
+        <div class="bento-card socials">
+            <div class="bento-card video">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/spinning.mp4" type="video/mp4">
+            </video>
+            </div>
+        </div>
 
-                        <div class="timeline-item">
-                            <div class="timeline-date">2025 - Present</div>
-                            <div class="timeline-role">🌱 | Wiki Developer</div>
-                            <div class="timeline-company">iGEM UAlberta 2025.</div>
-                            <div class="timeline-description">
-                                Contributing developing the iGEM UAlberta 2025 wiki
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag">ReactJS</span>
-                                <span class="timeline-tag javascript">JavaScript</span>
-                                <span class="timeline-tag html">HTML5</span>
-                                <span class="timeline-tag css">CSS</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Feb 15 - 17, 2025</div>
-                            <div class="timeline-role">👨‍💻 | Full Stack Developer</div>
-                            <div class="timeline-company">Segmentation Faulters; HackED 2025.</div>
-                            <div class="timeline-description">
-                                Created a chrome extention that checks if information on the internet is
-                                authentically
-                                verified or a fabrication. Levereged the Google Fact Check API, alongside multiple
-                                algorithms to ensure the accuracy of the information.
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag-special">Hackathon</span>
-                                <span class="timeline-tag javascript">JavaScript</span>
-                                <span class="timeline-tag html">HTML5</span>
-                                <span class="timeline-tag css">CSS</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">Nov 14 - 17, 2024</div>
-                            <div class="timeline-role">👨‍💻 | Software Developer</div>
-                            <div class="timeline-company">BrainByte; NatHACKS 2024.</div>
-                            <div class="timeline-description">
-                                Implemented neurotechnology to solve problems in the medical field. Using OpenBCI
-                                monitoring tools and Gemini LLM, developed a system to help diagnose patients with
-                                alchohol withdrawl symptoms.
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="timeline-tag-special">Hackathon</span>
-                                <span class="timeline-tag javascript">JavaScript</span>
-                                <span class="timeline-tag python">Python3</span>
-                                <span class="timeline-tag">React</span>
-                                <span class="timeline-tag">OpenBCI</span>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-date">2023 - Present</div>
-                            <div class="timeline-role">🎓 | Full Time Student</div>
-                            <div class="timeline-company">University of Alberta</div>
-                            <div class="timeline-description">
-                                Started at <i>University of Alberta</i>, Studying Psychology and Computer Science
-                            </div>
-                            <div class="timeline-tags">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="divider"></div>
-            <section class="projects">
-                <h2>Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="projects/fact-or-cap.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">Fact or Cap - The Truth Checking Extention</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2025</div>
-                            <div class="project-links">
-                                <a href="https://github.com/Segmentation-Faulters-HackED-2025/fact-or-cap/tree/main"
-                                    class="project-link">GitHub</a>
-                                <a href="https://devpost.com/software/fact-or-cap-the-truth-checking-chrome-extention"
-                                    class="project-link">Devpost</a>
-                                <a href="https://www.linkedin.com/posts/sjapanwala_hackathons-javascript-computerscience-activity-7297890931242844160-lnmt?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEiWxqYBczl-v88H5_4N9oDL_IRCQ8uQ0jA"
-                                    class="project-link">LinkedIn</a>
-                            </div>
-                        </div>
-                        <div class="project-description">
-                            The internet has a problem. Its full of misinformation and false content. With <i>Fact
-                                or
-                                Cap</i> you can effeciently and securely check if a claim is authentic or
-                            fabricated.
-                            With trusted sources.
-                        </div>
-                        <div class="project-tags">
-                            <span class="project-tag-special">HackED</span>
-                            <span class="timeline-tag javascript">JavaScript</span>
-                            <span class="timeline-tag html">HTML5</span>
-                            <span class="timeline-tag css">CSS</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="assets/carbonscript.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">CarbonScript</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2025</div>
-                            <div class="project-links">
-                                <a href="https://github.com/sjapanwala/carbonscript" class="project-link">GitHub</a>
-                                <a href="https://sjapanwala.github.io/carbonscript/" class="project-link">WebDocs</a>
-
-                            </div>
-                        </div>
-                        <div class="project-description">
-                            CarbonScript is a fast, structured, and intuitive scripting language designed for
-                            efficiency
-                            and ease of use. With a unique syntax and built-in functions, CarbonScript makes
-                            programming
-                            more readable, flexible, and dynamic.
-                        </div>
-                        <div class="project-tags">
-                            <span class="timeline-tag python">Python3</span>
-                            <span class="timeline-tag clang">CarbonScript</span>
-
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="projects/nathacks.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">Alchohol Withdrawal Monitoring System</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2024</div>
-                            <div class="project-links">
-                                <a href="https://github.com/NatHacks-2024/alcohol_withdrawal_software"
-                                    class="project-link">GitHub</a>
-                                <a href="https://devpost.com/software/alcohol-withdrawal-monitoring-system"
-                                    class="project-link">Devpost</a>
-                                <a href="https://youtu.be/ifwXW8ANqR0" class="project-link">Demo</a>
-
-                            </div>
-                        </div>
-                        <div class="project-description">
-                            With Reference to the CIWA Scale, Created a monitoring device with a front end and back
-                            end
-                            to catch alcohol withdrawal symptoms before it's too late.
-                        </div>
-                        <div class="project-tags">
-                            <span class="project-tag-special">natHACKS</span>
-                            <span class="timeline-tag python">Python3</span>
-                            <span class="timeline-tag javascript">JavaScript</span>
-                            <span class="timeline-tag clang">BCI</span>
-                            <span class="timeline-tag">React</span>
-                            <span class="timeline-tag">Node.JS</span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="projects/pyrunweb.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">Pyrun, Python3 Runner Addon</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2024</div>
-                            <div class="project-links">
-                                <a href="https://github.com/sjapanwala/pyrun" class="project-link">GitHub</a>
-                                <a href="https://sjapanwala.github.io/pyrun/" class="project-link">Website</a>
-
-                            </div>
-
-                        </div>
-                        <div class="project-description">
-                            The old Python interpretor is boring, why not add a couple of features that make coding
-                            python easy and fun!
-                        </div>
-                        <div class="project-tags">
-                            <span class="timeline-tag python">Python3</span>
-                            <span class="timeline-tag bash">Bash</span>
-
-                        </div>
-                    </div>
-
-
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="projects/career_trail.png" alt="Project Screenshot">
-                        </div>
-                        <div class="project-header">
-                            <div class="project-title">Career Trail</div>
-                        </div>
-                        <div class="project-header">
-                            <div class="project-date">2024</div>
-                            <div class="project-links">
-                                <a href="https://github.com/sjapanwala/career_trail" class="project-link">GitHub</a>
-                            </div>
-                        </div>
-                        <div class="project-description">
-                            Using webscrapers, and data analysis, created a tool that helps users find jobs more
-                            efficiently, saving time and effort by integrating data scraping, organization, and
-                            display
-                            in one intuitive platform.
-                        </div>
-                        <div class="project-tags">
-                            <span class="timeline-tag">Electron.JS</span>
-                            <span class="timeline-tag javascript">JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!--</section>
-                  <div class="divider">
-                </div>
-                <section class="awards">
-                    <h2>Certifications & Accolades</h2>
-                    <div class="awards-grid">
-                        <div class="award-card">
-                            <div class="award-icon">💸</div>
-                            <div class="award-date">2023</div>
-                            <div class="award-title">Rutherford Post Secondary Scholarship</div>
-                            <div class="award-issuer">University of Alberta</div>
-                            <div class="award-description">
-                              Recieved complete amount from the <i>Rutherford Scholorship</i> for my academic success in High School, Lillian Osborne High School
-                            </div>
-                            <div class="award-categories">
-                                <span class="award-category">Education</span>
-                                <span class="award-category">Post-Secondary</span>
-                            </div>
-                        </div> 
- 
-                        <div class="award-card">
-                            <div class="award-icon">🏆</div>
-                            <div class="award-date">2022</div>
-                            <div class="award-title">Communincation Skills With Disctinction</div>
-                            <div class="award-issuer">Trinity College London</div>
-                            <div class="award-description">
-                                Recieved disctinction from Trinity College London for excellent communication skills. In this project, I have been able to demonstrate my ability to communicate effectively with a wide range of audiences, including both technical and non-technical audiences.
-                            </div>
-                            <div class="award-categories">
-                                <span class="award-category">Public Speaking</span>
-                                <span class="award-category">Communication</span>
-                            </div>
-                        </div>
-
-                        <div class="award-card">
-                            <div class="award-icon">🏆</div>
-                            <div class="award-date">2022</div>
-                            <div class="award-title">First Place Public Speaking</div>
-                            <div class="award-issuer">Edmonton Music and Speech Arts Festival</div>
-                            <div class="award-description">
-                                Competed in the Edmonton Music and Speech Arts Festival and was awarded first place for my public speaking performance. Recieved first place for my public speaking performance.
-                            </div>
-                            <div class="award-categories">
-                                <span class="award-category">Public Speaking</span>
-                                <span class="award-category">Communication</span>
-                                <span class="award-category">Performance</span>
-                            </div>
-                        </div>
-
-
-                    </div>-->
-
-                <!--<div class="divider"></div>
-                <section class="others">
-
-                    <h2>Blogs</h2>
-                    <div class="blogs-grid">
-                        <div class="blog-card">
-                            <div class="blog-header">
-                                <div class="blog-title">Procrastination</div>
-                                <div class="blog-date">Oct 8, 2024</div>
-                            </div>
-                            <div class="blog-description">
-                                <p>
-                                    We are always suffering from procrastination, But its a bad thing... or is it?
-                                </p>
-                            </div>
-                            <div class="blog-bottom-section">
-                                <div class="blog-tags">
-                                    <span class="blog-tag-readtime">~2min read</span>
-                                    <span class="blog-tag-phil">Philosophy</span>
-                                </div>
-                                <div class="blog-links">
-                                    <a href="blogs/procrastination.html" class="blog-link">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog-card">
-                            <div class="blog-header">
-                                <div class="blog-title">Restoring A Thinkpad!</div>
-                                <div class="blog-date">Nov 25, 2024</div>
-                            </div>
-                            <div class="blog-description">
-                                <p>
-                                    Follow along with me as we work through the journey of restoring a thinkpad from
-                                    2008!
-                                </p>
-                            </div>
-                            <div class="blog-bottom-section">
-                                <div class="blog-tags">
-                                    <span class="blog-tag-readtime">~5min read</span>
-                                    <span class="blog-tag-tech">Technology</span>
-                                </div>
-                                <div class="blog-links">
-                                    <a href="blogs/thinkpad.html" class="blog-link">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+        <!-- Extra tile (notes / second project / anything) -->
+        <div class="bento-card extra">
+            <iframe
+                src="https://open.spotify.com/embed/track/5RXjt2s4HBJw3TcaAzwSrD?utm_source=generator" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+            </iframe>
+            
+        </div>
                 </section>
-                <br><br>-->
-                <div class="divider"></div>
-                <footer>
-                    <div class="footer-bottom">
-                        <p>Built With ☕️ && ❤️ by Saaim Japanwala <br>&copy; 2025 Saaim Japanwala. All rights
-                            reserved.
-                        </p>
-                        <br><br>
-                    </div>
-                </footer>
-        </div>
+
+        <section id="p-career" class="panel" role="tabpanel">
+          <h2>My Career</h2>
+          <hr class="divider-line">
+            <div class="timeline-wrap">
+    <!-- LEFT: vertical timeline with clickable items -->
+    <aside class="tline" aria-label="Experience timeline">
+      <ol id="tline-list"></ol>
+    </aside>
+
+    <!-- RIGHT: detail card that updates based on selection -->
+        <section id="tline-detail" class="card" aria-live="polite">
+    <h3 class="tline-title">Select an item</h3>
+    <p class="tline-meta">
+        <span class="tline-badge" id="tline-location">—</span>
+        <span id="tline-date">—</span>
+    </p>
+    <p class="tline-desc" style="color:var(--muted)"></p>
+    </section>
     </div>
+        </section>
+        <section id="p-projects" class="panel" role="tabpanel" hidden>
+          <h2>Projects</h2>
+          <hr class="divider-line">
+        </section>
+        
+        <section id="p-writing" class="panel" role="tabpanel" hidden>
+        </section>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="bar" style="justify-content:center; gap:.6rem; color:var(--muted)">© <span id="y"></span> Saaim Japanwala · <a href="assets/Saaim-Resume-2025.pdf" style="text-decoration:underline">Click Me To Download Resume</a></div>
+  </footer>
 
-    <script>
-        function toggleExpand(card) {
-            card.classList.toggle('expanded');
-        }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ================= THEME + QUOTE =================
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const cards = document.querySelectorAll('.timeline-card');
+  const themeBtn = document.getElementById('theme');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setTimeout(updateQuoteTheme, 50);
+    });
+  }
 
-            cards.forEach(card => {
-                card.querySelector('.timeline-card-header').addEventListener('click', function () {
-                    cards.forEach(otherCard => {
-                        if (otherCard !== card) {
-                            otherCard.classList.remove('expanded');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+  function updateQuoteTheme() {
+    const iframe = document.getElementById('quote-frame');
+    if (!iframe) return; // iframe may be on another tab
+    const theme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const nextSrc = `https://notion-quotes-asnhvg7g6-hiscodesmells.vercel.app/quote?theme=${theme}&fontSize=text&quoteType=wisdom`;
+    if (iframe.src !== nextSrc) iframe.src = nextSrc;
+  }
+
+  updateQuoteTheme();
+
+  const y = document.getElementById('y');
+  if (y) y.textContent = new Date().getFullYear();
+
+  // ================= SUB-TABS (robust) =================
+  const subtabs = Array.from(document.querySelectorAll('.subtab[role="tab"]'));
+  // Build panels map from the buttons themselves so it can't get out of sync
+  const panels = Object.fromEntries(
+    subtabs.map(btn => {
+      const key = btn.dataset.hash;
+      const panelId = btn.getAttribute('aria-controls');
+      return [key, document.getElementById(panelId)];
+    })
+  );
+
+  function setActive(hash) {
+    const firstKey = subtabs[0]?.dataset.hash || '';
+    const key = (hash && hash.startsWith('#tab=')) ? hash.replace('#tab=','') : firstKey;
+
+    // highlight tab
+    subtabs.forEach(b => b.setAttribute('aria-selected', String(b.dataset.hash === key)));
+
+    // show/hide panels (guard nulls)
+    Object.entries(panels).forEach(([k, p]) => { if (p) p.hidden = (k !== key); });
+
+    // update quote if this panel contains it
+    updateQuoteTheme();
+  }
+
+  function selectSub(btn) {
+    const key = btn.dataset.hash;
+    history.replaceState(null, '', `#tab=${key}`);
+    setActive(`#tab=${key}`);
+    const bar = document.querySelector('.subtabs');
+    if (bar) bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // init from hash or default
+  setActive(location.hash);
+
+  // events
+  subtabs.forEach(btn => {
+    btn.addEventListener('click', () => selectSub(btn));
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        const idx = subtabs.indexOf(btn);
+        const next = e.key === 'ArrowRight' ? (idx + 1) % subtabs.length : (idx - 1 + subtabs.length) % subtabs.length;
+        subtabs[next].focus();
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', () => setActive(location.hash));
+
+  // ================= TIMELINE (JSON-driven) =================
+  const TIMELINE_DATA = [
+    {
+      id: "hacked",
+      date: "2025",
+      title: "Fact or Cap, Fact Checking Chrome Extension | HackED Hackathon",
+      location: "Edmonton, AB",
+      brief: "HackED Hackathon",
+      description:
+        "Developed a Chrome extension that determines whether online information is authentically verified or fabricated, aimed at promoting digital literacy and combating misinformation. Leveraged the Google Fact Check API in combination with custom verification algorithms to cross reference claims against reputable sources in real time. Designed an intuitive user interface for seamless browsing integration, allowing users to instantly assess the credibility of online content."
+    },
+    {
+      id: "trail",
+      date: "2024 · Present",
+      title: "Customer Service Representative | Trail Appliances AB/SK",
+      location: "Edmonton, AB",
+      brief: "Trail Appliances AB/SK",
+      description:
+        "I’ve developed strong communication, problem-solving, and interpersonal skills through daily interactions with customers and team members. My role involves assisting clients with product inquiries, order management, and post purchase support, ensuring each customer has a smooth and positive experience. I’ve learned to balance empathy with efficiency, resolving issues, coordinating with delivery and service teams, and maintaining a professional and solution focused approach under pressure."
+    },
+    {
+      id: "ualberta",
+      date: "2023 · Present",
+      title: "BA in Psychology & Political Science | University of Alberta",
+      location: "Edmonton, AB",
+      brief: "University Of Alberta",
+      description:
+        "During my time at the University of Alberta, I’ve pursued a Bachelor’s degree in Psychology and Political Science, exploring how human thought, behavior, and power interact to shape societies. My studies have deepened my understanding of cognition, social influence, and governance, while also allowing me to connect philosophical ideas about justice and human nature to modern systems of politics and law. Alongside this, I’ve developed a strong interest in Computer Science, applying technical and analytical skills to build projects that merge logic and creativity, from programming languages to web development and AI tools."
+    }
+  ];
+
+  function renderTimeline(listEl, data, defaultId) {
+    listEl.innerHTML = "";
+    data.forEach((item, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "tline-btn";
+      btn.type = "button";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-controls", `detail-${item.id}`);
+      btn.dataset.id = item.id;
+      btn.innerHTML = `
+        <span class="tline-date">${item.date}</span>
+        <span class="tline-brief">${item.brief}</span>
+      `;
+      // FIX: logical OR and no undefined variable
+      const isDefault = (defaultId && item.id === defaultId) || (!defaultId && idx === 0);
+      btn.setAttribute("aria-selected", String(isDefault));
+      listEl.appendChild(btn);
+    });
+  }
+
+  function showDetail(detailEl, item) {
+    // Use meta fields if present; otherwise fall back to simple line
+    const titleEl = detailEl.querySelector(".tline-title");
+    const metaEl  = detailEl.querySelector(".tline-meta");
+    const descEl  = detailEl.querySelector(".tline-desc");
+    const locEl   = detailEl.querySelector("#tline-location");
+    const dateEl  = detailEl.querySelector("#tline-date");
+
+    if (titleEl) titleEl.textContent = item.title;
+    if (locEl && dateEl) {
+      locEl.textContent = item.location;
+      dateEl.textContent = item.date;
+    } else if (metaEl) {
+      metaEl.textContent = `${item.location} · ${item.date}`;
+    }
+    if (descEl) descEl.textContent = item.description;
+  }
+
+  (function initTimeline(){
+    const listEl = document.getElementById("tline-list");
+    const detailEl = document.getElementById("tline-detail");
+    if (!listEl || !detailEl) return;
+
+    const hashKey = location.hash.startsWith("#exp=") ? location.hash.replace("#exp=","") : null;
+    const defaultId = TIMELINE_DATA.some(d=>d.id===hashKey) ? hashKey : TIMELINE_DATA[0].id;
+
+    renderTimeline(listEl, TIMELINE_DATA, defaultId);
+
+    const initial = TIMELINE_DATA.find(d => d.id === defaultId) || TIMELINE_DATA[0];
+    showDetail(detailEl, initial);
+
+    Array.from(listEl.children).forEach(btn => {
+      btn.setAttribute("aria-selected", String(btn.dataset.id === initial.id));
+    });
+
+    function selectById(id, focus = false) {
+      const item = TIMELINE_DATA.find(d => d.id === id);
+      if (!item) return;
+
+      Array.from(listEl.children).forEach(b => {
+        b.setAttribute("aria-selected", String(b.dataset.id === id));
+      });
+
+      showDetail(detailEl, item);
+      history.replaceState(null, "", `#exp=${id}`);
+
+      if (focus) {
+        const btn = Array.from(listEl.children).find(b => b.dataset.id === id);
+        if (btn) btn.focus();
+      }
+    }
+
+    listEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tline-btn");
+      if (!btn) return;
+      selectById(btn.dataset.id);
+    });
+
+    listEl.addEventListener("keydown", (e) => {
+      const buttons = Array.from(listEl.querySelectorAll(".tline-btn"));
+      const idx = buttons.findIndex(b => b.getAttribute("aria-selected")==="true");
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const next = buttons[(idx + 1) % buttons.length];
+        selectById(next.dataset.id, true);
+      }
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prev = buttons[(idx - 1 + buttons.length) % buttons.length];
+        selectById(prev.dataset.id, true);
+      }
+    });
+
+    window.addEventListener("hashchange", () => {
+      if (!location.hash.startsWith("#exp=")) return;
+      const id = location.hash.replace("#exp=","");
+      selectById(id);
+    });
+  })();
+});
+</script>
 </body>
-<script src="src/script.js"></script>
-
 </html>

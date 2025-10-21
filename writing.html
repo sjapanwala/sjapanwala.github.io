@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saaim — Writing</title>
+  <meta name="description" content="An academic‑cozy writing page with light/dark modes, elegant typography, and simple tagging." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       THEME TOKENS — matches your palette
+       #B6AE9F #C5C7BC #DEDED1 #FBF3D1
+       ======================================== */
+    :root {
+      --bg: #FBF3D1;          /* parchment */
+      --surface: #DEDED1;     /* stone */
+      --muted-surface: #f7f5e3;
+      --ink: #1a1a1a;         /* text */
+      --muted: #5b5b5f;
+      --border: #e1dfd2;
+      --primary: #B6AE9F;     /* sage */
+      --accent: #C5C7BC;      /* moss */
+      --ring: rgba(182,174,159,.35);
+
+      --font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+
+      /* Type scale tuned for long-form */
+      --fs-h1: clamp(1.7rem, 2.8vw, 2.4rem);
+      --fs-h2: clamp(1.25rem, 2.2vw, 1.6rem);
+      --fs-h3: clamp(1.1rem, 1.8vw, 1.3rem);
+      --fs-body: clamp(1.02rem, 1.2vw, 1.1rem);
+
+      --radius-lg: 18px; --radius: 14px;
+      --shadow: 0 18px 50px rgba(0,0,0,.12);
+      --maxw: 72ch;
+    }
+    [data-theme="dark"] {
+      --bg: #0f1010;
+      --surface: #161716;
+      --muted-surface: #121312;
+      --ink: #f4f5f3;
+      --muted: #a4a59f;
+      --border: #2a2b29;
+      --primary: #B6AE9F;
+      --accent: #C5C7BC;
+      --ring: rgba(197,199,188,.35);
+      --shadow: 0 20px 60px rgba(0,0,0,.55);
+    }
+
+    * { box-sizing: border-box; }
+    html { height: 100%; }
+    body {
+      margin: 0; min-height: 100%;
+      background: radial-gradient(1000px 600px at 50% -8%, color-mix(in srgb, var(--accent) 18%, transparent), transparent), var(--bg);
+      color: var(--ink);
+      font: 400 var(--fs-body)/1.65 var(--font-serif);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;  
+      hanging-punctuation: first allow-end;
+      hyphens: auto;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(8px) saturate(120%);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .bar { width: min(1200px, 92vw); margin: 0 auto; padding: .85rem 0; display: flex; gap: .8rem; align-items: center; }
+    .brand { font: 700 1rem var(--font-sans); letter-spacing: .25px; }
+    .nav { margin-left: auto; display:flex; gap:.4rem; }
+    .btn { display:inline-flex; align-items:center; gap:.5rem; padding:.6rem .9rem; border-radius: 12px; border:1px solid var(--border); background: var(--primary); color:#151513; font: 700 .95rem var(--font-sans); cursor: pointer; }
+    .btn.ghost { background: transparent; color: var(--ink); }
+    .icon-btn { width: 2.5rem; height: 2.5rem; border-radius: 12px; border:1px solid var(--border); background: var(--muted-surface); display:grid; place-items:center; cursor:pointer; }
+
+    /* ===== Hero ===== */
+    .hero { width:min(1200px,92vw); margin: 1.6rem auto 1rem; display:grid; gap:.8rem; }
+    .hero h1 { font: 700 var(--fs-h1)/1.2 var(--font-sans); margin: 0; }
+    .hero p { margin: 0; color: var(--muted); max-width: 70ch; }
+
+    /* ===== Layout: TOC + List ===== */
+    .wrap { width:min(1200px,92vw); margin: 1rem auto 3rem; display:grid; grid-template-columns: 280px 1fr; gap: clamp(14px, 2.2vw, 22px); align-items:start; }
+    @media (max-width: 920px) { .wrap { grid-template-columns: 1fr; } }
+
+    /* ===== Sidebar / TOC ===== */
+    .side { position: sticky; top: calc(56px + 1rem); display:grid; gap:.8rem; }
+    .card { background: var(--surface); border:1px solid var(--border); border-radius: var(--radius); box-shadow: 0 8px 26px rgba(0,0,0,.06); }
+    .toc { padding: .9rem 1rem; }
+    .toc h3 { font: 700 var(--fs-h3)/1.2 var(--font-sans); margin:.2rem 0 .6rem; }
+    .toc a { display:block; padding:.35rem .4rem; margin:.15rem 0; border-radius: 10px; color: var(--muted); }
+    .toc a:hover { background: var(--muted-surface); color: var(--ink); }
+
+    .filters { padding:.85rem 1rem; display:grid; gap:.5rem; }
+    .chips { display:flex; flex-wrap:wrap; gap:.45rem; }
+    .chip { display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .7rem; border-radius:999px; border:1px solid var(--border); background: color-mix(in srgb, var(--primary) 12%, var(--muted-surface)); color: var(--muted); font: 700 .85rem var(--font-sans); cursor:pointer; }
+    .chip[aria-pressed="true"] { background: var(--primary); color:#171614; }
+
+    /* ===== Post list ===== */
+    .list { display:grid; gap: clamp(12px, 1.8vw, 16px); }
+    .post { padding: clamp(14px, 1.8vw, 18px); display:grid; gap:.5rem; grid-template-columns: 1fr; }
+    .post + .post { border-top: 1px dashed var(--border); }
+    .post h2 { font: 700 var(--fs-h2)/1.25 var(--font-sans); margin:0; }
+    .post .meta { color: var(--muted); font: 500 .95rem var(--font-sans); display:flex; gap:.6rem; flex-wrap:wrap; }
+    .post .excerpt { margin: 0; color: var(--ink); max-width: var(--maxw); }
+
+    .post .tags { display:flex; gap:.4rem; flex-wrap:wrap; }
+    .post .tags .tag { font:700 .78rem var(--font-sans); color: var(--muted); padding:.25rem .55rem; border:1px solid var(--border); border-radius:999px; background: var(--muted-surface); }
+
+    .post .actions { display:flex; gap:.6rem; align-items:center; margin-top:.2rem; }
+
+    /* ===== Reader (popup panel) ===== */
+    dialog.reader { width:min(900px, 92vw); border:none; padding:0; border-radius: var(--radius-lg); overflow:hidden; background: var(--surface); box-shadow: var(--shadow); }
+    dialog::backdrop { backdrop-filter: blur(3px); background: rgba(0,0,0,.25); }
+    .reader .r-head { display:flex; justify-content:space-between; align-items:center; padding: .9rem 1rem; border-bottom:1px solid var(--border); background: var(--muted-surface); }
+    .reader .r-title { font: 700 var(--fs-h2)/1.2 var(--font-sans); margin:0; }
+    .reader .r-meta { color: var(--muted); font: 500 .95rem var(--font-sans); }
+    .reader .r-body { padding: 1rem clamp(1rem, 3vw, 1.4rem) 1.2rem; max-height: 78vh; overflow:auto; }
+    .reader .r-body p { max-width: var(--maxw); }
+    .reader .r-body figure { margin: 1rem 0; }
+    .reader .r-body figcaption { font: 500 .9rem var(--font-sans); color: var(--muted); text-align:center; }
+    .reader .r-body blockquote { margin: .8rem 0; padding: .6rem .9rem; border-left: 3px solid var(--primary); background: color-mix(in srgb, var(--primary) 12%, var(--muted-surface)); border-radius: 8px; }
+    .reader .r-body code { font: 500 .95rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: color-mix(in srgb, var(--ink) 6%, transparent); padding:.1rem .3rem; border-radius:6px; }
+    .reader .r-body pre { background: color-mix(in srgb, var(--ink) 6%, transparent); border:1px solid var(--border); padding:.8rem; border-radius: 10px; overflow:auto; }
+    .reader .r-foot { padding:.9rem 1rem; border-top:1px solid var(--border); display:flex; justify-content:flex-end; background: var(--muted-surface); }
+
+    /* ===== Footer ===== */
+    footer { border-top:1px solid var(--border); background: color-mix(in srgb, var(--bg) 85%, transparent); }
+    .footbar { width:min(1200px,92vw); margin:0 auto; padding:1rem 0; color: var(--muted); display:flex; justify-content:space-between; align-items:center; font: 500 .95rem var(--font-sans); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="brand">Saaim<span style="color:var(--primary)"> Japanwala</span> / writing</div>
+      <nav class="nav">
+        <a class="btn ghost" href="./index.html">← Home</a>
+        <button id="theme" class="icon-btn" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Writing</h1>
+    <p>A Collection Of Thoughts And Ideas</p>
+  </section>
+
+  <main class="wrap">
+    <!-- Sidebar: TOC + Filters -->
+    <aside class="side">
+      <section class="card toc">
+        <h3>Table of Contents</h3>
+        <div id="toc-links"><!-- populated by JS --></div>
+      </section>
+      <section class="card filters">
+        <h3 style="font:700 var(--fs-h3)/1.2 var(--font-sans); margin:.2rem 0 .2rem">Filter</h3>
+        <div class="chips" id="tag-chips"><!-- populated by JS --></div>
+      </section>
+    </aside>
+
+    <!-- Post list -->
+    <section class="list" id="post-list">
+      <!-- populated by JS from POSTS -->
+    </section>
+  </main>
+
+  <!-- Reader dialog for quick in-place reading -->
+  <dialog class="reader" id="reader">
+    <div class="r-head">
+      <div>
+        <h2 class="r-title"></h2>
+        <div class="r-meta"></div>
+      </div>
+      <button class="icon-btn" id="close-reader" aria-label="Close">✕</button>
+    </div>
+    <div class="r-body" id="reader-body"><!-- content injected --></div>
+    <div class="r-foot"><button class="btn ghost" id="open-standalone">Open as page →</button></div>
+  </dialog>
+
+  <footer>
+    <div class="footbar">© <span id="y"></span> Saaim Japanwala · <span id="count"></span> posts</div>
+  </footer>
+
+  <script>
+    // ==================== Theme toggle with persistence ====================
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    document.getElementById('theme').addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // ==================== Demo posts (replace or extend) ====================
+    const POSTS = [
+      {
+        id: 'sample-text',
+        title: 'Lorem Epsum Dolor Sit Amet',
+        date: '2025‑10‑01',
+        minutes: 10,
+        tags: ['sample','text'],
+        excerpt: 'lorem ipsum',
+        html: `<p>We learn boundaries at the speed of trust. What feels like restraint is often a strategy for tenderness, the kind that does not collapse into self‑betrayal.</p>
+               <blockquote>Freedom without regard becomes a tyranny of appetites; restraint without regard becomes a tyranny of fear.</blockquote>
+               <p>Good boundaries are not fences but membranes: permeable enough for care, sturdy enough for selfhood.</p>`
+      },
+    ];
+
+    // ==================== Helpers ====================
+    const fmtDate = (iso) => new Date(iso + 'T00:00:00').toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'});
+
+    // Unique, sorted tags
+    const ALL_TAGS = [...new Set(POSTS.flatMap(p => p.tags))].sort((a,b)=>a.localeCompare(b));
+
+    // ==================== Render list ====================
+    const listEl = document.getElementById('post-list');
+    const tocEl = document.getElementById('toc-links');
+    const chipsEl = document.getElementById('tag-chips');
+    const countEl = document.getElementById('count');
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    let activeTags = new Set();
+
+    function renderChips(){
+      chipsEl.innerHTML = '';
+      ALL_TAGS.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.type = 'button';
+        btn.textContent = tag;
+        btn.setAttribute('aria-pressed', String(activeTags.has(tag)));
+        btn.addEventListener('click', () => {
+          if (activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+          renderAll();
+        });
+        chipsEl.appendChild(btn);
+      });
+    }
+
+    function renderList(){
+      const filtered = activeTags.size ? POSTS.filter(p => p.tags.some(t => activeTags.has(t))) : POSTS;
+      listEl.innerHTML = '';
+      filtered.forEach(p => {
+        const art = document.createElement('article');
+        art.className = 'post card';
+        art.id = p.id;
+        art.innerHTML = `
+          <h2>${p.title}</h2>
+          <div class="meta">${fmtDate(p.date)} · ~${p.minutes} min read</div>
+          <p class="excerpt">${p.excerpt}</p>
+          <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="actions">
+            <a class="btn" href="./posts/${p.id}.html">Read More →</a>
+          </div>`;
+        listEl.appendChild(art);
+      });
+      countEl.textContent = filtered.length;
+
+      // quick-read handlers
+      listEl.querySelectorAll('[data-read]').forEach(btn => btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.getAttribute('data-read');
+        openReader(id);
+      }));
+
+      // TOC
+      tocEl.innerHTML = filtered.map(p => `<a href="#${p.id}">${p.title}</a>`).join('');
+    }
+
+    function renderAll(){ renderChips(); renderList(); }
+
+    // ==================== Reader dialog ====================
+    const reader = document.getElementById('reader');
+    const rTitle = reader.querySelector('.r-title');
+    const rMeta  = reader.querySelector('.r-meta');
+    const rBody  = document.getElementById('reader-body');
+
+    function openReader(id){
+      const p = POSTS.find(x => x.id === id);
+      if (!p) return;
+      rTitle.textContent = p.title;
+      rMeta.textContent = `${fmtDate(p.date)} · ~${p.minutes} min`;
+      rBody.innerHTML = p.html;
+      if (typeof reader.showModal === 'function') reader.showModal();
+    }
+    document.getElementById('close-reader').addEventListener('click', () => reader.close());
+    document.getElementById('open-standalone').addEventListener('click', () => {
+      const title = rTitle.textContent;
+      const post = POSTS.find(p => p.title === title);
+      if (post) location.href = `./posts/${post.id}.html`;
+    });
+
+    // ==================== Init ====================
+    renderAll();
+  </script>
+</body>
+</html>
