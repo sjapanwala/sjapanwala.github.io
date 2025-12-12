@@ -13,29 +13,29 @@
     }
 
     :root {
-      --bg-primary: #0a0a0a;
-      --bg-secondary: #151515;
-      --bg-card: #1a1a1a;
+      --bg-primary: #343434;
+      --bg-secondary: rgb(61, 59, 59);
+      --bg-card: #45474B;
       --text-primary: #e0e0e0;
       --text-secondary: #a0a0a0;
       --text-muted: #606060;
-      --accent: #1F7D53;
-      --accent-dark: #255F38;
-      --accent-glow: rgba(31, 125, 83, 0.3);
-      --border: #2a2a2a;
+      --accent: #FF7601;
+      --accent-dark: #d16100;
+      --accent-glow: rgba(255, 136, 0, 0.49);
+      --border: #57564F;
     }
 
-    [data-theme="light"] {
-      --bg-primary: #fafafa;
-      --bg-secondary: #f0f0f0;
-      --bg-card: #ffffff;
+    [data-theme="light"] {  
+      --bg-primary: #EFE9E3;
+      --bg-secondary: #D9CFC7;
+      --bg-card: #F9F8F6;
       --text-primary: #1a1a1a;
       --text-secondary: #4a4a4a;
       --text-muted: #8a8a8a;
-      --accent: #1F7D53;
-      --accent-dark: #255F38;
-      --accent-glow: rgba(31, 125, 83, 0.15);
-      --border: #e0e0e0;
+     --accent: #FF7601;
+      --accent-dark: #d16100;
+      --accent-glow: rgba(255, 136, 0, 0.49);
+      --border: #C9B59C;
     }
 
     body {
@@ -67,6 +67,80 @@
       transform: rotate(180deg);
       box-shadow: 0 0 20px var(--accent-glow);
     }
+
+    .help {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .pronounce-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-muted);
+  border-radius: 999px;
+
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.pronounce-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.pronounce-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 6px var(--accent-glow);
+  animation: pulse 0.3s ease;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+  50% { box-shadow: 0 0 16px var(--accent-glow); }
+  100% { box-shadow: 0 0 0 rgba(0,0,0,0); }
+}
+
+.pronounce-btn::before {
+  content: "🔊";
+  font-size: 1rem;
+}
+
+    @keyframes tilt-shaking {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .help:hover {
+      animation: tilt-shaking 0.4s ease-in-out infinite;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    
 
     .hero {
       min-height: 100vh;
@@ -737,6 +811,297 @@
   display: block;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-card);
+  padding: 24px;
+  border-radius: 16px;
+  width: 320px;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: pop 0.25s ease forwards;
+}
+
+.modal-content p {
+  margin-top: 20px;
+}
+/* --- Personal Section --- */
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 30px;
+  align-items: stretch;
+  margin-top: 40px;
+}
+
+.personal-carousel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 6 / 5; 
+
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+  transition: all 0.3s ease;
+}
+
+.personal-carousel:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.personal-slide { width: 100%; height: 100%; display: none; }
+.personal-slide.active { display: block; }
+
+.personal-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.carousel-controls {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.65));
+}
+
+.carousel-btn {
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.carousel-btn:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.35);
+  border: 1px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.personal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.personal-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.personal-kicker {
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85em;
+}
+
+.personal-card h3 {
+  font-size: 1.6em;
+  line-height: 1.2;
+}
+
+.personal-card p {
+  color: var(--text-secondary);
+}
+
+.hobby-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.hobby-pill {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 0.85em;
+  transition: 0.2s ease;
+}
+
+.hobby-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (max-width: 968px) {
+  .personal-grid {
+    grid-template-columns: 1fr;
+  }
+  .personal-carousel {
+    min-height: 320px;
+  }
+}
+
+
+
+.tooltip-box {
+  position: fixed;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.85em;
+  line-height: 1.4;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.sound-btn {
+  transition: all 0.2s ease;
+}
+
+.sound-btn:active {
+  transform: scale(0.96);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.nav-overlay.open {
+  display: flex;
+}
+
+.nav-menu {
+  width: min(520px, calc(100vw - 40px));
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.45);
+  padding: 16px;
+}
+
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 6px 12px 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+.nav-title {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.nav-hint {
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+.nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-item {
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.nav-item:hover,
+.nav-item:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 14px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+/** css end **/
+
+@keyframes pop {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
 
     @media (max-width: 968px) {
       .hero h1 {
@@ -816,10 +1181,21 @@
 
 <body>
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
-
-  <section id="experience" class="hero">
+  <button class="help" onclick="toggleNav()">🗺️</button>
+  <section id="main" class="hero">
     <div class="hero-content">
-      <h1>Saaim Japanwala</h1>
+      <h1>Saaim Japanwala</h1> 
+      <div class="spoken-name">
+        <button class="pronounce-btn"id="soundBtn"></button>
+        <audio id="clickSound" src="assets/saaim-japanwala.mp3"></audio>
+        <script>
+          document.getElementById("soundBtn").addEventListener("click", () => {
+            const audio = document.getElementById("clickSound");
+            audio.currentTime = 0;
+            audio.play();
+          });
+        </script>
+      </div>
       <div class="subtitle">BA Psychology & Political Science</div>
       <div class="hero-avatar">
         <img src="assets/IMG_6070.jpeg" alt="Portrait of Saaim">
@@ -827,7 +1203,7 @@
     </div>
     <div class="scroll-indicator">↓</div>
   </section>
-
+<section id="experience">
   <div class="container">
     <h2 class="section-title">Experience</h2>
     <div class="timeline">
@@ -864,8 +1240,84 @@
         </div>
       </div>
     </div>
-  </div>
 
+  <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2015 - 2023</div>
+          <h3 class="timeline-title">Public Speaking</h3>
+          <div class="timeline-company">@ The Speech Studio | Edmonton AB, Canada</div>
+          <div class="timeline-description">
+            Developed strong public speaking and communication skills through structured training at The Speech Studio.
+            <ul>
+              <li>Excelled in competitive events such as the <strong><span style="color: var(--accent); cursor: help;" class="cursor-tooltip" data-tooltip="North America's oldest festival of its kind, offering thousands of young and adult performers opportunities to showcase voice, instrumental, and speech arts (like acting/recitation) skills in front of professional adjudicators, providing valuable experience, instruction, and connection with other artists">Kiwanis Music and Arts Festival</span></strong> and <strong><strong><span style="color: var(--accent); cursor: help;" class="cursor-tooltip" data-tooltip="Trinity College London offers comprehensive Speech & Drama programs, including graded exams and diplomas in areas like Speech & Drama, Shakespeare, Group Performance, and Communication Skills, focusing on practical, real-world skills for confidence, critical thinking, and presentation in education and careers. They provide internationally recognized, accredited qualifications for solo performers, pairs, and groups, developing vocal control, performance technique, and 21st-century communication abilities through structured syllabi. ">Trinity College London programs</strong></span>, earning multiple certifications for performance and proficiency.</li>
+              <li>Strengthened public speaking, articulation, and professional communication skills through structured training.</li>
+              <li>Developed confidence and clarity in speaking through hands-on training in articulation, presentation, and verbal expression.</li>
+            </ul>
+            <span style="color: var(--text-muted);font-size: x-small;">*hover over the orange text for more information</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="about-me">
+<div class="container">
+  <h2 class="section-title">About Me</h2>
+
+  <div class="personal-grid">
+    <div class="personal-carousel" aria-label="Personal photo carousel">
+      <div class="personal-slide active">
+        <img src="assets/carousel/dressed.jpeg" alt="Main Picture">
+      </div>
+      <div class="personal-slide">
+        <img src="assets/carousel/mountains.JPG" alt="Mountain Hike">
+      </div>
+      <div class="personal-slide">
+        <img src="assets/carousel/swan.JPG" alt="Swiss Swans">
+      </div>
+      <div class="personal-slide">
+        <img src="assets/carousel/travel.jpeg" alt="Turkey">
+      </div>
+      
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" type="button" id="prevPersonal">←</button>
+
+        <div class="carousel-dots" aria-label="Carousel dots">
+          <button class="dot active" type="button" data-slide="0"></button>
+          <button class="dot" type="button" data-slide="1"></button>
+          <button class="dot" type="button" data-slide="2"></button>
+          <button class="dot" type="button" data-slide="3"></button>
+        </div>
+
+        <button class="carousel-btn" type="button" id="nextPersonal">→</button>
+      </div>
+    </div>
+
+    <div class="personal-card">
+      <div class="personal-kicker">Peek Into Saaim</div>
+      <h3>Who Is Saaim? What is a Saaim? Where is Saaim? What does it mean to be Saaim?</h3>
+      <p>
+        As the <i>Socratic Question</i> above has introduced, my name is <span style="color: var(--accent); cursor: help;" class="cursor-tooltip" data-tooltip='sāim (صائم)  comes from Arabic, meaning "one who fasts" or "the faster," derived from the root sawm (fasting), tied to Islamic devotion. It signifies discipline, patience, and piety.'>Saaim</span> <span style="color: var(--accent);">Japanwala</span>,
+        a full-time student at the <span style="color: var(--accent); text-decoration: underline; cursor: help;" class="cursor-tooltip" data-tooltip="A top  5 Canadian research university, located in Edmonton, AB. Recognized globally for academic excellence and discovery. (QS World University Rankings 2026)">University of Alberta</span>. Where I am pursuing a BA in Psychology and Political Science with the long-term goal of obtaining a <span style="color: var(--accent); text-decoration: underline; cursor: help;" class="cursor-tooltip" data-tooltip="Juris Doctor (JD), is the standard postgraduate professional degree in law, required in the Canada. and other common law countries to become a licensed attorney.">Juris Doctor</span> and practice law.
+      </p>
+      <p>
+        As much as I enjoy working and studying, I have a full life outside of it. In my spare time, I love getting out and doing whatever I can learning, exploring, and simply enjoying the moment.
+      </p>
+      <p>
+        Lately, I’ve been drawn to <span style="color: var(--accent); cursor: help;" class="cursor-tooltip" data-tooltip="I have been loving Miles Davis, Chet Baker, and Frank Sinatra the most!">jazz</span>, especially on vinyl, which has pulled me deep into the world of <a href="https://www.discogs.com/user/saaimm05/collection" target="_blank" style="color: var(--accent);"><span class="cursor-tooltip" data-tooltip="This Link Will Take You To My Virtual Record Collection">record collecting.</span></a> When I’m outdoors, you’ll usually find me hiking or going for runs. And when I’m not outside, I’m always on the hunt for new cafés and good coffee - caffeine has very much become a daily ritual. Alongside my coffee, I love a good book - right now im reading <span style="color: var(--accent); text-decoration: underline; cursor: help;" class="cursor-tooltip" data-tooltip='On War by Carl von Clausewitz is a foundational text on military strategy, defining war as a "duel on a large scale" and a continuation of politics by other means, emphasizing its inherently violent nature, the role of chance (fog of war), and the necessity of political objectives driving military action. It introduces core concepts like the "remarkable trinity" (violence, chance, policy), the friction of war, and the importance of destroying the enemies capacity to resist, influencing military thought for centuries by analyzing wars nature, politics, and psychology.''><i>On War</i> by Carl Von Clausewitz.</span>
+      </p>
+      <p>
+        I wish you an enjoyable experience as you explore this online résumé, which I’ve carefully designed to be engaging and accessible. If you have any questions or would like to connect, You can <a href="mailto:saaim.japanwala125@gmail.com?subject=Reaching%20out%20from%20your%20website" class="cursor-tooltip" data-tooltip="Will Likely Not Respond During Non-Business Hours" style="cursor:pointer; color: var(--accent)">Email Me</a>. Thank you for taking the time to explore a small chapter of my life!
+      </p>
+      <span style="color: var(--text-muted);font-size: x-small;">*hover over the orange text for more information</span>
+    </div>
+  </div>
+</div>
+</section>
+<section id="skills">
   <div class="container">
     <h2 class="section-title">Skills</h2>
     <div class="skills-grid">
@@ -950,6 +1402,8 @@
       <p class="note">*bar progress is based on grades recieved in classes</p>
     </a>
   </div>
+</section>
+<section id="papers">
   <div class="container">
     <h2 class="section-title">Papers</h2>
     <div class="projects-grid">
@@ -973,7 +1427,9 @@
     </div>
   </div>
 
+</section>
 
+<section id="compsci-proj">
   <div class="container">
     <h2 class="section-title">Computer Science Projects </h2>
     <div class="projects-grid">
@@ -1002,7 +1458,7 @@
           <h3 class="project-title">Fact Checking Extention</h3>
           <div class="project-meta">
             <div class="project-tech">HTML5 ᐧ CSS ᐧ JS</div>
-            <div class="project-subject">HackED 2025</div>
+            <div class="project-subject"><a style="text-decoration: underline;cursor: help;" class="cursor-tooltip" data-tooltip="HackED is a Hackathon setup and executed by the Computer Engineering Club at The University of Alberta">HackED 2025</a></div>
           </div>
           <p class="project-description">The internet has a problem. Its full of misinformation and false content. With Fact or Cap you can effeciently and securely check if a claim is authentic or fabricated. With trusted sources.</p>
         </div>
@@ -1013,10 +1469,39 @@
       </div>
     </div>
   </div>
-
+</section>
+<section id="publications">
   <div class="container">
         <h2 class="section-title">Blog Entries</h2>
         <div class="publications-grid">
+
+          <div class="publication-card">
+                <div class="publication-header">
+                    <div class="publication-type">Jouranl Entry</div>
+                    <div class="publication-date">12/11/2025</div>
+                </div>
+                <h3 class="publication-title">the inability to own incompetence</h3>
+                <div class="publication-meta">
+                    <span class="meta-item">⏳ ~2min Read</span>
+                    <span class="meta-item">🎧 ~2:27min Listen</span>
+                    <span class="meta-item">📖 417 Words</span>
+                </div>
+                <p class="publication-description">An examination of why incompetence is inevitable, but the refusal to admit it erodes accountability, wastes time, and prevents growth.</p>
+                <div class="publication-tags">
+                    <span class="tag">Philosophy</span>
+                    <span class="tag">Rant</span>
+                </div>
+                <div class="publication-tags">
+                  <button class="pill-button sound-btn"
+                          data-audio="assets/writing/entry01-.wav">
+                    ▶ Listen
+                  </button>
+
+                  <a href="assets/writing/being-incompetent.pdf" target="_blank" rel="noopener">
+                    <button class="pill-button">Read</button>
+                  </a>
+                </div>
+            </div>
 
 
             <div class="publication-card">
@@ -1027,24 +1512,30 @@
                 <h3 class="publication-title">the currency of life</h3>
                 <div class="publication-meta">
                     <span class="meta-item">⏳ ~4min Read</span>
+                    <span class="meta-item">🎧 ~4:40min Listen</span>
                     <span class="meta-item">📖 750 Words</span>
                 </div>
-                <p class="publication-description">Let’s try to define life. Some people call it a gift, others a test, a blessing, or a burden, but let’s try to quantify it instead. I like to imagine life as a line, more specifically a timeline. It begins at point A, the moment of birth, and ends at point Z, the moment of death...</p>
+                <p class="publication-description">Let’s try to define life. Some people call it a gift, others a test, a blessing, or a burden, but let’s try to quantify it instead... </p>
                 <div class="publication-tags">
                     <span class="tag">Philosophy</span>
                     <span class="tag">Motivational</span>
                 </div>
                 <div class="publication-tags">
-                  <a href="assets/writing/spending-the-currency-of-life.pdf">
-                    <button class="pill-button">Read More</button>
-                  </a>  
+                  <button class="pill-button sound-btn"
+                          data-audio="assets/writing/entry00-.wav">
+                    ▶ Listen
+                  </button>
+
+                  <a href="assets/writing/spending-the-currency-of-life.pdf" target="_blank" rel="noopener">
+                    <button class="pill-button">Read</button>
+                  </a>
                 </div>
             </div>
 
         </div>
     </div>
-
-  <section class="contact-section">
+</section>
+  <section id="contact" class="contact-section">
     <div class="container">
       <h2 class="section-title">Let's Connect</h2>
       <div class="contact-links">
@@ -1078,6 +1569,7 @@
   </footer>
 </section>
 
+<div id="commandOverlay" class="cmd-overlay" aria-hidden="true">...</div>
   <script>
     function toggleTheme() {
       const html = document.documentElement;
@@ -1135,7 +1627,200 @@
       item.style.transition = `all 0.6s ease ${index * 0.1}s`;
       timelineObserver.observe(item);
     });
+  function openModal() {
+        document.getElementById("openQuickNav").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("quickNavOverlay").style.display = "none";
+      }
+      
+
+      window.onclick = function (e) {
+      const modal = document.getElementById("quickNavOverlay");
+      if (e.target === modal) {
+        closeModal();
+      }
+    };
+
+      (function () {
+        const slides = document.querySelectorAll(".personal-slide");
+        const dots = document.querySelectorAll(".dot");
+        const prevBtn = document.getElementById("prevPersonal");
+        const nextBtn = document.getElementById("nextPersonal");
+
+        if (!slides.length || !prevBtn || !nextBtn || !dots.length) return;
+
+        let idx = 0;
+
+        function show(i) {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, n) => s.classList.toggle("active", n === idx));
+          dots.forEach((d, n) => d.classList.toggle("active", n === idx));
+        }
+
+        prevBtn.addEventListener("click", () => show(idx - 1));
+        nextBtn.addEventListener("click", () => show(idx + 1));
+
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => show(Number(dot.dataset.slide)));
+        });
+      })();
+
+        const tooltip = document.createElement("div");
+          tooltip.className = "tooltip-box";
+          document.body.appendChild(tooltip);
+
+          document.querySelectorAll(".cursor-tooltip").forEach(el => {
+            el.addEventListener("mouseenter", () => {
+              tooltip.textContent = el.dataset.tooltip;
+              tooltip.style.opacity = "1";
+            });
+
+            el.addEventListener("mousemove", (e) => {
+              tooltip.style.left = e.clientX + 14 + "px";
+              tooltip.style.top = e.clientY + 14 + "px";
+            });
+
+            el.addEventListener("mouseleave", () => {
+              tooltip.style.opacity = "0";
+            });
+          });
+
+        let currentlyPlaying = null;
+
+          document.querySelectorAll(".sound-btn").forEach(btn => {
+            const audio = new Audio(btn.dataset.audio);
+
+            btn.addEventListener("click", () => {
+              // Stop any other audio
+              if (currentlyPlaying && currentlyPlaying !== audio) {
+                currentlyPlaying.pause();
+                currentlyPlaying.currentTime = 0;
+                document
+                  .querySelectorAll(".sound-btn")
+                  .forEach(b => (b.textContent = "▶ Listen"));
+              }
+
+              if (audio.paused) {
+                audio.play();
+                btn.textContent = "⏸ Stop";
+                currentlyPlaying = audio;
+              } else {
+                audio.pause();
+                audio.currentTime = 0;
+                btn.textContent = "▶ Listen";
+                currentlyPlaying = null;
+              }
+            });
+
+            audio.addEventListener("ended", () => {
+              btn.textContent = "▶ Listen";
+              currentlyPlaying = null;
+            });
+          });
+
+          document.addEventListener("DOMContentLoaded", () => {
+      const overlay = document.getElementById("quickNavOverlay");
+      if (!overlay) return;
+
+      function openNav() {
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+        const first = overlay.querySelector(".nav-item");
+        if (first) first.focus();
+      }
+
+      function closeNav() {
+        overlay.classList.remove("open");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+
+      function toggleNav() {
+        overlay.classList.contains("open") ? closeNav() : openNav();
+      }
+
+      window.openNav = openNav;
+      window.closeNav = closeNav;
+      window.toggleNav = toggleNav;
+
+    document.addEventListener("keydown", (e) => {
+      const typing =
+        ["input", "textarea"].includes(document.activeElement?.tagName?.toLowerCase()) ||
+        document.activeElement?.isContentEditable;
+
+      if (typing) return;
+
+      if (e.key === "Escape" && overlay.classList.contains("open")) {
+        closeNav();
+        return;
+      }
+      if (e.key.toLowerCase() === "g") {
+        toggleNav();
+      }
+      if (e.key === "?") {
+      openNav();
+    }
+    });
+
+    // click outside to close
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) closeNav();
+    });
+
+    // click item -> scroll
+    overlay.querySelectorAll(".nav-item").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+        const el = document.querySelector(target);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        closeNav();
+      });
+    });
+});
   </script>
+  <div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Stuck?</h2>
+      <p>
+        This site is a curated collection of my academic work, projects, and personal interests.
+      </p>
+
+      <p>
+        Feel free to explore at your own pace, whether that’s reading my writing, browsing projects, or learning a bit about who I am outside of school.
+      </p>
+
+      <p>
+        Accessibility features are available, including a light and dark mode toggle in the top-right corner.
+      </p>
+
+      <p>
+        If you’d like to connect, my contact information can be found at the bottom of the page.
+      </p>
+      <p style="font-size: 0.85em; color: var(--text-muted); margin-top: 10px;">Built with ❤️ & ☕️</p>
+  </div>
+</div>
+
+<div id="quickNavOverlay" class="nav-overlay" aria-hidden="true">
+  <div class="nav-menu" role="dialog" aria-modal="true" aria-label="Quick navigation">
+    <div class="nav-header">
+      <div class="nav-title">Quick Navigation</div>
+      <div class="nav-hint">Press Esc to close</div>
+    </div>
+
+    <div class="nav-actions"><span class="close" onclick="closeNav()">&times;</span>
+      <button class="nav-item" data-target="#main">Home Page</button>
+      <button class="nav-item" data-target="#experience">Experience & Timeline</button>
+      <button class="nav-item" data-target="#about-me">About Me</button>
+      <button class="nav-item" data-target="#skills">Skills</button>
+      <button class="nav-item" data-target="#papers">Papers</button>
+      <button class="nav-item" data-target="#compsci-proj">CS Projects</button>
+      <button class="nav-item" data-target="#publications">Blog</button>
+      <button class="nav-item" data-target="#contact">Contact</button>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
