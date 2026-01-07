@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Writing Template — Saaim Japanwala</title>
+  <meta name="description" content="Minimal article template with audio playback." />
+
+  <style>
+    :root {
+      --bg: #fbfbf8;
+      --ink: #121212;
+      --muted: #5f5f5f;
+      --hairline: #e2e2dc;
+      --max: 980px;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-serif, "Iowan Old Style", Palatino, Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    /* Optional top bar (remove if you want ultra-minimal) */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--bg) 92%, white 8%);
+      border-bottom: 1px solid var(--hairline);
+      backdrop-filter: blur(6px);
+    }
+
+    header.hide {
+      transform: translateY(-100%);
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      font-size: 2.05rem;
+      white-space: nowrap;
+    }
+
+    .toplink {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      color: var(--muted);
+    }
+
+    main .wrap {
+      padding-top: 38px;
+      padding-bottom: 72px;
+    }
+
+    /* --- Article --- */
+    .article {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .article-header,
+    .article-body {
+      max-width: 88ch;
+      /* readable but not skinny */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .article-header {
+      margin-bottom: 30px;
+    }
+
+    .article-kicker {
+      color: var(--muted);
+      font-size: .82rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 0 0 14px;
+      font-weight: 650;
+    }
+
+    .article-dek {
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: var(--muted);
+      font-size: .92rem;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .article-meta strong {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .article-body p {
+      margin: 0 0 22px;
+      font-size: 1.05rem;
+      line-height: 1.78;
+    }
+
+    .article-body p:first-of-type::first-letter {
+      float: left;
+      font-size: 2.6rem;
+      /* calmer than huge dropcap */
+      line-height: 0.95;
+      padding-right: 8px;
+      padding-top: 2px;
+      font-weight: 650;
+      color: var(--ink);
+    }
+
+    .article-note {
+      border-left: 2px solid var(--hairline);
+      padding-left: 14px;
+      color: var(--muted);
+      margin: 18px 0 22px;
+    }
+
+    .article-rule {
+      border-top: 1px solid var(--hairline);
+      margin: 34px 0;
+    }
+
+    /* --- Marginal image (optional) --- */
+    .article-media {
+      float: right;
+      width: 96px;
+      max-width: 96px;
+      margin: 4px 0 10px 18px;
+    }
+
+    .article-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      opacity: 0.92;
+    }
+
+    .media-caption {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* --- Audio bar (top of article) --- */
+    .audio-bar {
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin: 6px auto 22px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px 16px;
+      background: transparent;
+
+      max-width: 88ch;
+      /* aligns with article text */
+    }
+
+    .audio-left .audio-title {
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .audio-left .audio-sub {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 2px;
+    }
+
+    .audio-controls {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .audio-ctl {
+      border: 1px solid var(--hairline);
+      background: transparent;
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .audio-ctl:active {
+      transform: translateY(1px);
+    }
+
+    .audio-progress {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .audio-progress input[type="range"] {
+      width: 100%;
+    }
+
+    .audio-time {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .audio-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .audio-controls {
+        justify-content: flex-start;
+      }
+
+      .article-media {
+        float: none;
+        width: 84px;
+        max-width: 84px;
+        margin: 14px auto;
+        text-align: center;
+      }
+
+      .media-caption {
+        text-align: center;
+      }
+    }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    footer .wrap {
+      padding-top: 22px;
+      padding-bottom: 28px;
+      font-size: .95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">صائم جپانوالا</div>
+        <a class="toplink" href="../../index.html#writing">Back</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article class="article">
+
+        <!-- AUDIO PLAYER (top of article) -->
+        <div class="audio-bar" aria-label="Audio playback">
+          <div class="audio-left">
+            <div class="audio-title">Audio version</div>
+            <div class="audio-sub">Press play to listen while you read.</div>
+          </div>
+
+          <div class="audio-controls">
+            <button class="audio-ctl" type="button" data-audio-action="play">Play</button>
+            <button class="audio-ctl" type="button" data-audio-action="pause">Pause</button>
+            <button class="audio-ctl" type="button" data-audio-action="stop">Stop</button>
+          </div>
+
+          <div class="audio-progress">
+            <input id="articleSeek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek audio" />
+            <div class="audio-time">
+              <span id="tNow">0:00</span>
+              <span id="tDur">0:00</span>
+            </div>
+          </div>
+
+          <!-- Put your MP3/WAV path here -->
+          <audio id="articleAudio" preload="metadata" src="entry02.wav"></audio>
+        </div>
+
+        <!-- ARTICLE HEADER -->
+        <header class="article-header">
+          <div class="article-kicker">Journal Entry</div>
+          <h1 class="article-title">Some Things Are Just Not Meant To Be</h1>
+          <p class="article-dek">
+            The widespread belief that effort alone guarantees success is a protective delusion; true growth requires
+            moving beyond mere activity and into a space of radical accountability, where one accepts that life provides
+            what is "deserved" through discipline and self-correction, rather than what is merely "wanted" through
+            effort.
+          </p>
+
+          <div class="article-meta">
+            <span><strong>Saaim Japanwala</strong></span>
+            <span><time datetime="2026-12-12">12/12/2025</time></span>
+            <span>Read Time</span>
+          </div>
+        </header>
+
+
+
+
+        <!-- ARTICLE BODY -->
+        <div class="article-body">
+          <p>
+            I am a firm believer that in life, you get what you deserve—not necessarily what you
+            want. Many people hold the notion that effort alone is enough, that if you show up and do
+            something, you will benefit from the outcome. This is not true
+          </p>
+
+          <p>
+            Life is not as simple as it often appears. There is far too much optimism surrounding the
+            idea that merely “getting out of bed” and doing what is required will lead to success. Effort
+            matters, but effort without intention, discipline, and self-awareness rarely takes you far. Even
+            when you work hard, try your best, and do everything right, there is still no guarantee that
+            things will work out.
+          </p>
+
+          <p>
+            This reality is uncomfortable, which is why many people reject it. It is far easier to
+            believe that outcomes are guaranteed, that effort alone entitles us to success. That belief
+            protects the ego. If things do not work out, the failure can be blamed on chance, timing, or
+            unfairness rather than an honest evaluation of one’s own shortcomings.
+          </p>
+
+          <p>
+            But growth begins where that comfort ends. Accepting that effort does not always yield
+            results forces a deeper form of responsibility. It demands reflection and asking not only whether
+            we worked hard, but how we worked, what we failed to understand, and where we fell short.
+            Without this honesty, effort becomes repetitive rather than progressive.
+          </p>
+
+          <p>
+            There is a difference between trying and improving. Improvement requires
+            acknowledging incompetence, not hiding from it. It requires admitting when you were wrong,
+            when you were unprepared, or when your best simply was not enough yet. That admission is
+            not weakness; it is the starting point of competence.
+          </p>
+
+          <p>
+            This is not meant to discourage ambition or dissuade anyone from pursuing meaningful
+            goals. If anything should stand in the way of your aspirations, it is the inevitability of death—not
+            the fear of failure. When we return to the idea that you get what you deserve, that belief should
+            not paralyze you; it should demand more of you. It should push you to work harder, think
+            deeper, and take greater responsibility for your outcomes.
+          </p>
+
+          <p>
+            Understanding that nothing is guaranteed does not justify complacency instead it
+            eliminates entitlement. It reframes effort not as a promise of success, but as a prerequisite for
+            growth. The absence of certainty is not a reason to stop striving; it is the reason to strive with
+            intention.
+          </p>
+
+          <div class="article-rule"></div>
+          <p>
+            The lack of guaranteed success should not lead to laziness, but to a higher
+            standard of living. By removing "entitlement" from the equation, we are forced to look inward. If we aren't
+            getting what we want, the answer isn't to complain about the unfairness of life, but to increase our own
+            value, intention, and competence until we "deserve" the result we seek.
+          </p>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Saaim Japanwala</div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Audio player: play / pause / stop + scrubber + timestamps
+    (function () {
+      const audio = document.getElementById("articleAudio");
+      const seek = document.getElementById("articleSeek");
+      const tNow = document.getElementById("tNow");
+      const tDur = document.getElementById("tDur");
+
+      if (!audio) return;
+
+      const fmt = (s) => {
+        if (!isFinite(s) || s < 0) return "0:00";
+        const m = Math.floor(s / 60);
+        const r = Math.floor(s % 60);
+        return `${m}:${String(r).padStart(2, "0")}`;
+      };
+
+      function syncTime() {
+        tNow.textContent = fmt(audio.currentTime);
+        tDur.textContent = fmt(audio.duration);
+
+        if (isFinite(audio.duration) && audio.duration > 0) {
+          seek.value = (audio.currentTime / audio.duration) * 100;
+        } else {
+          seek.value = 0;
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-audio-action]");
+        if (!btn) return;
+
+        const action = btn.getAttribute("data-audio-action");
+        if (action === "play") audio.play().catch(() => { });
+        if (action === "pause") audio.pause();
+        if (action === "stop") {audio.pause(); audio.currentTime = 0; syncTime();}
+      });
+
+      seek?.addEventListener("input", () => {
+        if (!isFinite(audio.duration) || audio.duration <= 0) return;
+        audio.currentTime = (Number(seek.value) / 100) * audio.duration;
+        syncTime();
+      });
+
+      audio.addEventListener("loadedmetadata", syncTime);
+      audio.addEventListener("timeupdate", syncTime);
+      audio.addEventListener("ended", () => {audio.currentTime = 0; syncTime();});
+
+      syncTime();
+    })();
+    let lastScroll = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll <= 0) {
+        header.classList.remove("hide");
+        return;
+      }
+
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        // scrolling down
+        header.classList.add("hide");
+      } else {
+        // scrolling up
+        header.classList.remove("hide");
+      }
+
+      lastScroll = currentScroll;
+    });
+  </script>
+</body>
+
+</html>
