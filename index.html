@@ -811,6 +811,90 @@
       text-underline-offset: 3px;
     }
 
+
+    /* --- Film Notes --- */
+    .film-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .film-sort-label {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      color: var(--muted);
+    }
+
+    .film-sort {
+      border: 1px solid var(--hairline);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font: inherit;
+      font-size: .9rem;
+      outline: none;
+    }
+
+    .film-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .film-card {
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: transparent;
+    }
+
+    .film-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .film-type {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      color: var(--muted);
+    }
+
+    .film-date {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .film-title {
+      margin: 10px 0 6px;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    .film-desc {
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 78ch;
+    }
+
+    .film-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (min-width: 980px) {
+      .film-list {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     /* --- Globe: tabs --- */
     .globe-head {
       display: flex;
@@ -861,6 +945,8 @@
       padding: 16px;
       background: transparent;
     }
+
+
 
     /* --- Map image stage + pins --- */
     .map-stage {
@@ -1267,7 +1353,8 @@
         <nav id="siteNav" aria-label="Primary">
           <a data-page="home">Home</a>
           <a data-page="writing">Writing</a>
-          <a data-page="globe">World View</a>
+          <a data-page="film">Film & Culture</a>
+          <a data-page="globe">World Map</a>
           <a data-page="projects">Projects</a>
           <a data-page="contact">Contact</a>
         </nav>
@@ -1525,7 +1612,7 @@
       </section>
 
       <section class="page-section" data-page-content="globe">
-        <h2>World View</h2>
+        <h2>World Map</h2>
 
         <div class="globe-head">
           <p class="muted" style="margin:0; max-width:80ch;">
@@ -1662,6 +1749,49 @@
               <img src="assets/turkey/IMG_4104.jpeg" alt="Winter street" loading="lazy">
               <img src="assets/turkey/IMG_4141.jpeg" alt="Urban skyline" loading="lazy">
               <img src="assets/turkey/IMG_4232.jpeg" alt="Quiet neighborhood" loading="lazy">
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section" data-page-content="film">
+        <h2>Film Notes</h2>
+
+        <div class="section-head">
+          <p class="muted">
+            While film is an important part of art and culture around the world, it is equally important to accredit the
+            goods and the bads. You wont just find me praising directors, actors or writers - but also deciding wether.
+            it deserves the title given.
+          </p>
+        </div>
+
+        <div class="film-controls">
+          <label class="film-sort-label" for="filmSort">Sort</label>
+          <select id="filmSort" class="film-sort">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="title-az">Title (A–Z)</option>
+            <option value="title-za">Title (Z–A)</option>
+            <option value="type">Type</option>
+          </select>
+        </div>
+
+        <div class="film-list" id="filmList">
+
+          <article class="film-card" data-date="2026-01-12" data-title="LaLaLand" data-type="opinion">
+            <div class="film-top">
+              <span class="film-type">Personal Opinion</span>
+              <span class="film-date">2026</span>
+            </div>
+
+            <h3 class="film-title">La La Land (2016)</h3>
+
+            <p class="film-desc">
+              a vibrant 2016 musical romantic drama about an aspiring actress (Mia) and a dedicated jazz musician
+              (Sebastian) who fall in love while chasing their dreams in Los Angeles.
+            </p>
+            <div class="post-actions">
+              <a href="assets/writing/films/lalaland.html" aria-label="Read">Read More<br></a>
             </div>
           </article>
         </div>
@@ -1951,6 +2081,42 @@
           }, 80);
         });
       });
+    })();
+    (function initFilmSort() {
+      const filmPage = document.querySelector('[data-page-content="film"]');
+      if (!filmPage) return;
+
+      const list = filmPage.querySelector('#filmList');
+      const select = filmPage.querySelector('#filmSort');
+      if (!list || !select) return;
+
+      const getCards = () => Array.from(list.querySelectorAll('.film-card'));
+
+      function sortCards(mode) {
+        const cards = getCards();
+
+        const sorted = cards.sort((a, b) => {
+          const da = a.dataset.date || "";
+          const db = b.dataset.date || "";
+          const ta = (a.dataset.title || "").toLowerCase();
+          const tb = (b.dataset.title || "").toLowerCase();
+          const ya = (a.dataset.type || "").toLowerCase();
+          const yb = (b.dataset.type || "").toLowerCase();
+
+          if (mode === "newest") return db.localeCompare(da);
+          if (mode === "oldest") return da.localeCompare(db);
+          if (mode === "title-az") return ta.localeCompare(tb);
+          if (mode === "title-za") return tb.localeCompare(ta);
+          if (mode === "type") return ya.localeCompare(yb) || db.localeCompare(da);
+
+          return 0;
+        });
+
+        sorted.forEach(card => list.appendChild(card));
+      }
+
+      sortCards(select.value);
+      select.addEventListener("change", () => sortCards(select.value));
     })();
   </script>
 </body>
