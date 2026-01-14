@@ -1170,7 +1170,43 @@
         height: 170px;
       }
 
-      /* give it a height when stacked */
+    }
+
+    .connections-icons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .connections-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .connections-icons img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    .connections-icons a:hover img {
+      opacity: 1;
+    }
+
+    .connections-icons a:hover {
+      transform: translateY(-1px);
+    }
+
+    .connections-icons a:focus-visible {
+      outline: 1px solid var(--ink);
+      outline-offset: 3px;
     }
 
     @media (min-width: 980px) {
@@ -1352,11 +1388,11 @@
 
         <nav id="siteNav" aria-label="Primary">
           <a data-page="home">Home</a>
-          <a data-page="writing">Writing</a>
-          <a data-page="film">Film & Culture</a>
-          <a data-page="globe">World Map</a>
+          <a data-page="writing">Articles</a>
+          <!--<a data-page="film">Film & Culture</a>
+          <a data-page="globe">World Map</a>-->
           <a data-page="projects">Projects</a>
-          <a data-page="contact">Contact</a>
+          <!--<a data-page="contact">Contact</a>-->
         </nav>
       </div>
     </div>
@@ -1368,19 +1404,15 @@
         <h2>Home</h2>
         <article class="article">
           <header class="article-header">
-            <div class="article-media">
+            <!--<div class="article-media">
               <img src="assets/switzerland/IMG_7062.jpg" alt="Saaim Japanwala" />
               <span class="media-caption">Switzerland 2024</span>
-            </div>
+            </div>-->
             <h1 class="article-title">Saaim Japanwala</h1>
             <p class="article-dek">
               Psychology & Political Science at the University of Alberta. Interested in political theory, law, and
-              writing (and code).
+              writing / journalism.
             </p>
-
-            <div class="article-meta">
-              <span>Updated <time datetime="2026-01-05">Jan 5, 2026</time></span>
-            </div>
           </header>
 
           <div class="article-body">
@@ -1400,26 +1432,34 @@
               finished product. It’s a working archive. Essays, projects, code, photography, and notes that sit
               somewhere between curiosity and conviction.
             </p>
-
-            <p>
-              I try to approach everything with a journalist’s instinct: follow the evidence, question the narrative,
-              and stay honest about uncertainty. But this isn’t detached reporting. These pieces are informed by my own
-              experiences such those in classrooms, in code editors, in conversations, and in moments of quiet
-              reflection.
-            </p>
-
-
-            <div class="article-rule"></div>
-
             <p>
               If something here makes you pause, disagree, or think a little longer, then it’s doing its job. Not
               because every idea presented is meant to be accepted, but because passivity is easy and thought is not.
             </p>
+            <div class="article-rule"></div>
+            <h2>Connect With Me</h2>
+            <p>I’m always open to new ideas, collaborations, and interesting projects.</p>
+            <div class="connections-icons" aria-label="External links">
+              <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+                <img src="assets/icons/mail.png" alt="">
+              </a>
 
-            <p>
-              If you find yourself annoyed, skeptical, or tempted to argue back, good. That friction means the work is
-              alive. And if it forces even a moment of reflection about power, systems, technology, or the stories we
-              tell ourselves, <strong>then it’s already succeeded.</strong>
+              <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+                <img src="assets/icons/github.png" alt="">
+              </a>
+
+              <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img src="assets/icons/linkedin.png" alt="">
+              </a>
+
+              <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+                rel="noopener" aria-label="Substack">
+                <img src="assets/icons/substack.png" alt="">
+              </a>
+            </div>
+
+
+
             </p>
           </div>
         </article>
@@ -1531,313 +1571,312 @@
 
       <section class="page-section" data-page-content="projects">
         <h2>Projects</h2>
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <p class="muted">Some personal projects I believe are noteworthy.</p>
-            </div>
-
-            <div class="proj-controls">
-              <div class="proj-control">
-                <label for="projFilter">Filter</label>
-                <select id="projFilter">
-                  <option value="all" selected>All</option>
-                  <option value="writing">Writing</option>
-                  <option value="web">Web</option>
-                  <option value="tools">Tools</option>
-                  <option value="research">Research</option>
-                </select>
-              </div>
-
-              <div class="proj-control">
-                <label for="projSort">Sort</label>
-                <select id="projSort">
-                  <option value="date-desc" selected>Newest</option>
-                  <option value="date-asc">Oldest</option>
-                  <option value="title-asc">Title (A→Z)</option>
-                  <option value="title-desc">Title (Z→A)</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="proj-list" id="projList">
-
-            <article class="proj-card" data-tags="writing,research" data-date="2025-12-12" data-title="Leader and Land">
-              <div class="proj-top">
-                <div class="proj-id">Project 00</div>
-                <div class="proj-date">Dec 2025</div>
-              </div>
-              <h3 class="proj-title">Leader & The Land</h3>
-              <p class="proj-desc">A comparative political analysis combining the thought of Hobbes and Machiavelli to
-                explain the foundations of authority, state stability, and leade rship. Includes modern applications
-                through the cases of Atatürk and Gaddafi, showing how rational legitimacy and decisive force shape
-                political outcomes</p>
-
-              <div class="proj-meta">
-                <span class="chip">Classical Political Theory</span>
-                <span class="sep">·</span>
-                <span class="muted">Grade: A</span>
-              </div>
-
-              <div class="proj-links">
-                <a href="assets/Leader and Land.pdf" target="_blank" rel="noreferrer">Read</a>
-              </div>
-            </article>
-
-            <article class="proj-card" data-tags="tools,web" data-date="2025-01-01" data-title="CarbonScript">
-              <div class="proj-top">
-                <div class="proj-id">Project 01</div>
-                <div class="proj-date">Jan 2025</div>
-              </div>
-              <h3 class="proj-title">CarbonScript</h3>
-              <p class="proj-desc">CarbonScript is a fast, structured, and intuitive scripting language designed for
-                efficiency and ease of use. With a unique syntax and built-in functions, CarbonScript makes programming
-                more readable, flexible, and dynamic.</p>
-
-              <div class="proj-meta">
-                <span class="chip">Python</span>
-                <span class="sep">·</span>
-                <span class="muted">Status: Ended</span>
-              </div>
-
-              <div class="proj-links">
-                <a href="https://github.com/sjapanwala/carbonscript" target="_blank" rel="noreferrer">Github</a>
-              </div>
-            </article>
-          </div>
-
-          <p class="muted" id="projCount" style="margin-top:12px;"></p>
-        </div>
-      </section>
-
-      <section class="page-section" data-page-content="globe">
-        <h2>World Map</h2>
-
-        <div class="globe-head">
-          <p class="muted" style="margin:0; max-width:80ch;">
-            A small glimpse into one of my favourite pursuits: <strong>traveling.</strong>
-          </p>
-
-          <div class="globe-tabs" role="tablist" aria-label="Globe tabs">
-            <button class="globe-tab active" role="tab" aria-selected="true" data-globe-tab="map">Map</button>
-            <button class="globe-tab" role="tab" aria-selected="false" data-globe-tab="trips">Trips</button>
-          </div>
-        </div>
-
-        <!-- TAB: MAP (IMAGE) -->
-        <div class="globe-panel active" role="tabpanel" data-globe-panel="map">
-          <div class="globe-card">
-            <div class="map-stage" aria-label="World map">
-              <!-- Replace this with your actual map image file -->
-              <img class="map-img" src="assets/map.png" alt="World map" loading="lazy" />
-
-              <button class="pin" type="button" data-target="canada" style="left:20%; top:30%;"
-                aria-label="Canada"></button>
-              <button class="pin" type="button" data-target="usa" style="left:20%; top:40%;"
-                aria-label="United States of America"></button>
-              <button class="pin" type="button" data-target="turkey" style="left:60%; top:40%;"
-                aria-label="Turkey"></button>
-              <button class="pin" type="button" data-target="ksa" style="left:63%; top:50%;"
-                aria-label="Kingdom of Saudi Arabia"></button>
-              <button class="pin" type="button" data-target="thailand" style="left:78%; top:55%;"
-                aria-label="Thailand"></button>
-              <button class="pin" type="button" data-target="pakistan" style="left:70%; top:45%;"
-                aria-label="Pakistan"></button>
-              <button class="pin" type="button" data-target="uk" style="left:49%; top:30%;"
-                aria-label="United Kingdom"></button>
-              <button class="pin" type="button" data-target="switzerland" style="left:52%; top:35%;"
-                aria-label="Switzerland"></button>
-            </div>
-
-            <div class="legend">
-              <span><span class="dot vis"></span>Click On The Red Dots To See Pictures</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB: TRIPS (keep yours the same) -->
-
-        <div class="globe-panel" role="tabpanel" data-globe-panel="trips">
-
-
-          <article class="trip" id="canada">
-            <header class="trip-head">
-              <h3 class="trip-title">Canada</h3>
-              <p class="trip-meta muted">Home · Finding The Unique In The Mundane</p>
-            </header>
-
-            <p class="trip-text">
-              The most familiar place is the hardest to see clearly. This section exists as an attempt
-              to treat home with the same attention I give everywhere else.
-            </p>
-
-            <div class="trip-grid">
-              <img src="assets/canada/city.jpeg" alt="City Scape" loading="lazy">
-              <img src="assets/canada/trees.jpeg" alt="Forest" loading="lazy">
-              <img src="assets/canada/mountains.JPG" alt="Mountains" loading="lazy">
-            </div>
-          </article>
-
-          <article class="trip" id="usa">
-            <header class="trip-head">
-              <h3 class="trip-title">United States of America</h3>
-              <p class="trip-meta muted">Visiting The Neighbors Down South</p>
-            </header>
-
-            <p class="trip-text">
-              The Country I’ve crossed more than once, not as a checklist of landmarks but as a collection of moments:
-              long
-              drives, familiar cities, and places that felt strangely like home while still reminding me I was passing
-              through.
-            </p>
-
-            <div class="trip-grid">
-              <img src="assets/usa/IMG_6862.jpeg" alt="sunset" loading="lazy">
-            </div>
-          </article>
-
-          <article class="trip" id="switzerland">
-            <header class="trip-head">
-              <h3 class="trip-title">Switzerland</h3>
-              <p class="trip-meta muted">The Greenest and Lushest Lands</p>
-            </header>
-
-            <p class="trip-text">
-              Quiet in a way that feels intentional. Every train ride, lake, and mountain pass felt composed, almost
-              unreal, like the country was daring you to slow down and notice how carefully everything fits together.
-            </p>
-
-            <div class="trip-grid">
-              <img src="assets/switzerland/IMG_7062.jpg" alt="Winter street" loading="lazy">
-              <img src="assets/switzerland/IMG_0714.jpeg" alt="Urban skyline" loading="lazy">
-              <img src="assets/switzerland/IMG_0775.jpeg" alt="Quiet neighborhood" loading="lazy">
-            </div>
-          </article>
-
-          <article class="trip" id="uk">
-            <header class="trip-head">
-              <h3 class="trip-title">United Kingdom</h3>
-              <p class="trip-meta muted">God Save The King</p>
-            </header>
-
-            <p class="trip-text">
-              Dense with history and contradiction. One street feels frozen in time, the next buzzing and modern, and
-              walking through it all you’re constantly aware of how much of the present is built on arguments from the
-              past.
-            </p>
-
-            <div class="trip-grid">
-              <img src="assets/uk/IMG_0630.jpeg" loading="lazy">
-              <img src="assets/uk/IMG_0651.jpeg" loading="lazy">
-            </div>
-          </article>
-
-
-          <article class="trip" id="turkey">
-            <header class="trip-head">
-              <h3 class="trip-title">Türkiye</h3>
-              <p class="trip-meta muted">Awesome Döner and Cool Cats</p>
-            </header>
-
-            <p class="trip-text">
-              Ancient, modern, sacred, and ordinary life coexist in the same streets, and you feel history not as a
-              museum piece, but as something still being lived.
-            </p>
-
-            <div class="trip-grid">
-              <img src="assets/turkey/IMG_4104.jpeg" alt="Winter street" loading="lazy">
-              <img src="assets/turkey/IMG_4141.jpeg" alt="Urban skyline" loading="lazy">
-              <img src="assets/turkey/IMG_4232.jpeg" alt="Quiet neighborhood" loading="lazy">
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="page-section" data-page-content="film">
-        <h2>Film Notes</h2>
-
         <div class="section-head">
-          <p class="muted">
-            While film is an important part of art and culture around the world, it is equally important to accredit the
-            goods and the bads. You wont just find me praising directors, actors or writers - but also deciding wether.
-            it deserves the title given.
-          </p>
-        </div>
+          <div>
+            <p class="muted">Some personal projects I believe are noteworthy.</p>
+          </div>
 
-        <div class="film-controls">
-          <label class="film-sort-label" for="filmSort">Sort</label>
-          <select id="filmSort" class="film-sort">
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="title-az">Title (A–Z)</option>
-            <option value="title-za">Title (Z–A)</option>
-            <option value="type">Type</option>
-          </select>
-        </div>
-
-        <div class="film-list" id="filmList">
-
-          <article class="film-card" data-date="2026-01-12" data-title="LaLaLand" data-type="opinion">
-            <div class="film-top">
-              <span class="film-type">Personal Opinion</span>
-              <span class="film-date">2026</span>
+          <div class="proj-controls">
+            <div class="proj-control">
+              <label for="projFilter">Filter</label>
+              <select id="projFilter">
+                <option value="all" selected>All</option>
+                <option value="writing">Writing</option>
+                <option value="web">Web</option>
+                <option value="tools">Tools</option>
+                <option value="research">Research</option>
+              </select>
             </div>
 
-            <h3 class="film-title">La La Land (2016)</h3>
+            <div class="proj-control">
+              <label for="projSort">Sort</label>
+              <select id="projSort">
+                <option value="date-desc" selected>Newest</option>
+                <option value="date-asc">Oldest</option>
+                <option value="title-asc">Title (A→Z)</option>
+                <option value="title-desc">Title (Z→A)</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-            <p class="film-desc">
-              a vibrant 2016 musical romantic drama about an aspiring actress (Mia) and a dedicated jazz musician
-              (Sebastian) who fall in love while chasing their dreams in Los Angeles.
-            </p>
-            <div class="post-actions">
-              <a href="assets/writing/films/lalaland.html" aria-label="Read">Read More<br></a>
+        <div class="proj-list" id="projList">
+
+          <article class="proj-card" data-tags="writing,research" data-date="2025-12-12" data-title="Leader and Land">
+            <div class="proj-top">
+              <div class="proj-id">Project 01</div>
+              <div class="proj-date">Dec 2025</div>
+            </div>
+            <h3 class="proj-title">Leader & The Land</h3>
+            <p class="proj-desc">A comparative political analysis combining the thought of Hobbes and Machiavelli to
+              explain the foundations of authority, state stability, and leade rship. Includes modern applications
+              through the cases of Atatürk and Gaddafi, showing how rational legitimacy and decisive force shape
+              political outcomes</p>
+
+            <div class="proj-meta">
+              <span class="chip">Classical Political Theory</span>
+              <span class="sep">·</span>
+              <span class="muted">Grade: A</span>
+            </div>
+
+            <div class="proj-links">
+              <a href="assets/Leader and Land.pdf" target="_blank" rel="noreferrer">Read</a>
+            </div>
+          </article>
+
+          <article class="proj-card" data-tags="tools,web" data-date="2025-01-01" data-title="CarbonScript">
+            <div class="proj-top">
+              <div class="proj-id">Project 00</div>
+              <div class="proj-date">Jan 2025</div>
+            </div>
+            <h3 class="proj-title">CarbonScript</h3>
+            <p class="proj-desc">CarbonScript is a fast, structured, and intuitive scripting language designed for
+              efficiency and ease of use. With a unique syntax and built-in functions, CarbonScript makes programming
+              more readable, flexible, and dynamic.</p>
+
+            <div class="proj-meta">
+              <span class="chip">Python</span>
+              <span class="sep">·</span>
+              <span class="muted">Status: Ended</span>
+            </div>
+
+            <div class="proj-links">
+              <a href="https://github.com/sjapanwala/carbonscript" target="_blank" rel="noreferrer">Github</a>
             </div>
           </article>
         </div>
-      </section>
+    </div>
+    </section>
+
+    <section class="page-section" data-page-content="globe">
+      <h2>World Map</h2>
+
+      <div class="globe-head">
+        <p class="muted" style="margin:0; max-width:80ch;">
+          A small glimpse into one of my favourite pursuits: <strong>traveling.</strong>
+        </p>
+
+        <div class="globe-tabs" role="tablist" aria-label="Globe tabs">
+          <button class="globe-tab active" role="tab" aria-selected="true" data-globe-tab="map">Map</button>
+          <button class="globe-tab" role="tab" aria-selected="false" data-globe-tab="trips">Trips</button>
+        </div>
+      </div>
+
+      <!-- TAB: MAP (IMAGE) -->
+      <div class="globe-panel active" role="tabpanel" data-globe-panel="map">
+        <div class="globe-card">
+          <div class="map-stage" aria-label="World map">
+            <!-- Replace this with your actual map image file -->
+            <img class="map-img" src="assets/map.png" alt="World map" loading="lazy" />
+
+            <button class="pin" type="button" data-target="canada" style="left:20%; top:30%;"
+              aria-label="Canada"></button>
+            <button class="pin" type="button" data-target="usa" style="left:20%; top:40%;"
+              aria-label="United States of America"></button>
+            <button class="pin" type="button" data-target="turkey" style="left:60%; top:40%;"
+              aria-label="Turkey"></button>
+            <button class="pin" type="button" data-target="ksa" style="left:63%; top:50%;"
+              aria-label="Kingdom of Saudi Arabia"></button>
+            <button class="pin" type="button" data-target="thailand" style="left:78%; top:55%;"
+              aria-label="Thailand"></button>
+            <button class="pin" type="button" data-target="pakistan" style="left:70%; top:45%;"
+              aria-label="Pakistan"></button>
+            <button class="pin" type="button" data-target="uk" style="left:49%; top:30%;"
+              aria-label="United Kingdom"></button>
+            <button class="pin" type="button" data-target="switzerland" style="left:52%; top:35%;"
+              aria-label="Switzerland"></button>
+          </div>
+
+          <div class="legend">
+            <span><span class="dot vis"></span>Click On The Red Dots To See Pictures</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: TRIPS (keep yours the same) -->
+
+      <div class="globe-panel" role="tabpanel" data-globe-panel="trips">
 
 
-      <section class="page-section" data-page-content="contact">
-        <div class="contact-center">
-          <div class="contact-card-mini card-split">
-            <div class="card-photo">
-              <img src="assets/logo.png" alt="Saaim Japanwala">
-            </div>
+        <article class="trip" id="canada">
+          <header class="trip-head">
+            <h3 class="trip-title">Canada</h3>
+            <p class="trip-meta muted">Home · Finding The Unique In The Mundane</p>
+          </header>
 
-            <div class="card-info">
-              <div class="card-name">Saaim Japanwala</div>
-              <div class="card-role">Psychology · Political Science</div>
+          <p class="trip-text">
+            The most familiar place is the hardest to see clearly. This section exists as an attempt
+            to treat home with the same attention I give everywhere else.
+          </p>
 
-              <p class="card-desc">
-                Writing, Research, and Systems.<br>
-                Focused on political theory, law, and critical inquiry.
-              </p>
+          <div class="trip-grid">
+            <img src="assets/canada/city.jpeg" alt="City Scape" loading="lazy">
+            <img src="assets/canada/trees.jpeg" alt="Forest" loading="lazy">
+            <img src="assets/canada/mountains.JPG" alt="Mountains" loading="lazy">
+          </div>
+        </article>
 
-              <div class="card-list">
-                <div><span class="label">Location<br></span><span class="value">Edmonton, Canada</span></div>
-                <div><span class="label">Email:<br></span>
-                  <span class="value">
-                    <a href="mailto:saaim.japanwala125@gmail.com">saaim.japanwala125@gmail.com</a>
-                  </span>
-                </div>
-                <div><span class="label">Status<br></span><span class="value">Open to collaboration</span></div>
-                <div><span class="label">LinkedIN:<br></span>
-                  <span class="value">
-                    <a href="https://www.linkedin.com/in/sjapanwala/">sjapanwala</a>
-                  </span>
-                </div>
+        <article class="trip" id="usa">
+          <header class="trip-head">
+            <h3 class="trip-title">United States of America</h3>
+            <p class="trip-meta muted">Visiting The Neighbors Down South</p>
+          </header>
+
+          <p class="trip-text">
+            The Country I’ve crossed more than once, not as a checklist of landmarks but as a collection of moments:
+            long
+            drives, familiar cities, and places that felt strangely like home while still reminding me I was passing
+            through.
+          </p>
+
+          <div class="trip-grid">
+            <img src="assets/usa/IMG_6862.jpeg" alt="sunset" loading="lazy">
+          </div>
+        </article>
+
+        <article class="trip" id="switzerland">
+          <header class="trip-head">
+            <h3 class="trip-title">Switzerland</h3>
+            <p class="trip-meta muted">The Greenest and Lushest Lands</p>
+          </header>
+
+          <p class="trip-text">
+            Quiet in a way that feels intentional. Every train ride, lake, and mountain pass felt composed, almost
+            unreal, like the country was daring you to slow down and notice how carefully everything fits together.
+          </p>
+
+          <div class="trip-grid">
+            <img src="assets/switzerland/IMG_7062.jpg" alt="Winter street" loading="lazy">
+            <img src="assets/switzerland/IMG_0714.jpeg" alt="Urban skyline" loading="lazy">
+            <img src="assets/switzerland/IMG_0775.jpeg" alt="Quiet neighborhood" loading="lazy">
+          </div>
+        </article>
+
+        <article class="trip" id="uk">
+          <header class="trip-head">
+            <h3 class="trip-title">United Kingdom</h3>
+            <p class="trip-meta muted">God Save The King</p>
+          </header>
+
+          <p class="trip-text">
+            Dense with history and contradiction. One street feels frozen in time, the next buzzing and modern, and
+            walking through it all you’re constantly aware of how much of the present is built on arguments from the
+            past.
+          </p>
+
+          <div class="trip-grid">
+            <img src="assets/uk/IMG_0630.jpeg" loading="lazy">
+            <img src="assets/uk/IMG_0651.jpeg" loading="lazy">
+          </div>
+        </article>
+
+
+        <article class="trip" id="turkey">
+          <header class="trip-head">
+            <h3 class="trip-title">Türkiye</h3>
+            <p class="trip-meta muted">Awesome Döner and Cool Cats</p>
+          </header>
+
+          <p class="trip-text">
+            Ancient, modern, sacred, and ordinary life coexist in the same streets, and you feel history not as a
+            museum piece, but as something still being lived.
+          </p>
+
+          <div class="trip-grid">
+            <img src="assets/turkey/IMG_4104.jpeg" alt="Winter street" loading="lazy">
+            <img src="assets/turkey/IMG_4141.jpeg" alt="Urban skyline" loading="lazy">
+            <img src="assets/turkey/IMG_4232.jpeg" alt="Quiet neighborhood" loading="lazy">
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section" data-page-content="film">
+      <h2>Film Notes</h2>
+
+      <div class="section-head">
+        <p class="muted">
+          While film is an important part of art and culture around the world, it is equally important to accredit the
+          goods and the bads. You wont just find me praising directors, actors or writers - but also deciding wether.
+          it deserves the title given.
+        </p>
+      </div>
+
+      <div class="film-controls">
+        <label class="film-sort-label" for="filmSort">Sort</label>
+        <select id="filmSort" class="film-sort">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="title-az">Title (A–Z)</option>
+          <option value="title-za">Title (Z–A)</option>
+          <option value="type">Type</option>
+        </select>
+      </div>
+
+      <div class="film-list" id="filmList">
+
+        <article class="film-card" data-date="2026-01-12" data-title="LaLaLand" data-type="opinion">
+          <div class="film-top">
+            <span class="film-type">Personal Opinion</span>
+            <span class="film-date">2026</span>
+          </div>
+
+          <h3 class="film-title">La La Land (2016)</h3>
+
+          <p class="film-desc">
+            a vibrant 2016 musical romantic drama about an aspiring actress (Mia) and a dedicated jazz musician
+            (Sebastian) who fall in love while chasing their dreams in Los Angeles.
+          </p>
+          <div class="post-actions">
+            <a href="assets/writing/films/lalaland.html" aria-label="Read">Read More<br></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="page-section" data-page-content="contact">
+      <div class="contact-center">
+        <div class="contact-card-mini card-split">
+          <div class="card-photo">
+            <img src="assets/logo.png" alt="Saaim Japanwala">
+          </div>
+
+          <div class="card-info">
+            <div class="card-name">Saaim Japanwala</div>
+            <div class="card-role">Psychology · Political Science</div>
+
+            <p class="card-desc">
+              Writing, Research, and Systems.<br>
+              Focused on political theory, law, and critical inquiry.
+            </p>
+
+            <div class="card-list">
+              <div><span class="label">Location<br></span><span class="value">Edmonton, Canada</span></div>
+              <div><span class="label">Email:<br></span>
+                <span class="value">
+                  <a href="mailto:saaim.japanwala125@gmail.com">saaim.japanwala125@gmail.com</a>
+                </span>
+              </div>
+              <div><span class="label">Status<br></span><span class="value">Open to collaboration</span></div>
+              <div><span class="label">LinkedIN:<br></span>
+                <span class="value">
+                  <a href="https://www.linkedin.com/in/sjapanwala/">sjapanwala</a>
+                </span>
               </div>
             </div>
           </div>
-      </section>
+        </div>
+    </section>
 
     </div>
   </main>
 
   <footer>
     <div class="wrap">
-      © <span id="year"></span> Saaim Japanwala
+      Made With ☕️ and ❤️ | © <span id="year"></span> Saaim Japanwala
+      <p>
+      </p>
     </div>
   </footer>
 
