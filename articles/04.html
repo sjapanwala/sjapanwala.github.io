@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Saaim Japanwala</title>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <style>
+    :root {
+      --bg: #f7f4ef;
+      --ink: #4a342e;
+      --muted: #6b514b;
+      --hairline: #e1dad1;
+      --max: 980px;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-serif, "Iowan Old Style", Palatino, Georgia, "Times New Roman", serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    /* Optional top bar (remove if you want ultra-minimal) */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: color-mix(in srgb, var(--bg) 92%, white 8%);
+      border-bottom: 1px solid var(--hairline);
+      backdrop-filter: blur(6px);
+    }
+
+    header.hide {
+      transform: translateY(-100%);
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 18px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-family: "Noto Nastaliq Urdu", serif;
+      letter-spacing: 0.02em;
+      opacity: 0.95;
+      font-weight: 600;
+      font-size: 2.05rem;
+      white-space: nowrap;
+    }
+
+    .toplink {
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+      color: var(--muted);
+    }
+
+    main .wrap {
+      padding-top: 38px;
+      padding-bottom: 72px;
+    }
+
+    /* --- Article --- */
+    .article {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .article-header,
+    .article-body {
+      max-width: 88ch;
+      /* readable but not skinny */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .article-header {
+      margin-bottom: 30px;
+    }
+
+    .article-kicker {
+      color: var(--muted);
+      font-size: .82rem;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .article-title {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 0 0 14px;
+      font-weight: 650;
+    }
+
+    .article-dek {
+      color: var(--muted);
+      font-size: 1.12rem;
+      line-height: 1.6;
+      margin: 0 0 18px;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: var(--muted);
+      font-size: .92rem;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .article-meta strong {
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .article-body p {
+      margin: 0 0 22px;
+      font-size: 1.05rem;
+      line-height: 1.78;
+    }
+
+    .article-body p:first-of-type::first-letter {
+      float: left;
+      font-size: 2.6rem;
+      /* calmer than huge dropcap */
+      line-height: 0.95;
+      padding-right: 8px;
+      padding-top: 2px;
+      font-weight: 650;
+      color: var(--ink);
+    }
+
+    .article-note {
+      border-left: 2px solid var(--hairline);
+      padding-left: 14px;
+      color: var(--muted);
+      margin: 18px 0 22px;
+    }
+
+    .article-rule {
+      border-top: 1px solid var(--hairline);
+      margin: 34px 0;
+    }
+
+    /* --- Marginal image (optional) --- */
+    .article-media {
+      float: right;
+      width: 96px;
+      max-width: 96px;
+      margin: 4px 0 10px 18px;
+    }
+
+    .article-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--hairline);
+      opacity: 0.92;
+    }
+
+    .media-caption {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* --- Audio bar (top of article) --- */
+    .audio-bar {
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin: 6px auto 22px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px 16px;
+      background: transparent;
+
+      max-width: 88ch;
+      /* aligns with article text */
+    }
+
+    .audio-left .audio-title {
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    .audio-left .audio-sub {
+      color: var(--muted);
+      font-size: .92rem;
+      margin-top: 2px;
+    }
+
+    .audio-controls {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .audio-ctl {
+      border: 1px solid var(--hairline);
+      background: transparent;
+      border-radius: 999px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .audio-ctl:active {
+      transform: translateY(1px);
+    }
+
+    .audio-progress {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .audio-progress input[type="range"] {
+      width: 100%;
+    }
+
+    .audio-time {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .audio-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .audio-controls {
+        justfy-content: flex-start;
+      }
+
+      .article-media {
+        float: none;
+        width: 84px;
+        max-width: 84px;
+        margin: 14px auto;
+        text-align: center;
+      }
+
+      .media-caption {
+        text-align: center;
+      }
+    }
+
+    footer {
+      border-top: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    footer .wrap {
+      padding-top: 22px;
+      padding-bottom: 28px;
+      font-size: .95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <a style="text-decoration: none;" href="../index.html">صائم جپان والا</a>
+        </div>
+        <a class="toplink" href="../articles.html">Back</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article class="article">
+
+        <div class="audio-bar" aria-label="Audio playback">
+          <div class="audio-left">
+            <div class="audio-title">Greed & Gluttony; Is Socialism the Solution?</div>
+            <div class="audio-sub">Saaim Japanwala (voice: freevoicereader.com)</div>
+          </div>
+
+          <div class="audio-controls">
+            <button class="audio-ctl" type="button" data-audio-action="play">Play</button>
+            <button class="audio-ctl" type="button" data-audio-action="pause">Pause</button>
+            <button class="audio-ctl" type="button" data-audio-action="stop">Stop</button>
+          </div>
+
+          <div class="audio-progress">
+            <input id="articleSeek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek audio" />
+            <div class="audio-time">
+              <span id="tNow">0:00</span>
+              <span id="tDur">0:00</span>
+            </div>
+          </div>
+
+          <audio id="articleAudio" preload="metadata" src="audio/04.wav"></audio>
+        </div>
+
+        <header class="article-header">
+          <div class="article-kicker">Current Events</div>
+          <h1 class="article-title">Greed & Gluttony; Is Socialism the Solution?</h1>
+          <p class="article-dek">
+          </p>
+
+          <div class="article-meta">
+            <span><strong>Saaim Japanwala</strong></span>
+            <span><time datetime="2026-01-08">01/08/2026</time></span>
+            <span>1355 Words | 5:42 Readtime</span>
+          </div>
+        </header>
+
+
+
+
+        <div class="article-body">
+          <p>
+            For decades, the Western mind has been trained to react to the word “socialism” with a visceral, instinctive
+            fear. Socialism has turned into a word that is not just linked to an economic framework, but a political
+            ghost story, a sort of “boogeyman” designed to conjure images of radical mobs’ intent on the destruction of
+            Western civilization. From political rallies to talk shows, the rhetoric stays the same: capitalism is
+            equated with freedom and national identity, to the point where an attack on the capitalist economic
+            framework is framed as an attack on countries themselves.
+          </p>
+
+          <p>
+            As the gap between executive offices and factory floors widens into a chasm, a question arises: are we being
+            protected from the “dangerous” ideologies of socialism, or are we being conditioned into the silence
+            capitalism provides?
+          </p>
+
+
+
+          <p>
+            To understand the predecessor ideology of capitalism, we must take a step back to examine a system that was
+            neither capitalist nor communist, but rather feudalistic. The feudal system functioned as an ideology in
+            which lords and vassals maintained a social bargain: “you do something for me, I do something for you.” As
+            the feudal system was overthrown by the merchant class, we now find ourselves entering an era in which the
+            same may be happening to capitalism. Amid a relentless “business cycle” of booms and busts that leaves
+            millions behind, the housing crisis stands as a clear example of this dysfunction. There are over 17 million
+            vacant homes in the United States, while roughly 600,000 citizens sleep on the streets. Logically, it would
+            make sense to house them with plenty left over; but because these homes cannot be used for profit,
+            capitalism
+            says no.
+          </p>
+
+          <p>
+            Greed and Gluttony are no longer just moral failings, but systematic outputs of tools that may have outlived
+            its usefulness.
+          </p>
+
+          <h2>The Evident Flaws of Capitalism</h2>
+
+          <p>
+
+            Capitalism has been sold under the false pretenses of being a gateway to freedom, most commonly advertised
+            as the means to achieving the “American Dream.” Yet many fail to realize that, in the twenty-first century,
+            capitalism does more harm than good. Marketed as a meritocracy, capitalism instead functions as a closed
+            loop that rewards ownership over effort.
+          </p>
+
+          <p>
+            Under capitalist ideology, labour is treated as an expense to be minimized, reducing workers to “numbers on
+            a sheet” and stripping them of their humanity. As a result, workers are offered little to no protections
+            (such as maternity leave or living wages) because these measures are seen as threats to profit and
+            shareholder value.
+          </p>
+
+          <p>
+            Noticing that high unemployment rates? Its harming you way more than the corporatiopns, if anything its
+            making them more money! High employment rates create a desperation for populations to work for minimum wage,
+            no benefits and living with constant fear.
+          </p>
+
+          <p>
+            Capitalism creates an infinite growth paradox, in which every company is expected to outperform the previous
+            year, and the year before that, and so on. This trajectory is intended to continue indefinitely; on a small
+            scale, that may seem beneficial. However, the paradox becomes clear when infinite growth is expected on a
+            planet with finite resources.
+          </p>
+          <h2>Why Capitalism Has Become A Weak Foundation of Support</h2>
+          <p>
+            Looking over all the evident flaws, capitalism just can’t support its people the way its imagined to.
+            Capitalism perpetuates artificial scarcity, producing enough food to feed over 10 billion people while 815
+            million still go hungry, and maintaining more vacant homes in the United States than there are homeless
+            individuals because, resources are distributed not according to need, but profit.
+          </p>
+
+          <div class="article-note">
+            U.S. Department of Housing and Urban Development. (2024). The 2024 annual homelessness assessment report
+            (AHAR) to Congress. HUD User. https://www.huduser.gov/portal/sites/default/files/pdf/2024-AHAR-Part-1.pdf
+          </div>
+
+          <p>
+            As wages stagnate, this system drives people into a debt trap, forcing reliance on predatory loans for
+            basic necessities such as housing, education, and healthcare. When these financial bubbles inevitably burst,
+            as seen in the 2008 crisis, the wealthy are shielded through government bailouts while the working class is
+            left to lose their homes and livelihoods. On a global scale, capitalist nations frequently deploy military
+            force to secure access to oil, minerals, and markets in weaker states, fueling “forever wars” justified
+            under the guise of economic stability and market supremacy.
+          </p>
+
+          <div class="article-note">
+            U.S. Census Bureau. (2025). Quarterly residential vacancies and homeownership, third quarter 2025. U.S.
+            Department of Commerce. https://www.census.gov/housing/hvs/index.html
+          </div>
+          <h2>The Rise of Socialism</h2>
+          <p>
+            With the fall of one system, another must rise, and this is what we have been witnessing in recent years. As
+            younger generations increasingly reject what they view as the toxic ideology of capitalism, socialism has
+            emerged as an economic framework in which many seek refuge.
+          </p>
+
+          <p>
+            In 2025, New York City mayoral candidate Zohran Mamdani has contributed to the growing visibility of
+            socialism in the United States. Though only a mayoral candidate, Mamdani, a democratic socialist with
+            progressive and left-wing views, ran a campaign grounded in explicitly socialist principles—placing the
+            needs of ordinary citizens above those of profit-driven corporations. Such rhetoric was almost blasphemous
+            in what is arguably the largest capitalist hub in the world. Yet, on January 1, 2026, Mamdani was sworn in
+            as the 112th Mayor of New York City. His victory signalized that the "American Dream" is being redefined by
+            a working class that is no longer afraid of the labels once used to terrify their parents.
+          </p>
+
+          <div class="article-note">
+            Office of the Mayor of New York City. (2026). Inaugural address of Mayor Zohran Mamdani. NYC.gov.
+          </div>
+
+          <h2>What Makes Socialism So Appealing?</h2>
+
+          <p>
+            Where capitalism places wealth before the individual, socialism does the opposite. At its core, socialism is
+            not about “government control,” but about workplace democracy; the belief that workers, who are the ones
+            creating value, should have a democratic say in how that value is distributed.
+          </p>
+
+          <p>
+            This framework prioritizes humanity over markets, treating essentials such as healthcare, housing, and
+            education as human rights rather than commodities to be bought and sold. Through automation and fair
+            distribution, socialism seeks to liberate people from “survival labor,” allowing them to pursue art,
+            science, and community instead of working solely to stay alive. The resurgence of modern socialism reflects
+            the collapse of the so-called “American Dream,” as today’s younger generations confront
+            underemployment where 41% of recent graduates work in jobs that do not require their degree. The realities
+            of hyper-capitalism, in which CEOs like Jeff Bezos earn millions of times more than the average worker
+            despite not working millions of times harder.
+          </p>
+
+          <h2>Socialism at Work</h2>
+
+          <p>
+            Contrary to the common claim that “socialism never works,” several historical movements demonstrate
+            significant success (prior to external intervention). Under Evo Morales, Bolivia’s first Indigenous
+            president, the nationalization of natural gas profits allowed the state to dramatically reduce extreme
+            poverty by over 50 percent, eliminate illiteracy through nationwide education programs, and sustain the
+            highest economic growth rate in South America for several consecutive years.
+          </p>
+          <div class="article-note">
+            IMF Staff. (2015). Explaining inequality and poverty reduction in Bolivia (Working Paper No. WP/15/265).
+            International Monetary Fund. https://www.imf.org/external/pubs/ft/wp/2015/wp15265.pdf
+          </div>
+
+          <p>
+            Under Thomas Sankara’s leadership from 1983 to 1987, Burkina Faso transformed from a destitute nation into a
+            model of self-sufficiency. Sankara’s government vaccinated 2.5 million children in a single week through the
+            “Vaccination Commando,” ended famine by implementing agrarian reforms that made the country food
+            self-sufficient without reliance on foreign aid, and launched environmental initiatives that planted over 10
+            million trees to halt the spread of desertification.
+          </p>
+          <div class="article-note">
+            Harsch, E. (2014). Thomas Sankara: An African revolutionary. Ohio University Press.
+          </div>
+
+          <h2>"Socialism Can Never Work!"</h2>
+
+          <p>
+            A frequent claim is that socialism stifles innovation by removing the profit motive; however, many of the
+            most transformative inventions including the internet, GPS, and vaccines, were developed through publicly
+            funded research rather than private profit-seeking. Another argument holds that free markets are responsible
+            for making nations wealthy, yet economists such as Ha-Joon Chang note that nearly all industrialized
+            countries, including the United Kingdom and the United States, relied heavily on protectionism and state
+            subsidies during their development, only later advocating free-market policies to the rest of the world.
+            Critics often argue that socialism contradicts “human nature,” assuming greed to be an innate trait; the
+            counterpoint is that human behavior is shaped by social structures—when systems reward competition and
+            accumulation, people behave greedily, but when cooperation is rewarded, collaborative behavior emerges.
+          </p>
+
+          <div class="article-note">
+            Inspired By The Workings Of:<br>
+            Chang, H.-J. (2011). 23 things they don't tell you about capitalism. Penguin Books.
+            <br>
+            &
+            <br>
+            Thought, S. (2020, December 11). A Future Beyond Capitalism? Socialism Explained.
+            https://www.youtube.com/watch?v=hactcmhVS1w
+          </div>
+
+          <div class="article-rule"></div>
+
+          <p>
+            Moving beyond capitalism does not mean the end of progress; it means the start of a progress that includes
+            everyone. It means a world where automation leads to leisure rather than unemployment, and where "success"
+            is measured by the well-being of the many rather than the bank accounts of the few. History did not end with
+            the fall of the Soviet Union, nor will it end with the decline of neoliberalism. We are simply turning the
+            page to a chapter where greed is no longer the law of the land.
+          </p>
+
+
+
+          <p>
+            - Saaim Japanwala<br><br>
+            With sources cited. Any questions, comments, or concerns - please reach out to me:<br>
+            <a href="mailto:saaim.japanwala125@gmail.com">saaim.japanwala125@gmail.com</a>
+          </p>
+          <a href="../pdf's/entry04.pdf">Access The PDF Version</a>
+
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Saaim Japanwala</div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Audio player: play / pause / stop + scrubber + timestamps
+    (function () {
+      const audio = document.getElementById("articleAudio");
+      const seek = document.getElementById("articleSeek");
+      const tNow = document.getElementById("tNow");
+      const tDur = document.getElementById("tDur");
+
+      if (!audio) return;
+
+      const fmt = (s) => {
+        if (!isFinite(s) || s < 0) return "0:00";
+        const m = Math.floor(s / 60);
+        const r = Math.floor(s % 60);
+        return `${m}:${String(r).padStart(2, "0")}`;
+      };
+
+      function syncTime() {
+        tNow.textContent = fmt(audio.currentTime);
+        tDur.textContent = fmt(audio.duration);
+
+        if (isFinite(audio.duration) && audio.duration > 0) {
+          seek.value = (audio.currentTime / audio.duration) * 100;
+        } else {
+          seek.value = 0;
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-audio-action]");
+        if (!btn) return;
+
+        const action = btn.getAttribute("data-audio-action");
+        if (action === "play") audio.play().catch(() => { });
+        if (action === "pause") audio.pause();
+        if (action === "stop") {audio.pause(); audio.currentTime = 0; syncTime();}
+      });
+
+      seek?.addEventListener("input", () => {
+        if (!isFinite(audio.duration) || audio.duration <= 0) return;
+        audio.currentTime = (Number(seek.value) / 100) * audio.duration;
+        syncTime();
+      });
+
+      audio.addEventListener("loadedmetadata", syncTime);
+      audio.addEventListener("timeupdate", syncTime);
+      audio.addEventListener("ended", () => {audio.currentTime = 0; syncTime();});
+
+      syncTime();
+    })();
+    let lastScroll = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll <= 0) {
+        header.classList.remove("hide");
+        return;
+      }
+
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        // scrolling down
+        header.classList.add("hide");
+      } else {
+        // scrolling up
+        header.classList.add("hide");
+      }
+
+      lastScroll = currentScroll;
+    });
+  </script>
+</body>
+
+</html>

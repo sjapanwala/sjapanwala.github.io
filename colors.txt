@@ -1,4 +1,0 @@
-bg: #f7f4ef;
-ink: #4a342e;
-muted: #6b514b;
-hairline: #e1dad1;
