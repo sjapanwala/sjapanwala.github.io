@@ -22,9 +22,7 @@ Muted Background: #e1dad1
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
   <meta name="description"
-    content="Saaim Japanwala – Psychology & Political Science. Writing, projects, and contact." />
-
-
+    content="Saaim Japanwala" />
   <style>
     :root {
       --bg: #f7f4ef;
@@ -32,9 +30,8 @@ Muted Background: #e1dad1
       --muted: #6b514b;
       --hairline: #e1dad1;
       --max: 980px;
+       --radius:12px;
     }
-
-
 
     * {
       box-sizing: border-box;
@@ -86,6 +83,7 @@ Muted Background: #e1dad1
       gap: 16px;
     }
 
+    /* the urdu logo */
     .brand {
       font-family: "Noto Nastaliq Urdu", serif;
       letter-spacing: 0.02em;
@@ -131,21 +129,60 @@ Muted Background: #e1dad1
       width: 100%;
     }
 
-    /* Mobile menu button */
+    /*menu button only visible on smaller screens*/
     .menu-btn {
       display: none;
+      align-items: center;
+      justify-content: center;
+
       border: 1px solid var(--hairline);
-      background: transparent;
+      background: rgba(255, 255, 255, 0.25);
       border-radius: 999px;
-      padding: 8px 12px;
+
+      padding: 9px 14px;
       font: inherit;
-      font-size: .82rem;
-      letter-spacing: .08em;
+      font-size: .78rem;
+      letter-spacing: .12em;
       text-transform: uppercase;
+
+      color: var(--ink);
       cursor: pointer;
+
+      transition: transform .15s ease, border-color .15s ease, background .15s ease, opacity .15s ease;
     }
 
-    /* Layout */
+    .menu-btn::before {
+      content: "≡";
+      margin-right: 10px;
+      letter-spacing: 0;
+      opacity: 0.75;
+    }
+
+    .menu-btn[aria-expanded="true"]::before {
+      content: "×";
+    }
+
+    .menu-btn:hover {
+      border-color: rgba(74, 52, 46, 0.35);
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .menu-btn:active {
+      transform: translateY(0);
+      opacity: 0.9;
+    }
+
+    .menu-btn:focus-visible {
+      outline: 2px solid rgba(74, 52, 46, 0.45);
+      outline-offset: 3px;
+    }
+
+    .menu-btn[aria-expanded="true"] {
+      background: rgba(74, 52, 46, 0.06);
+      border-color: rgba(74, 52, 46, 0.25);
+    }
+
     main .wrap {
       padding-top: 42px;
       padding-bottom: 72px;
@@ -170,7 +207,7 @@ Muted Background: #e1dad1
       margin: 38px 0;
     }
 
-    /* --- Home as Article --- */
+    /* --- Start of Home / Articles --- */
     .article {
       max-width: 100%;
       margin: 0 auto;
@@ -229,189 +266,14 @@ Muted Background: #e1dad1
       margin: 0 0 16px;
     }
 
-    .article-body p:first-of-type::first-letter {
-      float: left;
-      font-size: 3.2rem;
-      line-height: 0.9;
-      padding-right: 8px;
-      padding-top: 4px;
-      font-weight: 650;
-      color: var(--ink);
-    }
 
     .article-rule {
       border-top: 1px solid var(--hairline);
       margin: 26px 0;
     }
 
-    .article-note {
-      border-left: 2px solid var(--hairline);
-      padding-left: 14px;
-      color: var(--muted);
-      margin: 18px 0;
-    }
 
-    /* Marginal image (small by default) */
-    .article-media {
-      float: right;
-      width: 96px;
-      max-width: 96px;
-      margin: 4px 0 10px 18px;
-    }
-
-    .article-media img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      border: 1px solid var(--hairline);
-      opacity: 0.92;
-    }
-
-    .media-caption {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 6px;
-      text-align: right;
-    }
-
-    .photo-grid {
-      column-count: 3;
-      column-gap: 14px;
-      margin-top: 16px;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .photo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border: none;
-      outline: none;
-      box-shadow: none;
-
-      border-radius: 10px;
-      overflow: hidden;
-      background: transparent;
-      overflow: hidden;
-    }
-
-
-
-    a.photo {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-
-    a.photo:focus,
-    a.photo:focus-visible {
-      outline: none;
-    }
-
-    .photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: saturate(0.92) contrast(1.04);
-      border: none;
-      outline: none;
-      box-shadow: none;
-    }
-
-    .contact {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .contact-card,
-    .contact-aside {
-      border-radius: var(--radius);
-      padding: 16px;
-      background: transparent;
-
-    }
-
-    .contact-kicker {
-      color: var(--muted);
-      font-size: .78rem;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .contact-title {
-      margin: 0 0 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .contact-text {
-      margin: 0 0 14px;
-      color: var(--muted);
-      max-width: 70ch;
-    }
-
-    .contact-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .contact-btn {
-      border: 1px solid var(--hairline);
-      background: transparent;
-      border-radius: 999px;
-      padding: 9px 12px;
-      cursor: pointer;
-      font: inherit;
-      font-size: .82rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--ink);
-      text-decoration: none;
-    }
-
-    .contact-btn.ghost {
-      color: var(--muted);
-    }
-
-    .contact-meta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      font-size: .92rem;
-    }
-
-    .contact-meta .dot {
-      color: var(--hairline);
-    }
-
-    .contact-line {
-      display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .contact-line:last-child {
-      border-bottom: none;
-    }
-
-    /* --- Projects (catalogue cards) --- */
+    /* Start of Projects / Ventures */
     .proj-controls {
       display: flex;
       gap: 12px;
@@ -454,6 +316,8 @@ Muted Background: #e1dad1
       border-radius: var(--radius);
       padding: 14px 16px;
       background: transparent;
+      flex-direction: column;
+      height: 100%;
     }
 
     .proj-top {
@@ -515,6 +379,8 @@ Muted Background: #e1dad1
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-top: auto;
+      padding-top: 10px;
     }
 
     .proj-links a {
@@ -524,6 +390,8 @@ Muted Background: #e1dad1
       text-decoration: underline;
       text-underline-offset: 3px;
       color: var(--ink);
+      margin-top: auto;
+      padding-top: 10px;
     }
 
     @media (min-width: 980px) {
@@ -598,9 +466,6 @@ Muted Background: #e1dad1
         line-height: 1.12;
       }
 
-      .article-body p:first-of-type::first-letter {
-        font-size: 2.8rem;
-      }
 
       .article-media {
         float: none;
@@ -649,67 +514,6 @@ Muted Background: #e1dad1
     ul {
       padding-left: 18px;
     }
-
-    li {
-      margin: 8px 0;
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      row-gap: 36px;
-      margin-top: 32px;
-    }
-
-    .timeline-row {
-      display: contents;
-    }
-
-    .timeline-time {
-      text-align: right;
-      padding-right: 24px;
-      font-size: 0.85rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      white-space: nowrap;
-    }
-
-    .timeline-entry h3 {
-      margin: 0;
-      font-size: 1.05rem;
-      font-weight: 600;
-    }
-
-    .timeline-meta {
-      margin: 4px 0 10px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .timeline-entry ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .timeline-entry li {
-      margin: 6px 0;
-    }
-
-    /* --- Mobile: stack timeline --- */
-    @media (max-width: 720px) {
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-time {
-        text-align: left;
-        padding: 0;
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
-    }
-
-
 
     footer {
       border-top: 1px solid var(--hairline);
@@ -772,6 +576,9 @@ Muted Background: #e1dad1
       border-radius: var(--radius);
       padding: 14px 16px;
       background: transparent;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .post-top {
@@ -812,6 +619,18 @@ Muted Background: #e1dad1
       gap: 10px;
       flex-wrap: wrap;
       align-items: center;
+      margin-top: auto;
+      padding-top: 10px;
+    }
+
+    .post-actions:hover {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 10px;
+      transform: translateY(-1px);
     }
 
     .post-actions a {
@@ -821,367 +640,6 @@ Muted Background: #e1dad1
       color: var(--ink);
       text-decoration: underline;
       text-underline-offset: 3px;
-    }
-
-
-    /* --- Film Notes --- */
-    .film-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .film-sort-label {
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: .10em;
-      color: var(--muted);
-    }
-
-    .film-sort {
-      border: 1px solid var(--hairline);
-      background: transparent;
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font: inherit;
-      font-size: .9rem;
-      outline: none;
-    }
-
-    .film-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .film-card {
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
-      padding: 14px 16px;
-      background: transparent;
-    }
-
-    .film-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-    }
-
-    .film-type {
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: .10em;
-      color: var(--muted);
-    }
-
-    .film-date {
-      font-size: .85rem;
-      color: var(--muted);
-    }
-
-    .film-title {
-      margin: 10px 0 6px;
-      font-size: 1.05rem;
-      letter-spacing: -0.01em;
-    }
-
-    .film-desc {
-      margin: 0 0 12px;
-      color: var(--muted);
-      max-width: 78ch;
-    }
-
-    .film-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    @media (min-width: 980px) {
-      .film-list {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    /* --- Globe: tabs --- */
-    .globe-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-
-    .globe-tabs {
-      display: inline-flex;
-      gap: 8px;
-      border: 1px solid var(--hairline);
-      border-radius: 999px;
-      padding: 4px;
-    }
-
-    .globe-tab {
-      border: 0;
-      background: transparent;
-      font: inherit;
-      font-size: .78rem;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-
-    .globe-tab.active {
-      color: var(--ink);
-      border: 1px solid var(--hairline);
-    }
-
-    .globe-panel {
-      display: none;
-    }
-
-    .globe-panel.active {
-      display: block;
-    }
-
-    .globe-card {
-      border: 1px solid var(--hairline);
-      border-radius: 14px;
-      padding: 16px;
-      background: transparent;
-    }
-
-
-
-    /* --- Map image stage + pins --- */
-    .map-stage {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--hairline);
-      background: rgba(0, 0, 0, 0.02);
-    }
-
-    .map-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: saturate(0.9) contrast(1.02);
-    }
-
-    /* pins are buttons so they’re accessible */
-    .pin {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      border: 1.2px solid #AA4A44;
-      background: #AA4A44;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-
-    .pin:hover {
-      transform: translate(-50%, -50%) scale(1.12);
-      background: rgba(74, 52, 46, 0.2);
-    }
-
-    .legend {
-      display: flex;
-      gap: 16px;
-      margin-top: 12px;
-      font-size: .85rem;
-      color: var(--muted);
-    }
-
-    .legend .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 6px;
-      border: 1px solid var(--hairline);
-    }
-
-    .legend .dot.vis {
-      background: #AA4A44;
-      border-color: #AA4A10;
-    }
-
-
-    .trip {
-      padding: 18px 0;
-      border-top: 1px solid var(--hairline);
-      max-width: 78ch;
-    }
-
-    .trip:first-child {
-      border-top: none;
-    }
-
-    .trip-head {
-      margin-bottom: 6px;
-    }
-
-    .trip-title {
-      margin: 0;
-      font-size: 1.15rem;
-      letter-spacing: -0.01em;
-      font-weight: 600;
-    }
-
-    .trip-meta {
-      margin: 2px 0 10px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .trip-text {
-      margin: 0 0 12px;
-      color: var(--ink);
-    }
-
-    /* Grid */
-    .trip-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    /* Images */
-    .trip-grid img {
-      width: 100%;
-      height: 150px;
-      /* ← controlled size */
-      object-fit: cover;
-
-      border-radius: 10px;
-      border: 1px solid var(--hairline);
-
-      filter: saturate(0.92) contrast(1.04);
-      opacity: 0.95;
-    }
-
-    /* Subtle hover, not loud */
-    .trip-grid img:hover {
-      opacity: 1;
-    }
-
-    /* Responsive */
-    @media (max-width: 860px) {
-      .trip-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 520px) {
-      .trip-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .trip-grid img {
-        height: 170px;
-      }
-    }
-
-    .contact-center {
-      display: flex;
-      justify-content: center;
-      padding-top: 32px;
-    }
-
-    .contact-card-mini {
-      width: min(620px, 100%);
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
-      padding: 16px;
-      background: transparent;
-    }
-
-    .card-split {
-      display: flex;
-      gap: 16px;
-      align-items: stretch;
-      /* KEY: makes left column match right column height */
-    }
-
-    .card-photo {
-      flex: 0 0 160px;
-      /* width */
-      width: 160px;
-      height: 160px;
-      /* height = width => square */
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .card-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .card-role {
-      font-size: .85rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .card-desc {
-      margin: 10px 0 12px;
-      color: var(--ink);
-    }
-
-    .card-list {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      column-gap: 12px;
-      row-gap: 8px;
-      font-size: .85rem;
-    }
-
-    .card-list .label {
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-size: .72rem;
-      color: var(--muted);
-    }
-
-    .card-list .value {
-      color: var(--ink);
-    }
-
-    .card-list a {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    @media (max-width:520px) {
-      .card-split {
-        flex-direction: column;
-      }
-
-      .card-photo {
-        flex: 0 0 auto;
-        height: 170px;
-      }
-
     }
 
     .connections-icons {
@@ -1349,7 +807,6 @@ Muted Background: #e1dad1
       .article-media {
         float: right;
         width: 96px;
-        /* ← THIS is the fix */
         max-width: 96px;
         margin: 4px 0 10px 18px;
       }
@@ -1361,7 +818,6 @@ Muted Background: #e1dad1
         border-radius: 4px;
         border: 1px solid var(--hairline);
         opacity: 0.92;
-        /* reduces dominance */
       }
 
       .media-caption {
@@ -1372,9 +828,43 @@ Muted Background: #e1dad1
         text-align: right;
       }
 
+      .comments {
+        max-width: 88ch;
+        margin: 34px auto 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+      }
 
+      .comments .utterances {
+        margin-top: 14px;
+      }
 
+      .comments .utterances-frame {
+        width: 100%;
+      }
 
+    .article-body ul,
+    .article-body ol{
+      margin: 0 0 22px;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .article-body li{
+      margin: 8px 0;
+      line-height: 1.7;
+    }
+
+    .article-body ul{
+      list-style: disc;
+    }
+
+    .article-body ul li::marker,
+    .article-body ol li::marker{
+      color: var(--ink);
+    }
+
+      
       /* Mobile: center it */
       @media (max-width: 720px) {
         .article-media {
@@ -1386,7 +876,6 @@ Muted Background: #e1dad1
       }
     }
   </style>
-
 </head>
 
 <body>
@@ -1414,58 +903,91 @@ Muted Background: #e1dad1
         <article class="article">
           <header class="article-header">
             <h1 class="article-title">Saaim Japanwala</h1>
-            <p class="article-dek">
-              Psychology & Political Science at the University of Alberta. Interested in political theory, law, and
-              writing / journalism.
-            </p>
           </header>
-
           <div class="article-body">
+            <h2>Personal Introduction</h2>
             <p>
               This site began the way most things do for me: with questions. About the world, about systems, about
               people, and about how technology and ideas quietly shape our everyday lives.
             </p>
 
             <p>
-              I’m <strong>Saaim Japanwala</strong> — a <a href="https://www.ualberta.ca/en/index.html"
-                style="text-decoration: underline;"><i>student</i></a>, a <a data-page="writing"
+              I'm <strong>Saaim Japanwala</strong> — a <a href="https://www.ualberta.ca/en/index.html"
+                style="text-decoration: underline;"><i>student</i></a>, a <a data-page="articles"
                 style="text-decoration: underline;"><i>writer</i></a>, and
-              someone who’s constantly
+              someone who's constantly
               documenting the
-              things I’m
-              learning, building, and unlearning along the way. What you’ll find here isn’t a polished manifesto or a
-              finished product. It’s a working archive. Essays, projects, code, photography, and notes that sit
+              things I'm
+              learning, building, and unlearning along the way. What you'll find here isn't a polished manifesto or a
+              finished product. It's a working archive. Essays, projects, code, photography, and notes that sit
               somewhere between curiosity and conviction.
             </p>
             <p>
-              If something here makes you pause, disagree, or think a little longer, then it’s doing its job. Not
+              If something here makes you pause, disagree, or think a little longer, then it's doing its job. Not
               because every idea presented is meant to be accepted, but because passivity is easy and thought is not.
             </p>
             <div class="article-rule"></div>
-            <h2>Connect With Me</h2>
-            <p>I’m always open to new ideas, collaborations, and interesting projects.</p>
-            <div class="connections-icons" aria-label="External links">
-              <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
-                <img src="assets/icons/mail.png" alt="">
-              </a>
+            
+            <!--END OF PERSONAL INTRODUCTION. START OF PINNED ARTICLES-->
 
-              <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
-                <img src="assets/icons/github.png" alt="">
-              </a>
+            <h2>Pinned Articles</h2>
+            <div class="post-list">
+            <article class="post-card" data-date="2026-01-20" data-title="Alberta Seperatonist Referendum; What Does This Mean?"
+              data-type="Opinion">
+              <div class="post-top">
+                <div class="post-type">Current Events / Opinion</div>
+                <div class="post-date">JAN 2025</div>
+              </div>
+              <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
+              <p class="post-desc">As of January 2026, the political landscape in Alberta has reached a fever pitch. Across the province, thousandAlbertans have begun lining up at community halls and mobile stations to sign a high-stakes petition.</p>
+              <div class="post-actions">
+                <a href="articles/05.html" aria-label="Read journal entry">Read More ></a>
+              </div>
+            </article>
 
-              <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <img src="assets/icons/linkedin.png" alt="">
-              </a>
-
-              <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
-                rel="noopener" aria-label="Substack">
-                <img src="assets/icons/substack.png" alt="">
-              </a>
+              <article class="post-card" data-date="2026-01-08"
+                data-title="Greed & Gluttony; Is Socialism the Solution?" data-type="Opinion">
+                <div class="post-top">
+                  <div class="post-type">Argumentative Analysis</div>
+                  <div class="post-date">JAN 2025</div>
+                </div>
+                <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
+                <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
+                  inherent
+                  drive for infinite growth and profit-maximization has created a systemic landscape of greed and
+                  gluttony
+                  that fails to meet basic human needs</p>
+                <div class="post-actions">
+                  <a href="articles/04.html" aria-label="Read journal entry">Read More ></a>
+                </div>
+              </article>
             </div>
+            <div class="article-rule"></div>
 
+            <!--END OF PINNED ARTICLES, START OF COMMUNITY SECTION-->
 
-
-            </p>
+            <h2>Community</h2>
+            <p>Leave a comment, a suggestion, or just say hi!</p>
+            <p><strong>Ground Rules</strong></p>
+            
+            <ol>
+              <li>Hate speech, slurs, or harassment will not be tolerated.</li>
+              <li>Respect others' opinions — disagree with the point, not the person.</li>
+              <li>No spam, self-promo, or random links.</li>
+              <li>Keep it constructive: if you criticize, explain why.</li>
+              <li>A <i>GitHub</i> Account is required to post - making one is easy and free!</li>
+            </ol>
+            <div class="article-rule"></div>
+              <script
+                src="https://utteranc.es/client.js"
+                repo="sjapanwala/sjapanwala.github.io"
+                issue-term="index.html"
+                theme="gruvbox-dark"
+                label="comments"
+                crossorigin="anonymous"
+                async>
+              </script>
+            <div class="article-rule"></div>
           </div>
         </article>
       </section>
@@ -1473,10 +995,9 @@ Muted Background: #e1dad1
       <section class="page-section" data-page-content="articles">
         <h2>Articles</h2>
         <div class="section-head">
-
           <div class="sort">
-            <label for="sortPosts">Sort</label>
-            <select id="sortPosts">
+            <label for="sortArticles">Sort</label>
+            <select id="sortArticles">
               <option value="date-desc" selected>Newest</option>
               <option value="date-asc">Oldest</option>
               <option value="title-asc">Title (A→Z)</option>
@@ -1486,8 +1007,7 @@ Muted Background: #e1dad1
           </div>
         </div>
 
-        <div class="post-list" id="postList">
-
+        <div class="post-list" id="articlesList">
           <article class="post-card" data-date="2026-01-06"
             data-title="The United States of America; Policing or Pillaging?" data-type="Opinion">
             <div class="post-top">
@@ -1498,14 +1018,14 @@ Muted Background: #e1dad1
             <p class="post-desc">The United States is the only empire in history that maintains it doesn't exist while
               standing on every corner of the globe. This invisible reach was made visible once again last week</p>
             <div class="post-actions">
-              <a href="articles/03.html" aria-label="Read journal entry">Read</a>
+              <a href="articles/03.html" aria-label="Read journal entry">Read More ></a>
             </div>
           </article>
 
           <article class="post-card" data-date="2026-01-08" data-title="Greed & Gluttony; Is Socialism the Solution?"
             data-type="Opinion">
             <div class="post-top">
-              <div class="post-type">Current Events</div>
+              <div class="post-type">Argumentative Analysis</div>
               <div class="post-date">JAN 2025</div>
             </div>
             <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
@@ -1513,9 +1033,23 @@ Muted Background: #e1dad1
               drive for infinite growth and profit-maximization has created a systemic landscape of greed and gluttony
               that fails to meet basic human needs</p>
             <div class="post-actions">
-              <a href="articles/04.html" aria-label="Read journal entry">Read</a>
+              <a href="articles/04.html" aria-label="Read journal entry">Read More ></a>
             </div>
           </article>
+
+          <article class="post-card" data-date="2026-01-20" data-title="Alberta Seperatonist Referendum; What Does This Mean?"
+            data-type="Opinion">
+            <div class="post-top">
+              <div class="post-type">Current Events / Opinion</div>
+              <div class="post-date">JAN 2025</div>
+            </div>
+            <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
+            <p class="post-desc">As of January 2026, the political landscape in Alberta has reached a fever pitch. Across the province, thousands of Albertans have begun lining up at community halls and mobile stations to sign a high-stakes petition.</p>
+            <div class="post-actions">
+              <a href="articles/05.html" aria-label="Read journal entry">Read More ></a>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -1524,8 +1058,8 @@ Muted Background: #e1dad1
         <div class="section-head">
           <div class="proj-controls">
             <div class="proj-control">
-              <label for="projSort">Sort</label>
-              <select id="projSort">
+              <label for="sortVentures">Sort</label>
+              <select id="sortVentures">
                 <option value="date-desc" selected>Newest</option>
                 <option value="date-asc">Oldest</option>
                 <option value="title-asc">Title (A→Z)</option>
@@ -1535,28 +1069,11 @@ Muted Background: #e1dad1
           </div>
         </div>
 
-        <div class="proj-list" id="projList">
-
-          <article class="proj-card" data-tags="writing,research" data-date="2025-12-12" data-title="Leader and Land">
-            <div class="proj-top">
-              <div class="proj-id">Project 01</div>
-              <div class="proj-date">Dec 2025</div>
-            </div>
-            <h3 class="proj-title">Leader & The Land</h3>
-            <p class="proj-desc">A comparative political analysis combining the thought of Hobbes and Machiavelli to
-              explain the foundations of authority, state stability, and leade rship. Includes modern applications
-              through the cases of Atatürk and Gaddafi, showing how rational legitimacy and decisive force shape
-              political outcomes</p>
-
-
-            <div class="proj-links">
-              <a href="assets/Leader and Land.pdf" target="_blank" rel="noreferrer">Read</a>
-            </div>
-          </article>
+        <div class="proj-list" id="venturesList">
 
           <article class="proj-card" data-tags="tools,web" data-date="2025-01-01" data-title="CarbonScript">
             <div class="proj-top">
-              <div class="proj-id">Project 00</div>
+              <div class="proj-id">ID: 00</div>
               <div class="proj-date">Jan 2025</div>
             </div>
             <h3 class="proj-title">CarbonScript</h3>
@@ -1568,17 +1085,43 @@ Muted Background: #e1dad1
               <a href="https://sjapanwala.github.io/carbonscript" target="_blank" rel="noreferrer">Documentation</a>
             </div>
           </article>
+
+          <article class="proj-card" data-tags="writing,research" data-date="2025-12-12" data-title="Leader and Land">
+            <div class="proj-top">
+              <div class="proj-id">ID: 01</div>
+              <div class="proj-date">Dec 2025</div>
+            </div>
+            <h3 class="proj-title">Leader & The Land</h3>
+            <p class="proj-desc">A comparative political analysis combining the thought of Hobbes and Machiavelli to
+              explain the foundations of authority, state stability, and leadership. Includes modern applications
+              through the cases of Atatürk and Gaddafi.</p>
+            <div class="proj-links">
+              <a href="assets/Leader and Land.pdf" target="_blank" rel="noreferrer">Read</a>
+            </div>
+          </article>
+
         </div>
       </section>
-
-
+    </div>
   </main>
 
   <footer>
     <div class="wrap">
-      Made With ☕️ and ❤️ | © <span id="year"></span> Saaim Japanwala
-      <p>
-      </p>
+      © <span id="year"></span> Saaim Japanwala
+        <div class="connections-icons" aria-label="External links">
+          <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+            <img src="assets/icons/mail.png" alt="">
+          </a>
+          <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+            <img src="assets/icons/github.png" alt="">
+          </a>
+          <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <img src="assets/icons/linkedin.png" alt="">
+          </a>
+          <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+            rel="noopener" aria-label="Substack">
+            <img src="assets/icons/substack.png" alt="">
+          </a>
     </div>
   </footer>
 
@@ -1621,7 +1164,7 @@ Muted Background: #e1dad1
     });
 
     function handleInitialPage() {
-      const hash = window.location.hash.slice(1); // Remove the #
+      const hash = window.location.hash.slice(1);
       if (hash && document.querySelector(`[data-page-content="${hash}"]`)) {
         showPage(hash);
       } else {
@@ -1638,208 +1181,54 @@ Muted Background: #e1dad1
       menuBtn.setAttribute("aria-expanded", String(isOpen));
     });
 
+    // UNIVERSAL SORTING SYSTEM
+    function createSorter(listId, selectId, cardClass) {
+      const list = document.getElementById(listId);
+      const select = document.getElementById(selectId);
+      
+      if (!list || !select) return;
 
-    const postList = document.getElementById("postList");
-    const sortPosts = document.getElementById("sortPosts");
-    const postAudio = document.getElementById("postAudio");
-    let currentAudioBtn = null;
+      function getCardKey(el, mode) {
+        const title = (el.dataset.title || "").toLowerCase();
+        const type = (el.dataset.type || "").toLowerCase();
+        const date = el.dataset.date || "1970-01-01";
+        
+        if (mode.startsWith("title")) return title;
+        if (mode.startsWith("type")) return type;
+        return date;
+      }
 
-    function getPostKey(el, mode) {
-      const title = (el.dataset.title || "").toLowerCase();
-      const type = (el.dataset.type || "").toLowerCase();
-      const date = el.dataset.date || "1970-01-01";
-      if (mode.startsWith("title")) return title;
-      if (mode.startsWith("type")) return type;
-      return date;
-    }
+      function sortCards(mode) {
+        const cards = Array.from(list.querySelectorAll(`.${cardClass}`));
+        const dir = mode.endsWith("asc") ? 1 : -1;
 
-    function sortPostCards(mode) {
-      if (!postList) return;
-      const cards = Array.from(postList.querySelectorAll(".post-card"));
-      const dir = mode.endsWith("asc") ? 1 : -1;
+        cards.sort((a, b) => {
+          const ka = getCardKey(a, mode);
+          const kb = getCardKey(b, mode);
 
-      cards.sort((a, b) => {
-        const ka = getPostKey(a, mode);
-        const kb = getPostKey(b, mode);
-
-        if (mode.startsWith("date")) {
+          if (mode.startsWith("date")) {
+            if (ka < kb) return -1 * dir;
+            if (ka > kb) return 1 * dir;
+            return 0;
+          }
           if (ka < kb) return -1 * dir;
           if (ka > kb) return 1 * dir;
           return 0;
-        }
-        if (ka < kb) return -1 * dir;
-        if (ka > kb) return 1 * dir;
-        return 0;
-      });
+        });
 
-      cards.forEach(c => postList.appendChild(c));
+        cards.forEach(c => list.appendChild(c));
+      }
+
+      select.addEventListener("change", () => sortCards(select.value));
+      sortCards(select.value);
     }
 
-    sortPosts?.addEventListener("change", () => sortPostCards(sortPosts.value));
-
-
-
-    if (sortPosts) sortPostCards(sortPosts.value);
-
+    // Initialize sorting for each section
+    createSorter('articlesList', 'sortArticles', 'post-card');
+    createSorter('venturesList', 'sortVentures', 'proj-card');
 
     document.getElementById("year").textContent = new Date().getFullYear();
-
     handleInitialPage();
-
-    const grid = document.getElementById("photoGrid");
-    const lb = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lbImg");
-    const lbClose = document.getElementById("lbClose");
-
-    grid?.addEventListener("click", (e) => {
-      const a = e.target.closest("a.photo");
-      if (!a) return;
-      e.preventDefault();
-
-      const src = a.getAttribute("href");
-      const img = a.querySelector("img");
-      lbImg.src = src;
-      lbImg.alt = img?.alt || "";
-
-      lb.classList.add("open");
-      lb.setAttribute("aria-hidden", "false");
-    });
-
-    function closeLightbox() {
-      lb.classList.remove("open");
-      lb.setAttribute("aria-hidden", "true");
-      lbImg.src = "";
-    }
-
-    lbClose?.addEventListener("click", closeLightbox);
-    lb?.addEventListener("click", (e) => {if (e.target === lb) closeLightbox();});
-    window.addEventListener("keydown", (e) => {if (e.key === "Escape") closeLightbox();});
-
-    (function () {
-      const list = document.getElementById("projList");
-      const filter = document.getElementById("projFilter");
-      const sort = document.getElementById("projSort");
-      const count = document.getElementById("projCount");
-      if (!list) return;
-
-      const cards = () => Array.from(list.querySelectorAll(".proj-card"));
-
-      function applyFilter() {
-        const v = filter?.value || "all";
-        let shown = 0;
-
-        cards().forEach(card => {
-          const tags = (card.dataset.tags || "").split(",").map(s => s.trim());
-          const ok = (v === "all") || tags.includes(v);
-          card.style.display = ok ? "" : "none";
-          if (ok) shown++;
-        });
-
-        if (count) count.textContent = `${shown} item${shown === 1 ? "" : "s"}`;
-      }
-
-      function applySort() {
-        const mode = sort?.value || "date-desc";
-        const dir = mode.endsWith("asc") ? 1 : -1;
-
-        const visible = cards().filter(c => c.style.display !== "none");
-
-        visible.sort((a, b) => {
-          const da = a.dataset.date || "1970-01-01";
-          const db = b.dataset.date || "1970-01-01";
-          const ta = (a.dataset.title || "").toLowerCase();
-          const tb = (b.dataset.title || "").toLowerCase();
-
-          if (mode.startsWith("date")) {
-            if (da < db) return -1 * dir;
-            if (da > db) return 1 * dir;
-            return 0;
-          }
-          if (ta < tb) return -1 * dir;
-          if (ta > tb) return 1 * dir;
-          return 0;
-        });
-
-        visible.forEach(c => list.appendChild(c));
-      }
-
-      function update() {
-        applyFilter();
-        applySort();
-      }
-
-      filter?.addEventListener("change", update);
-      sort?.addEventListener("change", update);
-
-      update();
-    })();
-
-    (function initGlobe() {
-      const globe = document.querySelector('[data-page-content="globe"]');
-      if (!globe) return;
-
-      const tabs = Array.from(globe.querySelectorAll('[data-globe-tab]'));
-      const panels = Array.from(globe.querySelectorAll('[data-globe-panel]'));
-
-      function setTab(name) {
-        tabs.forEach(t => {
-          const on = t.dataset.globeTab === name;
-          t.classList.toggle('active', on);
-          t.setAttribute('aria-selected', on ? 'true' : 'false');
-        });
-        panels.forEach(p => p.classList.toggle('active', p.dataset.globePanel === name));
-      }
-
-      tabs.forEach(t => t.addEventListener('click', () => setTab(t.dataset.globeTab)));
-
-      globe.querySelectorAll('.pin').forEach(pin => {
-        pin.addEventListener('click', () => {
-          const target = pin.dataset.target;
-          if (!target) return;
-
-          setTab('trips');
-          setTimeout(() => {
-            globe.querySelector(`#${CSS.escape(target)}`)?.scrollIntoView({behavior: 'smooth', block: 'start'});
-          }, 80);
-        });
-      });
-    })();
-    (function initFilmSort() {
-      const filmPage = document.querySelector('[data-page-content="film"]');
-      if (!filmPage) return;
-
-      const list = filmPage.querySelector('#filmList');
-      const select = filmPage.querySelector('#filmSort');
-      if (!list || !select) return;
-
-      const getCards = () => Array.from(list.querySelectorAll('.film-card'));
-
-      function sortCards(mode) {
-        const cards = getCards();
-
-        const sorted = cards.sort((a, b) => {
-          const da = a.dataset.date || "";
-          const db = b.dataset.date || "";
-          const ta = (a.dataset.title || "").toLowerCase();
-          const tb = (b.dataset.title || "").toLowerCase();
-          const ya = (a.dataset.type || "").toLowerCase();
-          const yb = (b.dataset.type || "").toLowerCase();
-
-          if (mode === "newest") return db.localeCompare(da);
-          if (mode === "oldest") return da.localeCompare(db);
-          if (mode === "title-az") return ta.localeCompare(tb);
-          if (mode === "title-za") return tb.localeCompare(ta);
-          if (mode === "type") return ya.localeCompare(yb) || db.localeCompare(da);
-
-          return 0;
-        });
-
-        sorted.forEach(card => list.appendChild(card));
-      }
-
-      sortCards(select.value);
-      select.addEventListener("change", () => sortCards(select.value));
-    })();
   </script>
 </body>
 
