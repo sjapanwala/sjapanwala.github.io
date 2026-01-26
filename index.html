@@ -17,12 +17,30 @@ Muted Background: #e1dad1
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Saaim Japanwala</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-  <meta name="description"
-    content="Saaim Japanwala" />
+  
+  <!-- Basic -->
+  <meta name="description" content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
+  
+  <!-- Open Graph (Facebook / iMessage / Discord / LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sjapanwala.com/">
+  <meta property="og:title" content="Saaim Japanwala">
+  <meta property="og:description" content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
+  <meta property="og:image" content="https://sjapanwala.com/assets/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Saaim Japanwala">
+  <meta name="twitter:description" content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
+  <meta name="twitter:image" content="https://sjapanwala.com/assets/logo.png">
+
   <style>
     :root {
       --bg: #f7f4ef;
@@ -518,12 +536,56 @@ Muted Background: #e1dad1
     footer {
       border-top: 1px solid var(--hairline);
       color: var(--muted);
+      margin-top: 60px;
     }
 
     footer .wrap {
-      padding-top: 22px;
-      padding-bottom: 28px;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-brand {
+      font-family: "Noto Nastaliq Urdu", serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0px;
+      opacity: 0.9;
+    }
+
+    .footer-tagline {
       font-size: .95rem;
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+
+    @media (max-width: 760px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
     }
 
     .section-head {
@@ -638,9 +700,151 @@ Muted Background: #e1dad1
       text-transform: uppercase;
       letter-spacing: .10em;
       color: var(--ink);
+      text-underline-offset: 3px;
+    }
+
+    .underline-hover {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .underline-hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--ink);
+      transition: width .18s ease;
+    }
+
+    .underline-hover:hover::after {
+      width: 100%;
+    }
+
+
+    .lede {
+      color: var(--muted);
+      max-width: 70ch;
+      margin: 0 0 28px 0;
+      font-size: 1rem;
+    }
+
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .filter-tag {
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+      font-size: .82rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: color .15s ease;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .filter-tag::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--ink);
+      transition: width .18s ease;
+    }
+
+    .filter-tag:hover {
+      color: var(--ink);
+    }
+
+    .filter-tag:hover::after {
+      width: 100%;
+    }
+
+    .filter-tag.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .filter-tag.active::after {
+      width: 100%;
+    }
+
+    .bookmarks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .bookmark-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-left: 2px solid var(--hairline);
+      padding-left: 16px;
+      transition: border-color .15s ease;
+    }
+
+    .bookmark-item:hover {
+      border-left-color: var(--ink);
+    }
+
+    .bookmark-link {
+      font-size: .85rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .bookmark-title {
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .bookmark-title a {
+      color: var(--ink);
+      text-decoration: none;
+      position: relative;
+      display: inline;
+    }
+
+    .bookmark-title a:hover {
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
+    .bookmark-desc {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+      max-width: 78ch;
+    }
+
+    .bookmark-item[data-hidden="true"] {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .filter-tags {
+        gap: 8px;
+      }
+    }
+
 
     .connections-icons {
       display: flex;
@@ -876,6 +1080,7 @@ Muted Background: #e1dad1
       }
     }
   </style>
+
 </head>
 
 <body>
@@ -890,6 +1095,7 @@ Muted Background: #e1dad1
         <nav id="siteNav" aria-label="Primary">
           <a data-page="home">Home</a>
           <a data-page="articles">Articles</a>
+          <a data-page="bookmarks">Bookmarks</a>
           <!--data-page="ventures">Ventures</a>-->
         </nav>
       </div>
@@ -899,7 +1105,6 @@ Muted Background: #e1dad1
   <main>
     <div class="wrap">
       <section class="page-section active" data-page-content="home">
-        <h2>Home</h2>
         <article class="article">
           <header class="article-header">
             <h1 class="article-title">Saaim Japanwala</h1>
@@ -939,9 +1144,9 @@ Muted Background: #e1dad1
                 <div class="post-date">JAN 2025</div>
               </div>
               <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
-              <p class="post-desc">As of January 2026, the political landscape in Alberta has reached a fever pitch. Across the province, thousandAlbertans have begun lining up at community halls and mobile stations to sign a high-stakes petition.</p>
+              <p class="post-desc"><p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich province stick around to be part of the <i>true north, strong, and free</i>?</p>
               <div class="post-actions">
-                <a href="articles/05.html" aria-label="Read journal entry">Read More ></a>
+                <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
               </div>
             </article>
 
@@ -952,18 +1157,13 @@ Muted Background: #e1dad1
                   <div class="post-date">JAN 2025</div>
                 </div>
                 <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-                <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
-                  inherent
-                  drive for infinite growth and profit-maximization has created a systemic landscape of greed and
-                  gluttony
-                  that fails to meet basic human needs</p>
+                <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent predatory nature may not keep it afloat much longer.</p>
                 <div class="post-actions">
-                  <a href="articles/04.html" aria-label="Read journal entry">Read More ></a>
+                  <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
                 </div>
               </article>
             </div>
-            <div class="article-rule"></div>
-
+            <a class="underline-hover" style="margin-top: 20px;" href="articles.html">Find More</a>
             <!--END OF PINNED ARTICLES-->
           </div>
         </article>
@@ -992,10 +1192,9 @@ Muted Background: #e1dad1
               <div class="post-date">JAN 2025</div>
             </div>
             <h3 class="post-title">The United States of America; Policing or Pillaging?</h3>
-            <p class="post-desc">The United States is the only empire in history that maintains it doesn't exist while
-              standing on every corner of the globe. This invisible reach was made visible once again last week</p>
+            <p class="post-desc">The United States, the empire that keeps striking back in the name of humaity or imperialism?</p>
             <div class="post-actions">
-              <a href="articles/03.html" aria-label="Read journal entry">Read More ></a>
+              <a href="articles/03.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
             </div>
           </article>
 
@@ -1006,11 +1205,9 @@ Muted Background: #e1dad1
               <div class="post-date">JAN 2025</div>
             </div>
             <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-            <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent
-              drive for infinite growth and profit-maximization has created a systemic landscape of greed and gluttony
-              that fails to meet basic human needs</p>
+            <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent predatory nature may not keep it afloat much longer.</p>
             <div class="post-actions">
-              <a href="articles/04.html" aria-label="Read journal entry">Read More ></a>
+              <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
             </div>
           </article>
 
@@ -1021,15 +1218,54 @@ Muted Background: #e1dad1
               <div class="post-date">JAN 2025</div>
             </div>
             <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
-            <p class="post-desc">As of January 2026, the political landscape in Alberta has reached a fever pitch. Across the province, thousands of Albertans have begun lining up at community halls and mobile stations to sign a high-stakes petition.</p>
+            <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich province stick around to be part of the <i>true north, strong, and free</i>?</p>
             <div class="post-actions">
-              <a href="articles/05.html" aria-label="Read journal entry">Read More ></a>
+              <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
             </div>
           </article>
-
         </div>
       </section>
 
+      <section class="page-section" data-page-content="bookmarks">
+        <h2>Bookmarks</h2>
+        <div class="wrap">
+      <p class="lede">
+        A small shelf of things I’ve stumbled into and kept. Essays, tools, and ideas that changed something in me or asked to be reread.
+      </p>
+
+      <div class="filter-tags" id="filterTags">
+        <button class="filter-tag active" data-tag="all">all</button>
+        <button class="filter-tag" data-tag="essays">essays</button>
+        <button class="filter-tag" data-tag="philosophy">philosophy</button>
+        <button class="filter-tag" data-tag="politics">politics</button>
+        <button class="filter-tag" data-tag="writing">writing</button>
+        <button class="filter-tag" data-tag="psychology">psychology</button>
+        <button class="filter-tag" data-tag="growth">growth</button>
+
+      </div>
+
+      <div class="bookmarks-list" id="bookmarksList">
+        
+        <!--HOW TO ADD AN ENTRY
+        <article class="bookmark-item" data-tags="tags seperated by spaces">
+          <span class="bookmark-link">source link</span>
+          <h3 class="bookmark-title">
+            <a href="link" target="_blank" rel="noopener">Bookmark Title</a>
+          </h3>
+          <p class="bookmark-desc">
+            a breif description of the item bookmarked
+          </p>
+        </article>-->
+        <article class="bookmark-item" data-tags="philosophy psychology growth">
+          <span class="bookmark-link">youtube.com</span>
+          <h3 class="bookmark-title">
+            <a href="https://www.youtube.com/watch?v=DwauNBnF-8A" target="_blank" rel="noopener">"The Most Dangerous Mindset I See as a Therapist"</a>
+          </h3>
+          <p class="bookmark-desc">
+            I stumbled across a message from a high school counsellor that genuinely aimed to help people who fall into the illusion of shortcuts—always trying to find the easy way out.<strong>L.S Author</strong> highlights that the efforts we put in, even when they feel genuinely difficult, will eventually pay off. It’s similar to what Manson says in <i>The Subtle Art of Not Giving A F*ck</i>: the “easy” choices now often lead to problems later, and the hard choices now tend to reward you down the line.
+          </p>
+      </div>
+      </section>
       <section class="page-section" data-page-content="ventures">
         <h2>Ventures</h2>
         <div class="section-head">
@@ -1082,25 +1318,33 @@ Muted Background: #e1dad1
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      © <span id="year"></span> Saaim Japanwala
-        <div class="connections-icons" aria-label="External links">
-          <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
-            <img src="assets/icons/mail.png" alt="">
-          </a>
-          <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
-            <img src="assets/icons/github.png" alt="">
-          </a>
-          <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <img src="assets/icons/linkedin.png" alt="">
-          </a>
-          <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
-            rel="noopener" aria-label="Substack">
-            <img src="assets/icons/substack.png" alt="">
-          </a>
+<footer>
+  <div class="wrap">
+    <div class="footer-content">
+      <div class="footer-info">
+        <div class="footer-brand">Saaim Japanwala</div>
+        <p class="footer-tagline">Writing at the intersection of curiosity, critique, and real life</p>
+      </div>
+      <div class="connections-icons" aria-label="External links">
+        <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+          <img src="assets/icons/mail.png" alt="">
+        </a>
+        <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+          <img src="assets/icons/github.png" alt="">
+        </a>
+        <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="assets/icons/linkedin.png" alt="">
+        </a>
+        <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
+          rel="noopener" aria-label="Substack">
+          <img src="assets/icons/substack.png" alt="">
+        </a>
+      </div>
     </div>
-  </footer>
+      <div>© <span id="year"></span> Saaim Japanwala</div>
+      <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
+  </div>
+</footer>
 
   <script>
     const navLinks = document.querySelectorAll('[data-page]');
@@ -1206,6 +1450,32 @@ Muted Background: #e1dad1
 
     document.getElementById("year").textContent = new Date().getFullYear();
     handleInitialPage();
+
+    // bookmarks filter functionality
+
+    const filterBtns = document.querySelectorAll('.filter-tag');
+    const bookmarkItems = document.querySelectorAll('.bookmark-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const selectedTag = btn.dataset.tag;
+
+        // Filter bookmarks
+        bookmarkItems.forEach(item => {
+          const itemTags = item.dataset.tags.split(' ');
+          
+          if (selectedTag === 'all' || itemTags.includes(selectedTag)) {
+            item.setAttribute('data-hidden', 'false');
+          } else {
+            item.setAttribute('data-hidden', 'true');
+          }
+        });
+      });
+    });
   </script>
 </body>
 
