@@ -299,8 +299,8 @@
     /* Gallery Section */
     .gallery {
       padding: 8rem 2rem;
-      max-width: 1600px;
       margin: 0 auto;
+      max-width: 1200px;
     }
 
     .gallery h2 {
@@ -418,13 +418,13 @@
 .row-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(240px, 320px);
-  gap: 1.25rem;
 
+  grid-auto-columns: 280px;
+
+  gap: 1.25rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-
   padding-bottom: 0.5rem;
 }
 
@@ -435,6 +435,22 @@
 .row-track::-webkit-scrollbar-thumb {
   background: rgba(26, 26, 26, 0.2);
   border-radius: 999px;
+}
+@media (max-width: 600px) {
+  .row-track {
+    /* 1.35 cards visible-ish (carousel vibe), not massive */
+    grid-auto-columns: 75%;
+    gap: 1rem;
+    padding-inline: 0.5rem; /* adds breathing room */
+  }
+
+  .portfolio-row h3 {
+    font-size: 1.4rem;
+  }
+
+  .row-item {
+    border-radius: 14px;
+  }
 }
 
 .row-item {
@@ -502,6 +518,16 @@
       background-color: var(--gold);
       color: var(--charcoal);
     }
+
+    @media (max-width: 600px) {
+  .row-controls {
+    display: none;
+  }
+
+  .row-track {
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
     /* Footer */
     footer {
@@ -732,7 +758,6 @@
       });
     });
 
-    // Portfolio row scroll buttons
 document.querySelectorAll('.portfolio-row').forEach(row => {
   const track = row.querySelector('[data-track]');
   const buttons = row.querySelectorAll('.row-btn');
@@ -740,9 +765,20 @@ document.querySelectorAll('.portfolio-row').forEach(row => {
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       const dir = Number(btn.dataset.dir);
-      const cardWidth = track.querySelector('.row-item')?.getBoundingClientRect().width || 300;
-      const gap = 20;
-      track.scrollBy({ left: dir * (cardWidth + gap) * 1.2, behavior: 'smooth' });
+
+      const firstCard = track.querySelector('.row-item');
+      if (!firstCard) return;
+
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || 16);
+
+      const cardWidth = firstCard.getBoundingClientRect().width;
+      const scrollAmount = cardWidth + gap;
+
+      track.scrollBy({
+        left: dir * scrollAmount,
+        behavior: 'smooth'
+      });
     });
   });
 });
