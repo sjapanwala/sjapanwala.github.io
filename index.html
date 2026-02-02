@@ -10,6 +10,7 @@ Color Groups Used:
 Background      : #f7f4ef;
 Text Color      : #4a342e;
 Muted Text      : #6b514b;
+Secondary       : #e6e3de
 Muted Background: #e1dad1
 -->
 
@@ -50,6 +51,7 @@ Muted Background: #e1dad1
       --ink: #4a342e;
       --muted: #6b514b;
       --hairline: #e1dad1;
+      --secondary: #e6e3de;
       --max: 980px;
       --radius: 12px;
     }
@@ -289,197 +291,225 @@ Muted Background: #e1dad1
 
 
     .article-rule {
-      border-top: 1px solid var(--hairline);
+      border-top: 1px solid var(--muted);
       margin: 26px 0;
     }
 
-
-    /* Start of Projects / Ventures */
-    .proj-controls {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .proj-control {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .proj-control label {
-      font-size: .78rem;
-      text-transform: uppercase;
-      letter-spacing: .10em;
-      color: var(--muted);
-    }
-
-    .proj-control select {
-      font: inherit;
-      font-size: .92rem;
-      padding: 8px 10px;
-      border-radius: 10px;
+    .articles-banner {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto 32px;
+      border-radius: var(--radius);
+      overflow: hidden;
       border: 1px solid var(--hairline);
-      background: transparent;
-      color: var(--ink);
+      background: linear-gradient(135deg, rgba(225, 218, 209, 0.3) 0%, rgba(247, 244, 239, 0.8) 100%);
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .proj-list {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 16px;
+    .articles-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
     }
 
-    .proj-card {
+    .banner-placeholder {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== IMPROVED POST CARDS ===== */
+    .post-card {
       border: 1px solid var(--hairline);
       border-radius: var(--radius);
-      padding: 14px 16px;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.4);
+      overflow: hidden;
+      display: flex;
       flex-direction: column;
       height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .proj-top {
+
+    .post-cover {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--hairline) 0%, rgba(225, 218, 209, 0.5) 100%);
+      position: relative;
+    }
+
+    .post-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+
+    .post-cover-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .post-content {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .post-top {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
       gap: 12px;
+      align-items: baseline;
       flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
-    .proj-id {
+    .post-type {
       font-size: .72rem;
       text-transform: uppercase;
       letter-spacing: .10em;
       color: var(--muted);
+      padding: 4px 8px;
+      border-radius: 6px;
     }
 
-    .proj-date {
-      font-size: .85rem;
+    .post-date {
+      font-size: .80rem;
       color: var(--muted);
       white-space: nowrap;
     }
 
-    .proj-title {
-      margin: 10px 0 6px;
-      font-size: 1.08rem;
+    .post-title {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
       letter-spacing: -0.01em;
+      line-height: 1.3;
+      font-weight: 600;
     }
 
-    .proj-desc {
-      margin: 0 0 12px;
+    .post-desc {
+      margin: 0 0 16px;
       color: var(--muted);
-      max-width: 78ch;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
     }
 
-    .proj-meta {
+    .post-actions {
       display: flex;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 8px;
       align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .chip {
-      border: 1px solid var(--hairline);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--ink);
-    }
-
-    .sep {
-      color: var(--muted);
-    }
-
-    .proj-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
       margin-top: auto;
       padding-top: 10px;
+      border-top: 1px solid rgba(225, 218, 209, 0.5);
     }
 
-    .proj-links a {
+    .post-actions a {
       font-size: .82rem;
       text-transform: uppercase;
       letter-spacing: .10em;
-      text-decoration: underline;
-      text-underline-offset: 3px;
       color: var(--ink);
-      margin-top: auto;
-      padding-top: 10px;
-    }
-
-    @media (min-width: 980px) {
-      .proj-list {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 860px) {
-      .proj-list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .label {
-      color: var(--muted);
-      font-size: .78rem;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-    }
-
-    .value a {
-      text-decoration: underline;
       text-underline-offset: 3px;
+      font-weight: 500;
     }
 
-    .sep {
+    .underline-hover {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .underline-hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--ink);
+      transition: width .18s ease;
+    }
+
+    .underline-hover:hover::after {
+      width: 100%;
+    }
+
+    /* ===== SUBSTACK SUBSCRIBE SECTION ===== */
+    .substack-section {
+      margin: 48px auto;
+      padding: 32px;
+      border-radius: var(--radius);
+      text-align: center;
+      max-width: 600px;
+    }
+
+    .substack-section h3 {
+      font-size: 1.4rem;
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .substack-section p {
       color: var(--muted);
-      margin: 0 8px;
+      margin: 0 0 24px;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: .95em;
+    .substack-embed {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .contact-toast {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: .9rem;
-      min-height: 1.2em;
-    }
-
-    /* Mobile */
-    @media (max-width: 860px) {
-      .contact {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-line {
-        grid-template-columns: 80px 1fr;
-      }
-    }
-
-    /* Responsive columns */
-    @media (max-width: 980px) {
-      .photo-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .substack-embed iframe {
+      max-width: 100%;
+      border-radius: 8px;
     }
 
     @media (max-width: 640px) {
-      .photo-grid {
-        grid-template-columns: 1fr;
+      .substack-section {
+        padding: 24px 18px;
+      }
+
+      .substack-embed iframe {
+        width: 100% !important;
+        height: 280px !important;
       }
     }
 
+    /* Grid layout for articles on larger screens */
+    @media (min-width: 768px) {
+      .post-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .post-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     /* Mobile: center + even smaller */
     @media (max-width: 720px) {
@@ -500,8 +530,6 @@ Muted Background: #e1dad1
         text-align: center;
       }
     }
-
-
 
     /* Page sections - only show active page */
     .page-section {
@@ -537,7 +565,6 @@ Muted Background: #e1dad1
     }
 
     footer {
-      border-top: 1px solid var(--hairline);
       color: var(--muted);
       margin-top: 60px;
     }
@@ -1140,43 +1167,62 @@ Muted Background: #e1dad1
 
             <h2>Pinned Articles</h2>
             <div class="post-list">
-              <article class="post-card" data-date="2026-01-20"
-                data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
-                <div class="post-top">
-                  <div class="post-type">Current Events / Opinion</div>
-                  <div class="post-date">JAN 2026</div>
-                </div>
-                <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
-                <p class="post-desc">
-                <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource
-                  rich province stick around to be part of the <i>true north, strong, and free</i>?</p>
-                <div class="post-actions">
-                  <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
-                </div>
-              </article>
 
               <article class="post-card" data-date="2026-01-08"
                 data-title="Greed & Gluttony; Is Socialism the Solution?" data-type="Opinion">
-                <div class="post-top">
-                  <div class="post-type">Argumentative Analysis</div>
-                  <div class="post-date">JAN 2026</div>
+                <div class="post-cover">
+                  <img src="https://cdn.cosmos.so/792f81c6-5a0c-4437-8228-5163deef2bea?format=jpeg" alt="monopoly">
                 </div>
-                <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-                <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
-                  inherent predatory nature may not keep it afloat much longer.</p>
-                <div class="post-actions">
-                  <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+
+                <div class="post-content">
+                  <div class="post-top">
+                    <div class="post-type">Argumentative Analysis</div>
+                    <div class="post-date">JAN 2026</div>
+                  </div>
+                  <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
+                  <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
+                    inherent
+                    predatory nature may not keep it afloat much longer.</p>
+                  <div class="post-actions">
+                    <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="post-card" data-date="2026-01-20"
+                data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
+                <div class="post-cover">
+                  <img
+                    src="https://www.edmontonhistoricalboard.com/sites/default/cache/file/8D8CA290-6944-4397-B12E8E0B870F9159.jpg"
+                    alt="alberta-leg-internet-archive">
+                </div>
+
+
+                <div class="post-content">
+                  <div class="post-top">
+                    <div class="post-type">Current Events / Opinion</div>
+                    <div class="post-date">JAN 2026</div>
+                  </div>
+                  <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
+                  <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource
+                    rich
+                    province stick around to be part of the <i>true north, strong, and free</i>?</p>
+                  <div class="post-actions">
+                    <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                  </div>
                 </div>
               </article>
             </div>
-            <a class="underline-hover" style="margin-top: 20px;" href="articles.html">Find More</a>
-            <!--END OF PINNED ARTICLES-->
-          </div>
-        </article>
       </section>
 
       <section class="page-section" data-page-content="articles">
         <h2>Articles</h2>
+
+        <!--<div class="articles-banner">
+          <img src="assets/banner.png" alt="banner">
+        </div>
+        <div class="article-rule"></div>-->
+
         <div class="section-head">
           <div class="sort">
             <label for="sortArticles">Sort</label>
@@ -1193,48 +1239,78 @@ Muted Background: #e1dad1
         <div class="post-list" id="articlesList">
           <article class="post-card" data-date="2026-01-06"
             data-title="The United States of America; Policing or Pillaging?" data-type="Opinion">
-            <div class="post-top">
-              <div class="post-type">Current Events</div>
-              <div class="post-date">JAN 2026</div>
+            <div class="post-cover">
+              <img src="https://cdn.cosmos.so/38c8034b-7687-4938-80f6-f8bd48116854?format=jpeg" alt="MAP of USA">
             </div>
-            <h3 class="post-title">The United States of America; Policing or Pillaging?</h3>
-            <p class="post-desc">The United States, the empire that keeps striking back in the name of humaity or
-              imperialism?</p>
-            <div class="post-actions">
-              <a href="articles/03.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+
+            <div class="post-content">
+              <div class="post-top">
+                <div class="post-type">Current Events</div>
+                <div class="post-date">JAN 2026</div>
+              </div>
+              <h3 class="post-title">The United States of America; Policing or Pillaging?</h3>
+              <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or
+                imperialism?</p>
+              <div class="post-actions">
+                <a href="articles/03.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+              </div>
             </div>
           </article>
 
           <article class="post-card" data-date="2026-01-08" data-title="Greed & Gluttony; Is Socialism the Solution?"
             data-type="Opinion">
-            <div class="post-top">
-              <div class="post-type">Argumentative Analysis</div>
-              <div class="post-date">JAN 2026</div>
+            <div class="post-cover">
+              <img src="https://cdn.cosmos.so/792f81c6-5a0c-4437-8228-5163deef2bea?format=jpeg" alt="monopoly">
             </div>
-            <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-            <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent
-              predatory nature may not keep it afloat much longer.</p>
-            <div class="post-actions">
-              <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+
+            <div class="post-content">
+              <div class="post-top">
+                <div class="post-type">Argumentative Analysis</div>
+                <div class="post-date">JAN 2026</div>
+              </div>
+              <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
+              <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
+                inherent
+                predatory nature may not keep it afloat much longer.</p>
+              <div class="post-actions">
+                <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+              </div>
             </div>
           </article>
 
           <article class="post-card" data-date="2026-01-20"
             data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
-            <div class="post-top">
-              <div class="post-type">Current Events / Opinion</div>
-              <div class="post-date">JAN 2026</div>
+            <div class="post-cover">
+              <img
+                src="https://www.edmontonhistoricalboard.com/sites/default/cache/file/8D8CA290-6944-4397-B12E8E0B870F9159.jpg"
+                alt="alberta-leg-internet-archive">
             </div>
-            <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
-            <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich
-              province stick around to be part of the <i>true north, strong, and free</i>?</p>
-            <div class="post-actions">
-              <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+
+
+            <div class="post-content">
+              <div class="post-top">
+                <div class="post-type">Current Events / Opinion</div>
+                <div class="post-date">JAN 2026</div>
+              </div>
+              <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
+              <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich
+                province stick around to be part of the <i>true north, strong, and free</i>?</p>
+              <div class="post-actions">
+                <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+              </div>
             </div>
           </article>
         </div>
+        <div class="article-rule"></div>
+        <div class="substack-section">
+          <h2>Substack</h2>
+          <p>I also publish these pieces on Substack. If you’d like to follow along, subscribe to the mailing list and
+            never miss an article. While I appreciate the support on my main website (this one), supporting my work in
+            any form truly means a lot to me.
+          </p>
+            <iframe src="https://saaimm.substack.com/embed" width="480" height="150"  frameborder="0" scrolling="no"></iframe>
+        </div>
       </section>
-
       <section class="page-section" data-page-content="bookmarks">
         <h2>Bookmarks</h2>
         <div class="wrap">
@@ -1243,7 +1319,7 @@ Muted Background: #e1dad1
             or asked to be reread.
           </p>
 
-          <div class="filter-tags" id="filterTags">
+          <!--<div class="filter-tags" id="filterTags">
             <button class="filter-tag active" data-tag="all">all</button>
             <button class="filter-tag" data-tag="essays">essays</button>
             <button class="filter-tag" data-tag="philosophy">philosophy</button>
@@ -1252,7 +1328,7 @@ Muted Background: #e1dad1
             <button class="filter-tag" data-tag="psychology">psychology</button>
             <button class="filter-tag" data-tag="growth">growth</button>
 
-          </div>
+          </div>-->
 
           <div class="bookmarks-list" id="bookmarksList">
 
@@ -1266,6 +1342,8 @@ Muted Background: #e1dad1
             a breif description of the item bookmarked
           </p>
         </article>-->
+
+
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
@@ -1279,87 +1357,54 @@ Muted Background: #e1dad1
                 It’s similar to what Manson says in <i>The Subtle Art of Not Giving A F*ck</i>: the “easy” choices now
                 often lead to problems later, and the hard choices now tend to reward you down the line.
               </p>
+            </article>
+
+            <article class="bookmark-item" data-tags="philosophy psychology growth">
+              <span class="bookmark-link">youtube.com</span>
+              <h3 class="bookmark-title">
+                <a href="https://www.youtube.com/watch?v=SyUZc2E-PKM" target="_blank" rel="noopener">"Why do things feel less "real" now?"</a>
+              </h3>
+              <p class="bookmark-desc">
+                I came across a reflection that wasn’t trying to shock or impress, but to slow you down. It speaks to how easy it has become to mistake polish for truth and comfort for clarity. When everything around us feels manufactured, the temptation is to disengage or accept what feels good rather than what’s real. But the message here is quieter and harder: trust is built through attention, honesty, and discomfort. The work of thinking carefully, questioning gently, and staying grounded in reality isn’t easy, but it’s the only way meaning and trust survive.
+              </p>
+            </article>
           </div>
-      </section>
-      <section class="page-section" data-page-content="ventures">
-        <h2>Ventures</h2>
-        <div class="section-head">
-          <div class="proj-controls">
-            <div class="proj-control">
-              <label for="sortVentures">Sort</label>
-              <select id="sortVentures">
-                <option value="date-desc" selected>Newest</option>
-                <option value="date-asc">Oldest</option>
-                <option value="title-asc">Title (A→Z)</option>
-                <option value="title-desc">Title (Z→A)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="proj-list" id="venturesList">
-
-          <article class="proj-card" data-tags="tools,web" data-date="2025-01-01" data-title="CarbonScript">
-            <div class="proj-top">
-              <div class="proj-id">ID: 00</div>
-              <div class="proj-date">Jan 2025</div>
-            </div>
-            <h3 class="proj-title">CarbonScript</h3>
-            <p class="proj-desc">CarbonScript is a fast, structured, and intuitive scripting language designed for
-              efficiency and ease of use. With a unique syntax and built-in functions, CarbonScript makes programming
-              more readable, flexible, and dynamic.</p>
-            <div class="proj-links">
-              <a href="https://github.com/sjapanwala/carbonscript" target="_blank" rel="noreferrer">Github</a>
-              <a href="https://sjapanwala.github.io/carbonscript" target="_blank" rel="noreferrer">Documentation</a>
-            </div>
-          </article>
-
-          <article class="proj-card" data-tags="writing,research" data-date="2025-12-12" data-title="Leader and Land">
-            <div class="proj-top">
-              <div class="proj-id">ID: 01</div>
-              <div class="proj-date">Dec 2025</div>
-            </div>
-            <h3 class="proj-title">Leader & The Land</h3>
-            <p class="proj-desc">A comparative political analysis combining the thought of Hobbes and Machiavelli to
-              explain the foundations of authority, state stability, and leadership. Includes modern applications
-              through the cases of Atatürk and Gaddafi.</p>
-            <div class="proj-links">
-              <a href="assets/Leader and Land.pdf" target="_blank" rel="noreferrer">Read</a>
-            </div>
-          </article>
-
-        </div>
       </section>
     </div>
   </main>
 
   <footer>
     <div class="wrap">
+      <div class="article-rule"></div>
       <div class="footer-content">
         <div class="footer-info">
           <div class="footer-brand">Saaim Japanwala</div>
           <p class="footer-tagline">Writing at the intersection of curiosity, critique, and real life</p>
         </div>
-        <h2></h2>
-        <div class="connections-icons" aria-label="External links">
+        <div class="footer-links">
+          <div class="connections-icons" aria-label="External links">
+            <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+              <img src="assets/icons/mail.png" alt="">
+            </a>
+            <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+              <img src="assets/icons/github.png" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="assets/icons/linkedin.png" alt="">
+            </a>
+            <a href="https://saaimm.substack.com/" target="_blank" rel="noopener" aria-label="Substack">
+              <img src="assets/icons/substack.png" alt="">
+            </a>
+          </div>
 
-          <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
-            <img src="assets/icons/mail.png" alt="">
-          </a>
-          <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
-            <img src="assets/icons/github.png" alt="">
-          </a>
-          <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <img src="assets/icons/linkedin.png" alt="">
-          </a>
-          <a href="https://substack.com/@saaimm?utm_campaign=profile&utm_medium=profile-page" target="_blank"
-            rel="noopener" aria-label="Substack">
-            <img src="assets/icons/substack.png" alt="">
-          </a>
+          <div class="location">
+            <div>© <span id="year"></span> Saaim Japanwala</div>
+            <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
+          </div>
         </div>
       </div>
-      <div>© <span id="year"></span> Saaim Japanwala</div>
-      <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
+    </div>
+    </div>
     </div>
   </footer>
 
