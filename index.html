@@ -116,6 +116,29 @@ Muted Background: #e1dad1
       white-space: nowrap;
     }
 
+    .article-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .author-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+
+      .author-image:hover {
+        content: url("https://img.icons8.com/ios/50/external-link.png");
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+
+      .article-title {
+        margin: 0;
+      }
+
     nav {
       display: flex;
       align-items: center;
@@ -292,7 +315,7 @@ Muted Background: #e1dad1
 
     .article-rule {
       border-top: 1px solid var(--muted);
-      margin: 26px 0;
+      margin: 34px 0;
     }
 
     .articles-banner {
@@ -301,7 +324,7 @@ Muted Background: #e1dad1
       margin: 0 auto 32px;
       border-radius: var(--radius);
       overflow: hidden;
-      border: 1px solid var(--hairline);
+      border: 1px solid var(--ink);
       background: linear-gradient(135deg, rgba(225, 218, 209, 0.3) 0%, rgba(247, 244, 239, 0.8) 100%);
       min-height: 160px;
       display: flex;
@@ -1005,6 +1028,7 @@ Muted Background: #e1dad1
         margin: 0 0 16px;
       }
 
+
       .article-body p:first-of-type::first-letter {
         float: left;
         font-size: 3.2rem;
@@ -1018,7 +1042,6 @@ Muted Background: #e1dad1
 
       .article-rule {
         border-top: 1px solid var(--hairline);
-        margin: 26px 0;
       }
 
       .article-note {
@@ -1123,9 +1146,9 @@ Muted Background: #e1dad1
         </button>
 
         <nav id="siteNav" aria-label="Primary">
-          <a data-page="home">Home</a>
-          <a data-page="articles">Articles</a>
-          <a data-page="bookmarks">Bookmarks</a>
+          <a class="underline-hover" data-page="home">Home</a>
+          <a class="underline-hover" data-page="articles">Articles</a>
+          <a class="underline-hover" data-page="bookmarks">Bookmarks</a>
           <!--data-page="ventures">Ventures</a>-->
         </nav>
       </div>
@@ -1136,9 +1159,16 @@ Muted Background: #e1dad1
     <div class="wrap">
       <section class="page-section active" data-page-content="home">
         <article class="article">
-          <header class="article-header">
+        <header class="article-header">
+          <div class="article-author">
+            <!--<img 
+              src="assets/logo.png" 
+              alt="Saaim Japanwala"
+              class="author-image"
+            />-->
             <h1 class="article-title">Saaim Japanwala</h1>
-          </header>
+          </div>
+        </header>
           <div class="article-body">
             <h2>Personal Introduction</h2>
             <p>
@@ -1165,62 +1195,72 @@ Muted Background: #e1dad1
             <!--END OF PERSONAL INTRODUCTION. START OF PINNED ARTICLES-->
 
             <h2>Pinned Articles</h2>
-            <div class="post-list">
-
-              <article class="post-card" data-date="2026-01-08"
-                data-title="Greed & Gluttony; Is Socialism the Solution?" data-type="Opinion">
-                <div class="post-cover">
-                  <img src="https://cdn.cosmos.so/792f81c6-5a0c-4437-8228-5163deef2bea?format=jpeg" alt="monopoly">
-                </div>
-
-                <div class="post-content">
-                  <div class="post-top">
-                    <div class="post-type">Argumentative Analysis</div>
-                    <div class="post-date">JAN 2026</div>
+              <div class="post-list">
+                <article class="post-card" data-date="2026-01-08"
+                  data-title="Greed & Gluttony; Is Socialism the Solution?" data-type="Opinion">
+                  <div class="post-cover">
+                    <img src="https://cdn.cosmos.so/792f81c6-5a0c-4437-8228-5163deef2bea?format=jpeg" alt="monopoly">
                   </div>
-                  <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-                  <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
-                    inherent
-                    predatory nature may not keep it afloat much longer.</p>
-                  <div class="post-actions">
-                    <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
-                  </div>
-                </div>
-              </article>
 
-              <article class="post-card" data-date="2026-01-20"
-                data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
-                <div class="post-cover">
-                  <img
-                    src="https://www.edmontonhistoricalboard.com/sites/default/cache/file/8D8CA290-6944-4397-B12E8E0B870F9159.jpg"
-                    alt="alberta-leg-internet-archive">
-                </div>
-
-
-                <div class="post-content">
-                  <div class="post-top">
-                    <div class="post-type">Current Events / Opinion</div>
-                    <div class="post-date">JAN 2026</div>
+                  <div class="post-content">
+                    <div class="post-top">
+                      <div class="post-type">Argumentative Analysis</div>
+                      <div class="post-date">JAN 2026</div>
+                    </div>
+                    <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
+                    <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
+                      inherent
+                      predatory nature may not keep it afloat much longer.</p>
+                    <div class="post-actions">
+                      <a href="articles/greed-and-gluttony/" class="underline-hover" aria-label="Read journal entry">Read
+                        More</a>
+                    </div>
                   </div>
-                  <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
-                  <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource
-                    rich
-                    province stick around to be part of the <i>true north, strong, and free</i>?</p>
-                  <div class="post-actions">
-                    <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                </article>
+
+                <article class="post-card" data-date="2026-01-20"
+                  data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
+                  <div class="post-cover">
+                    <img
+                      src="https://www.edmontonhistoricalboard.com/sites/default/cache/file/8D8CA290-6944-4397-B12E8E0B870F9159.jpg"
+                      alt="alberta-leg-internet-archive">
                   </div>
-                </div>
-              </article>
-            </div>
+
+                    <div class="post-content">
+                      <div class="post-top">
+                        <div class="post-type">Current Events / Opinion</div>
+                        <div class="post-date">JAN 2026</div>
+                      </div>
+                      <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
+                      <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource
+                        rich
+                        province stick around to be part of the <i>true north, strong, and free</i>?</p>
+                      <div class="post-actions">
+                        <a href="articles/alberta-seperation/" class="underline-hover" aria-label="Read journal entry">Read
+                          More</a>
+                      </div>
+                    </div>
+                </article> 
+            </div> 
+            <h4 style="text-align: right;"><a href="#articles" class="underline-hover">Find Similiar Articles ↗</a></h4>
+            
+            <!--End of pinned-->
+            <div class="article-rule"><div>
+              <br>
+              <div class="articles-banner">
+                <img src="assets/banner.png" alt="banner">
+              </div>
+              <h2>Substack</h2>
+              <p>Alongside here, I write articles and explore other articles on Substack. If you would prefer to explore my work there, you can do so. Enter your email down below to be registered and never miss another post. While I appreciate the support on my main website (this one), supporting my work in any form truly means a lot to me.</p>
+              <div class="substack-section">
+                <iframe src="https://saaimm.substack.com/embed" width="480" height="150" frameborder="0"
+              scrolling="no"></iframe>
+            </div>  
+              
       </section>
 
       <section class="page-section" data-page-content="articles">
         <h2>Articles</h2>
-
-        <!--<div class="articles-banner">
-          <img src="assets/banner.png" alt="banner">
-        </div>
-        <div class="article-rule"></div>-->
 
         <div class="section-head">
           <div class="sort">
@@ -1230,7 +1270,6 @@ Muted Background: #e1dad1
               <option value="date-asc">Oldest</option>
               <option value="title-asc">Title (A→Z)</option>
               <option value="title-desc">Title (Z→A)</option>
-              <option value="type-asc">Type</option>
             </select>
           </div>
         </div>
@@ -1251,7 +1290,8 @@ Muted Background: #e1dad1
               <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or
                 imperialism?</p>
               <div class="post-actions">
-                <a href="articles/03.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                <a href="articles/policing-or-pillaging/" class="underline-hover" aria-label="Read journal entry">Read
+                  More</a>
               </div>
             </div>
           </article>
@@ -1272,7 +1312,8 @@ Muted Background: #e1dad1
                 inherent
                 predatory nature may not keep it afloat much longer.</p>
               <div class="post-actions">
-                <a href="articles/04.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                <a href="articles/greed-and-gluttony/" class="underline-hover" aria-label="Read journal entry">Read
+                  More</a>
               </div>
             </div>
           </article>
@@ -1295,20 +1336,11 @@ Muted Background: #e1dad1
               <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich
                 province stick around to be part of the <i>true north, strong, and free</i>?</p>
               <div class="post-actions">
-                <a href="articles/05.html" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                <a href="articles/alberta-seperation/" class="underline-hover" aria-label="Read journal entry">Read
+                  More</a>
               </div>
             </div>
           </article>
-        </div>
-        <div class="article-rule"></div>
-        <div class="substack-section">
-          <h2>Substack</h2>
-          <p>I also publish these pieces on Substack. If you’d like to follow along, subscribe to the mailing list and
-            never miss an article. While I appreciate the support on my main website (this one), supporting my work in
-            any form truly means a lot to me.
-          </p>
-          <iframe src="https://saaimm.substack.com/embed" width="480" height="150" frameborder="0"
-            scrolling="no"></iframe>
         </div>
       </section>
       <section class="page-section" data-page-content="bookmarks">

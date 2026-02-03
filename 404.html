@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>404 — Not Found</title>
-
-  <!-- Optional: Urdu brand font -->
+  <title>404</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
   <style>
     :root{
@@ -91,6 +90,7 @@
       background: transparent;
       position:relative;
       overflow:hidden;
+      margin-top: 75px;
     }
 
     .kicker{
@@ -178,7 +178,6 @@
       height:180%;
       background: linear-gradient(90deg, transparent, rgba(74,52,46,0.08), transparent);
       transform: skewX(-18deg);
-      animation: sweep 3.8s ease-in-out infinite;
       pointer-events:none;
     }
 
@@ -188,11 +187,99 @@
       100%{left:140%}
     }
 
-    footer{
-      border-top:1px solid var(--hairline);
-      color:var(--muted);
+    footer {
+      color: var(--muted);
+      margin-top: 60px;
     }
-    footer .wrap{padding-top:18px;padding-bottom:22px;font-size:.95rem}
+
+    footer .wrap {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-brand {
+      font-family: "Noto Nastaliq Urdu", serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0px;
+      opacity: 0.9;
+    }
+
+    .footer-tagline {
+      font-size: .95rem;
+      color: var(--muted);
+      max-width: 42ch;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+
+    @media (max-width: 760px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+        .connections-icons {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .connections-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .connections-icons img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    .connections-icons a:hover img {
+      opacity: 1;
+    }
+
+    .connections-icons a:hover {
+      transform: translateY(-1px);
+    }
+
+    .connections-icons a:focus-visible {
+      outline: 1px solid var(--ink);
+      outline-offset: 3px;
+    }
+    .article-rule {
+      border-top: 1px solid var(--muted);
+      margin: 26px 0;
+    }
 
     .mono{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -205,8 +292,8 @@
   <header>
     <div class="wrap">
       <div class="topbar">
-        <a class="brand" href="index.html" aria-label="Home">صائم جپان والا</a>
-        <a class="toplink" href="index.html">Back to Home</a>
+        <a class="brand" href="https://www.sjapanwala.com" aria-label="Home">صائم جپان والا</a>
+        <a class="toplink" href="https://www.sjapanwala.com">Back to Home</a>
       </div>
     </div>
   </header>
@@ -214,31 +301,65 @@
   <main>
     <div class="wrap">
       <section class="card" aria-label="404 not found">
-        <div class="kicker">404 · Not Found</div>
-        <h1>This page doesn’t exist.</h1>
+        <div class="kicker">Not Found: <strong>Error 404</strong></div>
+        <h1>Uh Oh...</h1>
 
         <p class="dek">
-          Either the link is broken, the page was moved, or you’ve discovered a dead-end I haven’t documented yet.
-          If something here feels missing — you’re right.
+          You were looking for "<span class="mono" id="path">/</span>", but we cannot seem to find it. Please double check the link and try again.
+          <br><br>
+          If you wish to go home: you can click the "Back To Home" button
         </p>
+        <p>
+          If there is a site error, please contact: <a href="mailto:contact@sjapanwala.com">contact@sjapanwala.com</a>
+        </p>
+        <div class="meta">
+          <span>URL Requested:</span>
+          <span class="mono" id="path">/</span>
+        </div>
 
         <div class="rule"></div>
 
         <p class="dek">
-          If you were looking for something specific, start at the home page and navigate from there.
-          (Or copy the URL and double-check the spelling — one character is enough to break the story.)
+          <i>“Being lost isn't the same as being nowhere. Being lost is worse because there's the false hope that you might be found.”</i>
+          <strong>― Paul Tremblay, The Little Sleep</strong>
         </p>
-
-        <div class="meta">
-          <span>Requested:</span>
-          <span class="mono" id="path">/</span>
-        </div>
       </section>
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">© <span id="year"></span> Saaim Japanwala</div>
+    <footer>
+    <div class="wrap">
+      <div class="article-rule"></div>
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-brand">Saaim Japanwala</div>
+          <p class="footer-tagline">Writing at the intersection of curiosity, critique, and real life</p>
+        </div>
+        <div class="footer-links">
+          <div class="connections-icons" aria-label="External links">
+            <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+              <img src="assets/icons/mail.png" alt="">
+            </a>
+            <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+              <img src="assets/icons/github.png" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="assets/icons/linkedin.png" alt="">
+            </a>
+            <a href="https://saaimm.substack.com/" target="_blank" rel="noopener" aria-label="Substack">
+              <img src="assets/icons/substack.png" alt="">
+            </a>
+          </div>
+
+          <div class="location">
+            <div>© <span id="year"></span> Saaim Japanwala</div>
+            <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
   </footer>
 
   <script>
