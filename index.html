@@ -318,6 +318,10 @@ Muted Background: #e1dad1
       margin: 34px 0;
     }
 
+      .article-rule-mini {
+      border-top: 1px solid var(--muted);
+    }
+
     .articles-banner {
       width: 100%;
       max-width: 1100px;
@@ -477,8 +481,7 @@ Muted Background: #e1dad1
 
     /* ===== SUBSTACK SUBSCRIBE SECTION ===== */
     .substack-section {
-      margin: 48px auto;
-      padding: 32px;
+      margin: 15px auto;
       border-radius: var(--radius);
       text-align: center;
       max-width: 600px;
@@ -1195,55 +1198,11 @@ Muted Background: #e1dad1
             <!--END OF PERSONAL INTRODUCTION. START OF PINNED ARTICLES-->
 
             <h2>Pinned Articles</h2>
-            <div class="post-list">
-              <article class="post-card" data-date="2026-02-03" data-title="Being Politically Correct is Not Moral"
-                data-type="Opinion">
-                <div class="post-cover">
-                  <img src="https://cdn.cosmos.so/dd253e32-6442-48c7-b588-c52e40656a6e?format=webp&w=584"
-                    alt="medival-democracy">
-                </div>
-
-
-                <div class="post-content">
-                  <div class="post-top">
-                    <div class="post-type">Opinion</div>
-                    <div class="post-date">FEB 2026</div>
-                  </div>
-                  <h3 class="post-title">Being Politically Correct is Not Moral</h3>
-                  <p class="post-desc">"politically correct" authority can lead to inhumane outcomes, such as exploiting
-                    children or mislabeling citizens.</p>
-                  <div class="post-actions">
-                    <a href="articles/being-politically-correct-is-not-moral/" class="underline-hover"
-                      aria-label="Read journal entry">Read
-                      More</a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="post-card" data-date="2026-01-08"
-                data-title="Greed & Gluttony; Is Socialism the Solution?" data-type="Opinion">
-                <div class="post-cover">
-                  <img src="https://cdn.cosmos.so/792f81c6-5a0c-4437-8228-5163deef2bea?format=jpeg" alt="monopoly">
-                </div>
-
-                <div class="post-content">
-                  <div class="post-top">
-                    <div class="post-type">Argumentative Analysis</div>
-                    <div class="post-date">JAN 2026</div>
-                  </div>
-                  <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-                  <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
-                    inherent
-                    predatory nature may not keep it afloat much longer.</p>
-                  <div class="post-actions">
-                    <a href="articles/greed-and-gluttony/" class="underline-hover" aria-label="Read journal entry">Read
-                      More</a>
-                  </div>
-                </div>
-              </article>
+            <div class="post-list" id="pinnedList">
             </div>
             <h4 style="text-align: right;"><a href="#articles" class="underline-hover">Find Similiar Articles ↗</a></h4>
 
+            <!--End of pinned-->
             <!--End of pinned-->
             <div class="article-rule">
               <div>
@@ -1252,21 +1211,25 @@ Muted Background: #e1dad1
                   <img src="assets/banner.png" alt="banner">
                 </div>
                 <h2>Substack</h2>
-                <p>Alongside here, I write articles and explore other articles on Substack. If you would prefer to
-                  explore my work there, you can do so. Enter your email down below to be registered and never miss
-                  another post. While I appreciate the support on my main website (this one), supporting my work in any
-                  form truly means a lot to me.</p>
+                <p>On Substack I run something called <i>Saaim's School of Thought</i> which is essentailly the same thing I do here, But curated to a larger audience. If you would prefer to explore my work there, you can do so. Enter your email down below to be registered and never miss another post!</p>  
                 <div class="substack-section">
                   <iframe src="https://saaimm.substack.com/embed" width="480" height="150" frameborder="0"
                     scrolling="no"></iframe>
                 </div>
 
+            <!-- END OF SUBSTACK -->
+
       </section>
 
       <section class="page-section" data-page-content="articles">
         <h2>Articles</h2>
-
         <div class="section-head">
+            <input
+              type="text"
+              id="articleSearch"
+              placeholder="Search articles..."
+              style="padding: 8px 12px; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--ink); width: 100%; max-width: 320px; background-color: var(--bg);"
+            />
           <div class="sort">
             <label for="sortArticles">Sort</label>
             <select id="sortArticles">
@@ -1279,6 +1242,7 @@ Muted Background: #e1dad1
         </div>
 
         <div class="post-list" id="articlesList">
+
           <article class="post-card" data-date="2026-01-06"
             data-title="The United States of America; Policing or Pillaging?" data-type="Opinion">
             <div class="post-cover">
@@ -1290,12 +1254,11 @@ Muted Background: #e1dad1
                 <div class="post-type">Current Events</div>
                 <div class="post-date">JAN 2026</div>
               </div>
+              <div class="article-rule-mini"></div>
               <h3 class="post-title">The United States of America; Policing or Pillaging?</h3>
-              <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or
-                imperialism?</p>
+              <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or imperialism?</p>
               <div class="post-actions">
-                <a href="articles/policing-or-pillaging/" class="underline-hover" aria-label="Read journal entry">Read
-                  More</a>
+                <a href="articles/policing-or-pillaging/" class="underline-hover" aria-label="Read journal entry">Read More</a>
               </div>
             </div>
           </article>
@@ -1311,10 +1274,9 @@ Muted Background: #e1dad1
                 <div class="post-type">Argumentative Analysis</div>
                 <div class="post-date">JAN 2026</div>
               </div>
+              <div class="article-rule-mini"></div>
               <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-              <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
-                inherent
-                predatory nature may not keep it afloat much longer.</p>
+              <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent predatory nature may not keep it afloat much longer.</p>
               <div class="post-actions">
                 <a href="articles/greed-and-gluttony/" class="underline-hover" aria-label="Read journal entry">Read
                   More</a>
@@ -1336,6 +1298,7 @@ Muted Background: #e1dad1
                 <div class="post-type">Current Events / Opinion</div>
                 <div class="post-date">JAN 2026</div>
               </div>
+              <div class="article-rule-mini"></div>
               <h3 class="post-title">Alberta Separationist Referendum: What Does This Mean</h3>
               <p class="post-desc">The political landscape in Alberta has reached a fever pitch. Will the resource rich
                 province stick around to be part of the <i>true north, strong, and free</i>?</p>
@@ -1359,6 +1322,7 @@ Muted Background: #e1dad1
                 <div class="post-type">Opinion</div>
                 <div class="post-date">FEB 2026</div>
               </div>
+              <div class="article-rule-mini"></div>
               <h3 class="post-title">Being Politically Correct is Not Moral</h3>
               <p class="post-desc">"politically correct" authority can lead to inhumane outcomes, such as exploiting
                 children or mislabeling citizens.</p>
@@ -1402,8 +1366,6 @@ Muted Background: #e1dad1
             a breif description of the item bookmarked
           </p>
         </article>-->
-
-
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
@@ -1449,7 +1411,7 @@ Muted Background: #e1dad1
         </div>
         <div class="footer-links">
           <div class="connections-icons" aria-label="External links">
-            <a href="mailto:saaim.japanwala125@gmail.com" aria-label="Email">
+            <a href="mailto:contact@sjapanwala.com" aria-label="Email">
               <img src="assets/icons/mail.png" alt="">
             </a>
             <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
@@ -1604,6 +1566,43 @@ Muted Background: #e1dad1
         });
       });
     });
+
+    function autoPinLatestPosts() {
+      const articlesList = document.querySelectorAll('#articlesList .post-card');
+      const pinnedList = document.getElementById('pinnedList');
+
+      if (!articlesList || !pinnedList) return;
+
+      // Convert NodeList to Array and sort by date descending
+      const sortedArticles = Array.from(articlesList).sort((a, b) => {
+        return new Date(b.dataset.date) - new Date(a.dataset.date);
+      });
+
+      // Clear existing pinned content
+      pinnedList.innerHTML = "";
+
+      // Clone and append top 2 latest posts
+      sortedArticles.slice(0, 2).forEach(article => {
+        const clone = article.cloneNode(true);
+        pinnedList.appendChild(clone);
+      });
+    }
+
+    // Run after DOM loaded
+    document.addEventListener('DOMContentLoaded', autoPinLatestPosts);
+
+    document.getElementById('articleSearch').addEventListener('input', function () {
+  const query = this.value.toLowerCase();
+  const articles = document.querySelectorAll('#articlesList .post-card');
+
+  articles.forEach(article => {
+    const title = (article.dataset.title || "").toLowerCase();
+    const desc = article.querySelector('.post-desc')?.textContent.toLowerCase() || "";
+    const matches = title.includes(query) || desc.includes(query);
+
+    article.style.display = matches ? 'block' : 'none';
+  });
+});
   </script>
 </body>
 
