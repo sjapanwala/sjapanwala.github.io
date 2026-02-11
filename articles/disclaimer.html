@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Site Disclaimers & Warnings</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+
+  <!-- Basic -->
+  <meta name="description"
+    content="Site Disclaimers & Warnings">
+
+  <!-- Open Graph (Facebook / iMessage / Discord / LinkedIn) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sjapanwala.com/">
+  <meta property="og:title" content="Site Disclaimers & Warnings>
+  <meta property="og:description"
+    content="Site Disclaimers & Warnings">
+  <meta property="og:image" content="https://sjapanwala.com/assets/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Site Disclaimers & Warnings">
+  <meta name="twitter:description"
+    content="Site Disclaimers & Warnings">
+  <meta name="twitter:image" content="https://sjapanwala.com/assets/logo.png">
+  <link rel="stylesheet" href="pages/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <a style="text-decoration: none;" href="../../">صائم جپان والا</a>
+        </div>
+        <a class="toplink" href="../../">Back</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article class="article">
+        <h1>Site Disclaimers & Warnings</h1>
+        <div class="article-rule"></div>
+        <p>
+          I want to begin by saying that this site has become my <i>magnum opus</i>—a cultivation of my ideas and reflections, placed here for the world to see. At the same time, both I and the reader must understand that discussions of politics and worldviews can be controversial. While I firmly believe politics can be discussed under the umbrella of respect, it is not always easy to uphold that ideal at every moment.
+        </p>
+        <p>
+        The discussions on this site range from news that restores faith in humanity, to stories that deserve attention yet go unheard, to calling out the <i>absurdity</i> of the world we live in today.
+        </p>
+        <p>
+        The views expressed here are my own and are shaped by research, lived experience, and ongoing reflection. They are not intended to instruct, persuade, or impose, but to question, analyze, and invite thoughtful dialogue.
+        </p>
+
+        <p>
+        Politics, philosophy, and morality rarely exist in clean binaries. Nuance is often uncomfortable, disagreement inevitable, and certainty rare. This space does not claim absolute truth, only an honest attempt to engage with complex realities in good faith.
+        </p>
+
+        <p>
+        Any criticism presented is directed toward ideas, systems, and institutions- not individuals or communities. Where strong language appears, it reflects the weight of the subject matter rather than hostility or malice.
+        </p>
+
+        <p>
+        Readers are encouraged to approach this site with curiosity rather than defensiveness, and to engage critically rather than reactively. Disagreement is welcome; disrespect is not.
+        </p>
+
+        <p>
+        All information referenced is drawn from publicly available sources unless otherwise stated. Errors, omissions, or oversights are possible, and when identified, will be corrected accordingly.
+        </p>
+
+        <div class="article-rule"></div>
+        <p>If you have any issues with content that is placed on this site, feel free to reach out, we can discuss the issues and hopefully come to a fair middle ground </p>
+        <p>I can be reached at: contact@sjapanwala.com</p>
+        <h3>- Saaim </h3>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="article-rule"></div>
+      <div class="footer-content">
+        <div class="footer-info">
+          <div class="footer-brand">Saaim Japanwala</div>
+          <p class="footer-tagline">Writing at the intersection of curiosity, critique, and real life</p>
+        </div>
+        <div class="footer-links">
+          <div class="connections-icons" aria-label="External links">
+            <a href="mailto:contact@sjapanwala.com" aria-label="Email">
+              <img src="../../assets/icons/mail.png" alt="">
+            </a>
+            <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
+              <img src="../../assets/icons/github.png" alt="">
+            </a>
+            <a href="https://www.linkedin.com/in/sjapanwala" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <img src="../../assets/icons/linkedin.png" alt="">
+            </a>
+            <a href="https://saaimm.substack.com/" target="_blank" rel="noopener" aria-label="Substack">
+              <img src="../../assets/icons/substack.png" alt="">
+            </a>
+          </div>
+
+          <div class="location">
+            <div>© <span id="year"></span> Saaim Japanwala</div>
+            <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Audio player
+    (function () {
+      const audio = document.getElementById("articleAudio");
+      const seek = document.getElementById("articleSeek");
+      const tNow = document.getElementById("tNow");
+      const tDur = document.getElementById("tDur");
+
+      if (!audio) return;
+
+      const fmt = (s) => {
+        if (!isFinite(s) || s < 0) return "0:00";
+        const m = Math.floor(s / 60);
+        const r = Math.floor(s % 60);
+        return `${m}:${String(r).padStart(2, "0")}`;
+      };
+
+      function syncTime() {
+        tNow.textContent = fmt(audio.currentTime);
+        tDur.textContent = fmt(audio.duration);
+
+        if (isFinite(audio.duration) && audio.duration > 0) {
+          seek.value = (audio.currentTime / audio.duration) * 100;
+        } else {
+          seek.value = 0;
+        }
+      }
+
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-audio-action]");
+        if (!btn) return;
+
+        const action = btn.getAttribute("data-audio-action");
+        if (action === "play") audio.play().catch(() => { });
+        if (action === "pause") audio.pause();
+        if (action === "stop") {
+          audio.pause();
+          audio.currentTime = 0;
+          syncTime();
+        }
+      });
+
+      seek?.addEventListener("input", () => {
+        if (!isFinite(audio.duration) || audio.duration <= 0) return;
+        audio.currentTime = (Number(seek.value) / 100) * audio.duration;
+        syncTime();
+      });
+
+      audio.addEventListener("loadedmetadata", syncTime);
+      audio.addEventListener("timeupdate", syncTime);
+      audio.addEventListener("ended", () => {
+        audio.currentTime = 0;
+        syncTime();
+      });
+
+      syncTime();
+    })();
+
+    // Header hide on scroll
+    let lastScroll = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll <= 0) {
+        header.classList.remove("hide");
+        return;
+      }
+
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        header.classList.add("hide");
+      } else {
+        header.classList.add("hide");
+      }
+
+      lastScroll = currentScroll;
+    });
+    // ===== Floating TOC builder =====
+    (function () {
+      const tocNav = document.getElementById("tocNav");
+      const body = document.querySelector(".article-body");
+      if (!tocNav || !body) return;
+
+      const headings = Array.from(body.querySelectorAll("h2, h3"));
+      if (!headings.length) return;
+
+      const slugify = (str) =>
+        str.toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-");
+
+      // Ensure unique ids (so repeated headings don't clash)
+      const used = new Set();
+      headings.forEach(h => {
+        if (!h.id) {
+          let base = slugify(h.textContent || "section");
+          let id = base;
+          let i = 2;
+          while (used.has(id) || document.getElementById(id)) {
+            id = `${base}-${i++}`;
+          }
+          h.id = id;
+        }
+        used.add(h.id);
+      });
+
+      // Build links
+      tocNav.innerHTML = headings.map(h => {
+        const level = h.tagName === "H3" ? 3 : 2;
+        return `<a href="#${h.id}" data-target="${h.id}" data-level="${level}">${h.textContent}</a>`;
+      }).join("");
+
+      const links = Array.from(tocNav.querySelectorAll("a"));
+      const HEADER_OFFSET = 86; // tweak if needed
+
+      // Smooth scroll with offset
+      links.forEach(a => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = a.dataset.target;
+          const el = document.getElementById(id);
+          if (!el) return;
+
+          const y = el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+          window.scrollTo({top: y, behavior: "smooth"});
+          history.replaceState(null, "", `#${id}`);
+        });
+      });
+
+      // Highlight active section as you scroll
+      const io = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (!visible) return;
+        const id = visible.target.id;
+
+        links.forEach(a => a.classList.toggle("active", a.dataset.target === id));
+      }, {
+        root: null,
+        rootMargin: "-20% 0px -70% 0px",
+        threshold: [0.12, 0.25, 0.5, 0.75]
+      });
+
+      headings.forEach(h => io.observe(h));
+    })();
+  </script>
+</body>
+
+</html>
