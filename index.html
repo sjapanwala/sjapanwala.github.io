@@ -61,6 +61,8 @@ Muted Background: #e1dad1
           <a class="underline-hover" data-page="home">Home</a>
           <a class="underline-hover" data-page="articles">Articles</a>
           <a class="underline-hover" data-page="bookmarks">Bookmarks</a>
+          <a class="underline-hover" href="https://saaimm.substack.com/" target="_blank" rel="noopener">Substack</a>
+          <a class="underline-hover" data-page="discussions">Discussion</a>
           <!--data-page="ventures">Ventures</a>-->
         </nav>
       </div>
@@ -343,6 +345,79 @@ Muted Background: #e1dad1
             
           </div>
       </section>
+
+<section class="page-section" data-page-content="discussions">
+  <h2>Discussions</h2>
+  <p>Conversations from across articles and site-wide discussions appear here.</p>
+
+  <div class="discussions-layout">
+    <!-- LEFT SIDE: ARTICLE LIST -->
+
+    <div class="discussion-list">
+      <!--this article to be remained pinned-->
+      <button class="discussion-item"
+        data-system="new"
+        data-mapping="announcements"
+        data-title="Announcements">
+        Announcements
+      </button>
+      <button class="discussion-item"
+        data-system="new"
+        data-mapping="general"
+        data-title="General">
+        General
+      </button>
+      <div class="article-rule-mini"></div>
+      <!-- ===== OLD SYSTEM (numeric) ===== -->
+      <button class="discussion-item"
+        data-system="new"
+        data-mapping="the-weaponization-of-you"
+        data-title="The Weaponization of You">
+        The Weaponization of You
+      </button>
+
+      <button class="discussion-item"
+        data-system="new"
+        data-mapping="being-politically-correct-is-not-moral"
+        data-title="Being Politically Correct is Not Moral">
+        Being Politically Correct is Not Moral
+      </button>
+
+      <button class="discussion-item"
+        data-system="old"
+        data-term="5"
+        data-title="Alberta Separationist Referendum; What Does This Mean?">
+        Alberta Separationist Referendum; What Does This Mean?
+      </button>
+
+      <button class="discussion-item"
+        data-system="old"
+        data-term="4"
+        data-title="Greed & Gluttony; Is Socialism the Solution?">
+        Greed & Gluttony; Is Socialism the Solution?
+      </button>
+
+      <button class="discussion-item"
+        data-system="old"
+        data-term="3"
+        data-title="The United States of America; Policing or Pillaging?">
+        The United States of America; Policing or Pillaging?
+      </button>
+
+    </div>
+
+    <!-- RIGHT SIDE: VIEWER -->
+
+    <div class="discussion-viewer">
+      <h3 id="discussionTitle">
+        Select an article to view discussion
+      </h3>
+
+      <div id="giscusContainer"></div>
+    </div>
+
+  </div>
+</section>
     </div>
   </main>
 
@@ -547,6 +622,95 @@ Muted Background: #e1dad1
     const matches = title.includes(query) || desc.includes(query);
 
     article.style.display = matches ? 'block' : 'none';
+  });
+});
+
+
+// ===== Discussions Page Logic (Clean Split Systems) =====
+
+const discussionItems = document.querySelectorAll(".discussion-item");
+const giscusContainer = document.getElementById("giscusContainer");
+const discussionTitle = document.getElementById("discussionTitle");
+
+// ---------- OLD SYSTEM (data-term / numeric) ----------
+function loadOldDiscussion(term, title) {
+  giscusContainer.innerHTML = "";
+  discussionTitle.textContent = title;
+
+  const script = document.createElement("script");
+  script.src = "https://giscus.app/client.js";
+  script.async = true;
+
+  script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
+  script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
+  script.setAttribute("data-category", "Ideas");
+  script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
+
+  script.setAttribute("data-mapping", "number");
+  script.setAttribute("data-term", term);
+
+  script.setAttribute("data-strict", "0");
+  script.setAttribute("data-reactions-enabled", "1");
+  script.setAttribute("data-emit-metadata", "0");
+  script.setAttribute("data-input-position", "top");
+  script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
+  script.setAttribute("data-lang", "en");
+  script.setAttribute("crossorigin", "anonymous");
+
+  giscusContainer.appendChild(script);
+}
+
+// ---------- NEW SYSTEM (data-mapping / slug style) ----------
+function loadNewDiscussion(mappingValue, title) {
+    giscusContainer.innerHTML = "";
+    discussionTitle.textContent = title;
+    
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
+    script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
+    script.setAttribute("data-category", "Ideas");
+    script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
+
+    // FIX STARTS HERE
+    script.setAttribute("data-mapping", "specific"); // Tell Giscus we are providing a specific term
+    script.setAttribute("data-term", mappingValue);   // This is where your slug goes
+    // FIX ENDS HERE
+
+    script.setAttribute("data-strict", "0");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "top");
+    script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
+    script.setAttribute("data-lang", "en");
+    script.setAttribute("crossorigin", "anonymous");
+    
+    giscusContainer.appendChild(script);
+}
+
+// ---------- Router ----------
+discussionItems.forEach(item => {
+  item.addEventListener("click", () => {
+
+    discussionItems.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
+    const system = item.dataset.system;
+    const term = item.dataset.term;
+    const mapping = item.dataset.mapping;
+    const title = item.dataset.title || item.textContent.trim();
+
+    if (system === "old" && term) {
+      loadOldDiscussion(term, title);
+    }
+    else if (system === "new" && mapping) {
+      loadNewDiscussion(mapping, title);
+    }
+    else {
+      giscusContainer.innerHTML =
+        "<p style='color: var(--muted)'>Discussion not configured properly.</p>";
+    }
   });
 });
   </script>
