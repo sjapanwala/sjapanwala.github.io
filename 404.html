@@ -285,6 +285,26 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size:.95em;
     }
+    .underline-hover {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 2px;
+    }
+
+    .underline-hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      width: 0%;
+      background: var(--ink);
+      transition: width .18s ease;
+    }
+
+    .underline-hover:hover::after {
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -310,12 +330,8 @@
           If you wish to go home: you can click the "Back To Home" button
         </p>
         <p>
-          If there is a site error, please contact: <a href="mailto:contact@sjapanwala.com">contact@sjapanwala.com</a>
+          If there is a site error, please contact: <a class="underline-hover" style="text-decoration: none;" href="mailto:contact@sjapanwala.com">contact@sjapanwala.com</a>
         </p>
-        <div class="meta">
-          <span>URL Requested:</span>
-          <span class="mono" id="path">/</span>
-        </div>
 
         <div class="rule"></div>
 

@@ -44,8 +44,7 @@ Muted Background: #e1dad1
   <meta name="twitter:description"
     content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
   <meta name="twitter:image" content="https://sjapanwala.com/assets/logo.png">
-  <link rel="stylesheet" href="assets/style.css">
-
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
@@ -62,7 +61,8 @@ Muted Background: #e1dad1
           <a class="underline-hover" data-page="articles">Articles</a>
           <a class="underline-hover" data-page="bookmarks">Bookmarks</a>
           <a class="underline-hover" href="https://saaimm.substack.com/" target="_blank" rel="noopener">Substack</a>
-          <a class="underline-hover" data-page="discussions">Discussion</a>
+          <a class="underline-hover" data-page="threads">Threads</a>
+          <a class="underline-hover" data-page="about">About</a>
           <!--data-page="ventures">Ventures</a>-->
         </nav>
       </div>
@@ -72,62 +72,63 @@ Muted Background: #e1dad1
   <main>
     <div class="wrap">
       <section class="page-section active" data-page-content="home">
-        <article class="article">
-          <header class="article-header">
-            <div class="article-author">
-              <!--<img 
-              src="assets/logo.png" 
-              alt="Saaim Japanwala"
-              class="author-image"
-            />-->
-              <h1 class="article-title">Saaim Japanwala</h1>
-            </div>
-          </header>
-          <div class="article-body">
-            <h2>Personal Introduction</h2>
-            <p>
-              This site began the way most things do for me: with questions. About the world, about systems, about
-              people, and about how technology and ideas quietly shape our everyday lives.
-            </p>
 
-            <p>
-              I'm <strong>Saaim Japanwala</strong> — a <a style="text-decoration: underline;"><i>student</i></a>, a <a
-                data-page="articles" style="text-decoration: underline;"><i>writer</i></a>, and
-              someone who's constantly
-              documenting the
-              things I'm
-              learning, building, and unlearning along the way. What you'll find here isn't a polished manifesto or a
-              finished product. It's a working archive. Essays, projects, code, photography, and notes that sit
-              somewhere between curiosity and conviction.
-            </p>
-            <p>
-              If something here makes you pause, disagree, or think a little longer, then it's doing its job. Not
-              because every idea presented is meant to be accepted, but because passivity is easy and thought is not.
-            </p>
-            <div class="article-rule"></div>
+        <!-- HERO: site-first -->
+        <div class="home-hero">
+          <p class="home-kicker">A working archive</p>
+          <h1 class="home-headline">Writing at the intersection of curiosity, critique, and real life</h1>
+          <p class="home-sub">
+            Unfiltered perspectives on power, policy, culture, and the ideas quietly reshaping the world around us.
+          </p>
+          <div class="home-actions">
+            <a data-page="articles" class="home-btn-primary underline-hover">Read the Articles</a>
+            <a data-page="about" class="home-btn-primary underline-hover">About this site →</a>
+          </div>
+        </div>
 
-            <!--END OF PERSONAL INTRODUCTION. START OF PINNED ARTICLES-->
+        <div class="home-rule"></div>
 
-            <h2>Pinned Articles</h2>
-            <div class="post-list" id="pinnedList">
-            </div>
-            <h4 style="text-align: right;"><a href="#articles" class="underline-hover">Find Similiar Articles ↗</a></h4>
+        <div class="home-pillars">
+          <div class="home-pillar">
+            <span class="pillar-label">Articles</span>
+            <p class="pillar-desc">Opinion, analysis, and current events that invite reflection rather than easy agreement.</p>
+            <a data-page="articles" class="pillar-link underline-hover">Browse →</a>
+          </div>
+          <div class="home-pillar">
+            <span class="pillar-label">Bookmarks</span>
+            <p class="pillar-desc">A small shelf of essays, videos, and ideas that changed something in me or asked to be reread.</p>
+            <a data-page="bookmarks" class="pillar-link underline-hover">Browse →</a>
+          </div>
+          <div class="home-pillar">
+            <span class="pillar-label">Discussion Threads</span>
+            <p class="pillar-desc">Every article has an open thread. Push back, add context, or disagree — that's the point.</p>
+            <a data-page="threads" class="pillar-link underline-hover">Contribute →</a>
+          </div>
+        </div>
 
-            <!--End of pinned-->
-            <!--End of pinned-->
-            <!-- END OF SUBSTACK -->
+        <div class="home-rule"></div>
+
+        <!-- LATEST ARTICLES -->
+        <div class="home-section-head">
+          <h2>Latest</h2>
+          <a data-page="articles" class="home-see-all underline-hover">All articles →</a>
+        </div>
+        <div class="post-list" id="pinnedList"></div>
+
       </section>
 
       <section class="page-section" data-page-content="articles">
         <!--JUMP TO ARTICLES-->
-        <h2>Articles</h2>
+        <div class="about-hero">
+      <h1 class="about-title">Articles</h1>
+      <p class="about-sub">
+        Perspectives on the modern world through a lens of reason, skepticism, and inquiry. These pieces explore not just what is happening, but why it matters.
+      </p>
+    </div>
+    <div class="article-rule"></div>
         <div class="section-head">
-            <input
-              type="text"
-              id="articleSearch"
-              placeholder="Search articles..."
-              style="padding: 8px 12px; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--ink); width: 100%; max-width: 320px; background-color: var(--bg);"
-            />
+          <input type="text" id="articleSearch" placeholder="Search articles..."
+            style="padding: 8px 12px; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--ink); width: 100%; max-width: 320px; background-color: var(--bg);" />
           <div class="sort">
             <label for="sortArticles">Sort</label>
             <select id="sortArticles">
@@ -154,9 +155,11 @@ Muted Background: #e1dad1
               </div>
               <div class="article-rule-mini"></div>
               <h3 class="post-title">The United States of America; Policing or Pillaging?</h3>
-              <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or imperialism?</p>
+              <p class="post-desc">The United States, the empire that keeps striking back in the name of humanity or
+                imperialism?</p>
               <div class="post-actions">
-                <a href="articles/policing-or-pillaging/" class="underline-hover" aria-label="Read journal entry">Read More</a>
+                <a href="articles/policing-or-pillaging/" class="underline-hover" aria-label="Read journal entry">Read
+                  More</a>
               </div>
             </div>
           </article>
@@ -174,7 +177,8 @@ Muted Background: #e1dad1
               </div>
               <div class="article-rule-mini"></div>
               <h3 class="post-title">Greed & Gluttony; Is Socialism the Solution?</h3>
-              <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its inherent predatory nature may not keep it afloat much longer.</p>
+              <p class="post-desc">While capitalism is often championed as the ultimate guarantor of freedom, its
+                inherent predatory nature may not keep it afloat much longer.</p>
               <div class="post-actions">
                 <a href="articles/greed-and-gluttony/" class="underline-hover" aria-label="Read journal entry">Read
                   More</a>
@@ -185,9 +189,7 @@ Muted Background: #e1dad1
           <article class="post-card" data-date="2026-01-20"
             data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
             <div class="post-cover">
-              <img
-                src="articles/image-assets/DSC_1390.JPG"
-                alt="alberta-leg-internet-archive">
+              <img src="articles/image-assets/DSC_1390.JPG" alt="alberta-leg-internet-archive">
             </div>
 
 
@@ -223,7 +225,8 @@ Muted Background: #e1dad1
               <div class="article-rule-mini"></div>
               <h3 class="post-title">Being Politically Correct is Not Moral</h3>
               <p class="post-desc">"politically correct" authority can lead to inhumane outcomes, such as exploiting
-                children or mislabeling citizens. Covering the notion of how ICE may be politically correct, but far exceeds the limit of immorality.</p>
+                children or mislabeling citizens. Covering the notion of how ICE may be politically correct, but far
+                exceeds the limit of immorality.</p>
               <div class="post-actions">
                 <a href="articles/being-politically-correct-is-not-moral/" class="underline-hover"
                   aria-label="Read journal entry">Read
@@ -232,8 +235,7 @@ Muted Background: #e1dad1
             </div>
           </article>
 
-          <article class="post-card" data-date="2026-02-15" data-title="The Weaponization of You"
-            data-type="Opinion">
+          <article class="post-card" data-date="2026-02-15" data-title="The Weaponization of You" data-type="Opinion">
             <div class="post-cover">
               <img src="https://cdn.cosmos.so/b7c4f257-d386-4b5b-a764-b3fe7a5b1751?format=webp&w=1168"
                 alt="cool-image-from-cosmos">
@@ -246,7 +248,9 @@ Muted Background: #e1dad1
               </div>
               <div class="article-rule-mini"></div>
               <h3 class="post-title">The Weaponization of You</h3>
-              <p class="post-desc">Social media platforms extract personal data in exchange for access, turning users into detailed psychological profiles that can be used for targeted advertising, political manipulation, and surveillance.</p>
+              <p class="post-desc">Social media platforms extract personal data in exchange for access, turning users
+                into detailed psychological profiles that can be used for targeted advertising, political manipulation,
+                and surveillance.</p>
               <div class="post-actions">
                 <a href="articles/the-weaponization-of-you/" class="underline-hover"
                   aria-label="Read journal entry">Read
@@ -257,12 +261,14 @@ Muted Background: #e1dad1
         </div>
       </section>
       <section class="page-section" data-page-content="bookmarks">
-        <h2>Bookmarks</h2>
-        <div class="wrap">
-          <p class="lede">
-            A small shelf of things I’ve stumbled into and kept. Essays, tools, and ideas that changed something in me
-            or asked to be reread.
-          </p>
+    <div class="about-hero">
+      <h1 class="about-title">Bookmarks</h1>
+      <p class="about-sub">
+        A small shelf of things I’ve stumbled into and kept. Essays, tools, and ideas that changed something in me or asked to be reread.
+      </p>
+    </div>
+      <div class="article-rule"></div>
+    <div class="wrap">
 
           <!--<div class="filter-tags" id="filterTags">
             <button class="filter-tag active" data-tag="all">all</button>
@@ -290,18 +296,23 @@ Muted Background: #e1dad1
             <article class="bookmark-item" data-tags="humanism humanity genocide palestine">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
-                <a href="https://www.youtube.com/watch?v=nMyyVaiY4V8&t=500s" target="_blank" rel="noopener">'Our Genocide': How do Israelis feel about the war in Gaza? | On the Ground</a>
+                <a href="https://www.youtube.com/watch?v=nMyyVaiY4V8&t=500s" target="_blank" rel="noopener">'Our
+                  Genocide': How do Israelis feel about the war in Gaza? | On the Ground</a>
               </h3>
               <p class="bookmark-desc">
-                I recommend everyone watch this video and take time to reflect and notice particularly on how powerful propaganda is and how easily it can sway people. Without spoiling too much, it is unfathomable to witness how, within a 10 km radius, some civilians are partying and enjoying every moment of their lives while others are being bombed, raped, and murdered in cold blood, simply because of the misfortune of being born into a different race.
+                I recommend everyone watch this video and take time to reflect and notice particularly on how powerful
+                propaganda is and how easily it can sway people. Without spoiling too much, it is unfathomable to
+                witness how, within a 10 km radius, some civilians are partying and enjoying every moment of their lives
+                while others are being bombed, raped, and murdered in cold blood, simply because of the misfortune of
+                being born into a different race.
               </p>
             </article>
 
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
-                <a href="https://www.youtube.com/watch?v=SyUZc2E-PKM" target="_blank" rel="noopener">"Why do things feel
-                  less "real" now?"</a>
+                <a href="https://www.youtube.com/watch?v=SyUZc2E-PKM" target="_blank" rel="noopener">Why do things feel
+                  less "real" now?</a>
               </h3>
               <p class="bookmark-desc">
                 I came across a reflection that wasn’t trying to shock or impress, but to slow you down. It speaks to
@@ -317,8 +328,8 @@ Muted Background: #e1dad1
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
-                <a href="https://www.youtube.com/watch?v=DwauNBnF-8A" target="_blank" rel="noopener">"The Most Dangerous
-                  Mindset I See as a Therapist"</a>
+                <a href="https://www.youtube.com/watch?v=DwauNBnF-8A" target="_blank" rel="noopener">The Most Dangerous
+                  Mindset I See as a Therapist</a>
               </h3>
               <p class="bookmark-desc">
                 I stumbled across a message from a high school counsellor that genuinely aimed to help people who fall
@@ -329,85 +340,130 @@ Muted Background: #e1dad1
               </p>
             </article>
 
-            
+
           </div>
       </section>
 
-<section class="page-section" data-page-content="discussions">
-  <h2>Discussions</h2>
-  <p>Conversations from across articles and site-wide discussions appear here.</p>
+      <section class="page-section" data-page-content="threads">
+        <div class="about-hero">
+      <h1 class="about-title">Threads</h1>
+      <p class="about-sub">
+       Conversations from across articles and site-wide discussions appear here. Make sure to follow <strong><a class="underline-hover" href="articles/rules.html">Site TOS</a></strong> for commenting. 
+      </p>
+    </div>
+    <div class="article-rule"></div>
 
-  <div class="discussions-layout">
-    <!-- LEFT SIDE: ARTICLE LIST -->
+        <div class="discussions-layout">
+          <!-- LEFT SIDE: ARTICLE LIST -->
 
-    <div class="discussion-list">
-      <!--this article to be remained pinned-->
-      <button class="discussion-item"
-        data-system="new"
-        data-mapping="announcements"
-        data-title="Announcements">
-        Announcements
-      </button>
-      <button class="discussion-item"
-        data-system="new"
-        data-mapping="general"
-        data-title="General">
-        General
-      </button>
-      <div class="article-rule-mini"></div>
-      <!-- ===== OLD SYSTEM (numeric) ===== -->
-      <button class="discussion-item"
-        data-system="new"
-        data-mapping="the-weaponization-of-you"
-        data-title="The Weaponization of You">
-        The Weaponization of You
-      </button>
+          <div class="discussion-list">
+            <!--this article to be remained pinned-->
+            <button class="discussion-item" data-system="new" data-mapping="announcements" data-title="Announcements">
+              Announcements
+            </button>
+            <button class="discussion-item" data-system="new" data-mapping="general" data-title="General">
+              General
+            </button>
+            <div class="article-rule-mini"></div>
+            <!-- ===== OLD SYSTEM (numeric) ===== -->
+            <button class="discussion-item" data-system="new" data-mapping="the-weaponization-of-you"
+              data-title="The Weaponization of You">
+              The Weaponization of You
+            </button>
 
-      <button class="discussion-item"
-        data-system="new"
-        data-mapping="being-politically-correct-is-not-moral"
-        data-title="Being Politically Correct is Not Moral">
-        Being Politically Correct is Not Moral
-      </button>
+            <button class="discussion-item" data-system="new" data-mapping="being-politically-correct-is-not-moral"
+              data-title="Being Politically Correct is Not Moral">
+              Being Politically Correct is Not Moral
+            </button>
 
-      <button class="discussion-item"
-        data-system="old"
-        data-term="5"
-        data-title="Alberta Separationist Referendum; What Does This Mean?">
-        Alberta Separationist Referendum; What Does This Mean?
-      </button>
+            <button class="discussion-item" data-system="old" data-term="5"
+              data-title="Alberta Separationist Referendum; What Does This Mean?">
+              Alberta Separationist Referendum; What Does This Mean?
+            </button>
 
-      <button class="discussion-item"
-        data-system="old"
-        data-term="4"
-        data-title="Greed & Gluttony; Is Socialism the Solution?">
-        Greed & Gluttony; Is Socialism the Solution?
-      </button>
+            <button class="discussion-item" data-system="old" data-term="4"
+              data-title="Greed & Gluttony; Is Socialism the Solution?">
+              Greed & Gluttony; Is Socialism the Solution?
+            </button>
 
-      <button class="discussion-item"
-        data-system="old"
-        data-term="3"
-        data-title="The United States of America; Policing or Pillaging?">
-        The United States of America; Policing or Pillaging?
-      </button>
+            <button class="discussion-item" data-system="old" data-term="3"
+              data-title="The United States of America; Policing or Pillaging?">
+              The United States of America; Policing or Pillaging?
+            </button>
 
+          </div>
+
+          <!-- RIGHT SIDE: VIEWER -->
+
+          <div class="discussion-viewer">
+            <h3 id="discussionTitle">
+              Select a Topic To View The Thread
+            </h3>
+
+            <div id="giscusContainer"></div>
+          </div>
+
+        </div>
+      </section>
+
+
+<section class="page-section" data-page-content="about">
+  <div class="about-wrap">
+    <!-- HERO -->
+    <div class="about-hero">
+      <h1 class="about-title">About</h1>
+      <p class="about-sub">
+        A deeper look behind the scenes into the purpose that drives this work, the goals that shape its direction, and the story that makes it meaningful.
+      </p>
     </div>
 
-    <!-- RIGHT SIDE: VIEWER -->
+    <div class="article-rule"></div>
 
-    <div class="discussion-viewer">
-      <h3 id="discussionTitle">
-        Select an article to view discussion
-      </h3>
+    <!-- TWO COLUMN: LEFT BODY + RIGHT SIDEBAR -->
+    <div class="about-grid">
+      <!-- LEFT -->
+      <div class="about-main">
+        <div class="about-card">
+          <h3 class="about-h">What this site is</h3>
+          <p>
+            <strong>sjapanwala.com</strong> is where I publish opinion, analysis, and current events writing im not trying to
+            “win” arguments, but to release ideas in public. If something here makes you pause, disagree, or
+            re-check your assumptions, it’s doing its job.
+          </p>
+        </div>
 
-      <div id="giscusContainer"></div>
+        <div class="about-card">
+          <h3 class="about-h">What I believe about writing</h3>
+          <p>
+            I’m not interested in performative neutrality. I’m interested in clarity: what happened, what it means, who it
+            benefits, and what we pretend not to see.
+          </p>
+        </div>
+
+        
+      </div>
+
+        <div class="about-panel">
+          <h3 class="about-h">Policy Links</h3>
+          <p class="about-muted" style="margin-top:10px;">
+            Any sort of policies, guidelines or extra information needed is available here.
+          </p>
+
+          <div class="about-links">
+            <div class="article-rule-mini"></div>
+          </div>
+          <a class="underline-hover" href="articles/rules.html">∙ Site Rules</a><br>
+          <a class="underline-hover" href="articles/disclaimer.html">∙ Disclaimer</a><br>
+          <a class="underline-hover" href="articles/legal.html">∙ Legal</a>
+        </div>
+      </aside>
     </div>
+
 
   </div>
 </section>
-    </div>
-  </main>
 
+  </main>
   <footer>
     <div class="wrap">
       <div class="article-rule"></div>
@@ -418,7 +474,7 @@ Muted Background: #e1dad1
         </div>
         <div class="footer-links">
           <div class="connections-icons" aria-label="External links">
-            <a href="mailto:contact@sjapanwala.com" aria-label="Email">
+            <a href="/cdn-cgi/l/email-protection#60030f0e1401031420130a0110010e17010c014e030f0d" aria-label="Email">
               <img src="assets/icons/mail.png" alt="">
             </a>
             <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
@@ -436,7 +492,7 @@ Muted Background: #e1dad1
             <div>© <span id="year"></span> Saaim Japanwala</div>
             <div style="color: var(--muted); font-size: .82rem;">AB, Canada</div>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -444,7 +500,7 @@ Muted Background: #e1dad1
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const navLinks = document.querySelectorAll('[data-page]');
     const pageSections = document.querySelectorAll('[data-page-content]');
     const menuBtn = document.getElementById("menuBtn");
@@ -600,107 +656,107 @@ Muted Background: #e1dad1
     document.addEventListener('DOMContentLoaded', autoPinLatestPosts);
 
     document.getElementById('articleSearch').addEventListener('input', function () {
-  const query = this.value.toLowerCase();
-  const articles = document.querySelectorAll('#articlesList .post-card');
+      const query = this.value.toLowerCase();
+      const articles = document.querySelectorAll('#articlesList .post-card');
 
-  articles.forEach(article => {
-    const title = (article.dataset.title || "").toLowerCase();
-    const desc = article.querySelector('.post-desc')?.textContent.toLowerCase() || "";
-    const matches = title.includes(query) || desc.includes(query);
+      articles.forEach(article => {
+        const title = (article.dataset.title || "").toLowerCase();
+        const desc = article.querySelector('.post-desc')?.textContent.toLowerCase() || "";
+        const matches = title.includes(query) || desc.includes(query);
 
-    article.style.display = matches ? 'block' : 'none';
-  });
-});
+        article.style.display = matches ? 'block' : 'none';
+      });
+    });
 
 
-// ===== Discussions Page Logic (Clean Split Systems) =====
+    // ===== Discussions Page Logic (Clean Split Systems) =====
 
-const discussionItems = document.querySelectorAll(".discussion-item");
-const giscusContainer = document.getElementById("giscusContainer");
-const discussionTitle = document.getElementById("discussionTitle");
+    const discussionItems = document.querySelectorAll(".discussion-item");
+    const giscusContainer = document.getElementById("giscusContainer");
+    const discussionTitle = document.getElementById("discussionTitle");
 
-// ---------- OLD SYSTEM (data-term / numeric) ----------
-function loadOldDiscussion(term, title) {
-  giscusContainer.innerHTML = "";
-  discussionTitle.textContent = title;
+    // ---------- OLD SYSTEM (data-term / numeric) ----------
+    function loadOldDiscussion(term, title) {
+      giscusContainer.innerHTML = "";
+      discussionTitle.textContent = title;
 
-  const script = document.createElement("script");
-  script.src = "https://giscus.app/client.js";
-  script.async = true;
+      const script = document.createElement("script");
+      script.src = "https://giscus.app/client.js";
+      script.async = true;
 
-  script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
-  script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
-  script.setAttribute("data-category", "Ideas");
-  script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
+      script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
+      script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
+      script.setAttribute("data-category", "Ideas");
+      script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
 
-  script.setAttribute("data-mapping", "number");
-  script.setAttribute("data-term", term);
+      script.setAttribute("data-mapping", "number");
+      script.setAttribute("data-term", term);
 
-  script.setAttribute("data-strict", "0");
-  script.setAttribute("data-reactions-enabled", "1");
-  script.setAttribute("data-emit-metadata", "0");
-  script.setAttribute("data-input-position", "top");
-  script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
-  script.setAttribute("data-lang", "en");
-  script.setAttribute("crossorigin", "anonymous");
+      script.setAttribute("data-strict", "0");
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-input-position", "top");
+      script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
+      script.setAttribute("data-lang", "en");
+      script.setAttribute("crossorigin", "anonymous");
 
-  giscusContainer.appendChild(script);
-}
-
-// ---------- NEW SYSTEM (data-mapping / slug style) ----------
-function loadNewDiscussion(mappingValue, title) {
-    giscusContainer.innerHTML = "";
-    discussionTitle.textContent = title;
-    
-    const script = document.createElement("script");
-    script.src = "https://giscus.app/client.js";
-    script.async = true;
-    script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
-    script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
-    script.setAttribute("data-category", "Ideas");
-    script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
-
-    // FIX STARTS HERE
-    script.setAttribute("data-mapping", "specific"); // Tell Giscus we are providing a specific term
-    script.setAttribute("data-term", mappingValue);   // This is where your slug goes
-    // FIX ENDS HERE
-
-    script.setAttribute("data-strict", "0");
-    script.setAttribute("data-reactions-enabled", "1");
-    script.setAttribute("data-emit-metadata", "0");
-    script.setAttribute("data-input-position", "top");
-    script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
-    script.setAttribute("data-lang", "en");
-    script.setAttribute("crossorigin", "anonymous");
-    
-    giscusContainer.appendChild(script);
-}
-
-// ---------- Router ----------
-discussionItems.forEach(item => {
-  item.addEventListener("click", () => {
-
-    discussionItems.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
-
-    const system = item.dataset.system;
-    const term = item.dataset.term;
-    const mapping = item.dataset.mapping;
-    const title = item.dataset.title || item.textContent.trim();
-
-    if (system === "old" && term) {
-      loadOldDiscussion(term, title);
+      giscusContainer.appendChild(script);
     }
-    else if (system === "new" && mapping) {
-      loadNewDiscussion(mapping, title);
+
+    // ---------- NEW SYSTEM (data-mapping / slug style) ----------
+    function loadNewDiscussion(mappingValue, title) {
+      giscusContainer.innerHTML = "";
+      discussionTitle.textContent = title;
+
+      const script = document.createElement("script");
+      script.src = "https://giscus.app/client.js";
+      script.async = true;
+      script.setAttribute("data-repo", "sjapanwala/sjapanwala.github.io");
+      script.setAttribute("data-repo-id", "R_kgDOMyRRYw");
+      script.setAttribute("data-category", "Ideas");
+      script.setAttribute("data-category-id", "DIC_kwDOMyRRY84C1bi5");
+
+      // FIX STARTS HERE
+      script.setAttribute("data-mapping", "specific"); // Tell Giscus we are providing a specific term
+      script.setAttribute("data-term", mappingValue);   // This is where your slug goes
+      // FIX ENDS HERE
+
+      script.setAttribute("data-strict", "0");
+      script.setAttribute("data-reactions-enabled", "1");
+      script.setAttribute("data-emit-metadata", "0");
+      script.setAttribute("data-input-position", "top");
+      script.setAttribute("data-theme", "https://sjapanwala.com/assets/theme.css");
+      script.setAttribute("data-lang", "en");
+      script.setAttribute("crossorigin", "anonymous");
+
+      giscusContainer.appendChild(script);
     }
-    else {
-      giscusContainer.innerHTML =
-        "<p style='color: var(--muted)'>Discussion not configured properly.</p>";
-    }
-  });
-});
+
+    // ---------- Router ----------
+    discussionItems.forEach(item => {
+      item.addEventListener("click", () => {
+
+        discussionItems.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+
+        const system = item.dataset.system;
+        const term = item.dataset.term;
+        const mapping = item.dataset.mapping;
+        const title = item.dataset.title || item.textContent.trim();
+
+        if (system === "old" && term) {
+          loadOldDiscussion(term, title);
+        }
+        else if (system === "new" && mapping) {
+          loadNewDiscussion(mapping, title);
+        }
+        else {
+          giscusContainer.innerHTML = "<p style='color:var(--muted);font-size:.9rem;'>Select a thread from the left to load comments.</p>";
+          discussionTitle.textContent = "Select A Topic";
+        }
+      });
+    });
+
   </script>
 </body>
-
 </html>
