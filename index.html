@@ -4,6 +4,7 @@
 <!-- 
 - Welcome Developer To My Website - Im sure if you are back here, you are looking for source code.
 - This website is a combination of my own skill, and AI Code Generation. Please make sure to credit where information is used
+
 - Copying articles & ventures is strictly prohibited - if you would like to use them as citation, please cite them correctly and credit "Saaim Japanwala" as the author
 
 Color Groups Used:
@@ -24,11 +25,8 @@ Muted Background: #e1dad1
   <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
-  <!-- Basic -->
   <meta name="description"
     content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
-
-  <!-- Open Graph (Facebook / iMessage / Discord / LinkedIn) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sjapanwala.com/">
   <meta property="og:title" content="Saaim Japanwala">
@@ -44,7 +42,7 @@ Muted Background: #e1dad1
   <meta name="twitter:description"
     content="This site began the way most things do for me: with questions. About the world, about systems, about people, and about how technology and ideas quietly shape our everyday lives.">
   <meta name="twitter:image" content="https://sjapanwala.com/assets/logo.png">
-    <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
@@ -63,7 +61,6 @@ Muted Background: #e1dad1
           <a class="underline-hover" href="https://saaimm.substack.com/" target="_blank" rel="noopener">Substack</a>
           <a class="underline-hover" data-page="threads">Threads</a>
           <a class="underline-hover" data-page="about">About</a>
-          <!--data-page="ventures">Ventures</a>-->
         </nav>
       </div>
     </div>
@@ -72,8 +69,13 @@ Muted Background: #e1dad1
   <main>
     <div class="wrap">
       <section class="page-section active" data-page-content="home">
-
-        <!-- HERO: site-first -->
+        <!--  
+        ██   ██  ██████  ███    ███ ███████ 
+        ██   ██ ██    ██ ████  ████ ██      
+        ███████ ██    ██ ██ ████ ██ █████   
+        ██   ██ ██    ██ ██  ██  ██ ██      
+        ██   ██  ██████  ██      ██ ███████                                     
+        -->
         <div class="home-hero">
           <p class="home-kicker">A working archive</p>
           <h1 class="home-headline">Writing at the intersection of curiosity, critique, and real life</h1>
@@ -85,47 +87,51 @@ Muted Background: #e1dad1
             <a data-page="about" class="home-btn-primary underline-hover">About this site →</a>
           </div>
         </div>
-
         <div class="home-rule"></div>
-
         <div class="home-pillars">
           <div class="home-pillar">
             <span class="pillar-label">Articles</span>
-            <p class="pillar-desc">Opinion, analysis, and current events that invite reflection rather than easy agreement.</p>
+            <p class="pillar-desc">Opinion, analysis, and current events that invite reflection rather than easy
+              agreement.</p>
             <a data-page="articles" class="pillar-link underline-hover">Browse →</a>
           </div>
           <div class="home-pillar">
             <span class="pillar-label">Bookmarks</span>
-            <p class="pillar-desc">A small shelf of essays, videos, and ideas that changed something in me or asked to be reread.</p>
+            <p class="pillar-desc">A small shelf of essays, videos, and ideas that changed something in me or asked to
+              be reread.</p>
             <a data-page="bookmarks" class="pillar-link underline-hover">Browse →</a>
           </div>
           <div class="home-pillar">
             <span class="pillar-label">Discussion Threads</span>
-            <p class="pillar-desc">Every article has an open thread. Push back, add context, or disagree — that's the point.</p>
+            <p class="pillar-desc">Every article has an open thread. Cultivate important discussions that make us think
+              more.</p>
             <a data-page="threads" class="pillar-link underline-hover">Contribute →</a>
           </div>
         </div>
-
         <div class="home-rule"></div>
-
-        <!-- LATEST ARTICLES -->
         <div class="home-section-head">
           <h2>Latest</h2>
           <a data-page="articles" class="home-see-all underline-hover">All articles →</a>
         </div>
         <div class="post-list" id="pinnedList"></div>
-
       </section>
 
       <section class="page-section" data-page-content="articles">
-        <!--JUMP TO ARTICLES-->
+        <!--
+         █████  ██████  ████████ ██  ██████ ██      ███████ ███████ 
+        ██   ██ ██   ██    ██    ██ ██      ██      ██      ██      
+        ███████ ██████     ██    ██ ██      ██      █████   ███████ 
+        ██   ██ ██   ██    ██    ██ ██      ██      ██           ██ 
+        ██   ██ ██   ██    ██    ██  ██████ ███████ ███████ ███████                                 
+        -->
         <div class="about-hero">
-      <h1 class="about-title">Articles</h1>
-      <p class="about-sub">
-        Perspectives on the modern world through a lens of reason, skepticism, and inquiry. These pieces explore not just what is happening, but why it matters.
-      </p>
-    </div>
-    <div class="article-rule"></div>
+          <h1 class="about-title">Articles</h1>
+          <p class="about-sub">
+            Perspectives on the modern world through a lens of reason, skepticism, and inquiry. These pieces explore not
+            just what is happening, but why it matters.
+          </p>
+        </div>
+        <div class="article-rule"></div>
         <div class="section-head">
           <input type="text" id="articleSearch" placeholder="Search articles..."
             style="padding: 8px 12px; font-size: 0.9rem; border-radius: 8px; border: 1px solid var(--ink); width: 100%; max-width: 320px; background-color: var(--bg);" />
@@ -139,9 +145,11 @@ Muted Background: #e1dad1
             </select>
           </div>
         </div>
-
         <div class="post-list" id="articlesList">
 
+          <!--STARTING OF THE ARTICLES-->
+
+          <!--#1-->
           <article class="post-card" data-date="2026-01-06"
             data-title="The United States of America; Policing or Pillaging?" data-type="Opinion">
             <div class="post-cover">
@@ -164,6 +172,7 @@ Muted Background: #e1dad1
             </div>
           </article>
 
+          <!--#2-->
           <article class="post-card" data-date="2026-01-08" data-title="Greed & Gluttony; Is Socialism the Solution?"
             data-type="Opinion">
             <div class="post-cover">
@@ -186,6 +195,7 @@ Muted Background: #e1dad1
             </div>
           </article>
 
+          <!--#3-->
           <article class="post-card" data-date="2026-01-20"
             data-title="Alberta Seperatonist Referendum; What Does This Mean?" data-type="Opinion">
             <div class="post-cover">
@@ -209,6 +219,7 @@ Muted Background: #e1dad1
             </div>
           </article>
 
+          <!--#4-->
           <article class="post-card" data-date="2026-02-03" data-title="Being Politically Correct is Not Moral"
             data-type="Opinion">
             <div class="post-cover">
@@ -235,6 +246,7 @@ Muted Background: #e1dad1
             </div>
           </article>
 
+          <!--#5-->
           <article class="post-card" data-date="2026-02-15" data-title="The Weaponization of You" data-type="Opinion">
             <div class="post-cover">
               <img src="https://cdn.cosmos.so/b7c4f257-d386-4b5b-a764-b3fe7a5b1751?format=webp&w=1168"
@@ -260,39 +272,39 @@ Muted Background: #e1dad1
           </article>
         </div>
       </section>
+
+
       <section class="page-section" data-page-content="bookmarks">
-    <div class="about-hero">
-      <h1 class="about-title">Bookmarks</h1>
-      <p class="about-sub">
-        A small shelf of things I’ve stumbled into and kept. Essays, tools, and ideas that changed something in me or asked to be reread.
-      </p>
-    </div>
-      <div class="article-rule"></div>
-    <div class="wrap">
+        <!--
+        ██████   ██████   ██████  ██   ██ ███    ███  █████  ██████  ██   ██ ███████ 
+        ██   ██ ██    ██ ██    ██ ██  ██  ████  ████ ██   ██ ██   ██ ██  ██  ██      
+        ██████  ██    ██ ██    ██ █████   ██ ████ ██ ███████ ██████  █████   ███████ 
+        ██   ██ ██    ██ ██    ██ ██  ██  ██  ██  ██ ██   ██ ██   ██ ██  ██       ██ 
+        ██████   ██████   ██████  ██   ██ ██      ██ ██   ██ ██   ██ ██   ██ ███████ 
 
-          <!--<div class="filter-tags" id="filterTags">
-            <button class="filter-tag active" data-tag="all">all</button>
-            <button class="filter-tag" data-tag="essays">essays</button>
-            <button class="filter-tag" data-tag="philosophy">philosophy</button>
-            <button class="filter-tag" data-tag="politics">politics</button>
-            <button class="filter-tag" data-tag="writing">writing</button>
-            <button class="filter-tag" data-tag="psychology">psychology</button>
-            <button class="filter-tag" data-tag="growth">growth</button>
-
-          </div>-->
+        -->
+        <div class="about-hero">
+          <h1 class="about-title">Bookmarks</h1>
+          <p class="about-sub">
+            A small shelf of things I’ve stumbled into and kept. Essays, tools, and ideas that changed something in me
+            or asked to be reread.
+          </p>
+        </div>
+        <div class="article-rule"></div>
+        <div class="wrap">
 
           <div class="bookmarks-list" id="bookmarksList">
 
             <!--HOW TO ADD AN ENTRY
-        <article class="bookmark-item" data-tags="tags seperated by spaces">
-          <span class="bookmark-link">source link</span>
-          <h3 class="bookmark-title">
-            <a href="link" target="_blank" rel="noopener">Bookmark Title</a>
-          </h3>
-          <p class="bookmark-desc">
-            a breif description of the item bookmarked
-          </p>
-        </article>-->
+            <article class="bookmark-item" data-tags="tags seperated by spaces">
+              <span class="bookmark-link">source link</span>
+              <h3 class="bookmark-title">
+                <a href="link" target="_blank" rel="noopener">Bookmark Title</a>
+              </h3>
+              <p class="bookmark-desc">a breif description of the item bookmarked</p>
+            </article>
+        -->
+            <!--#1-->
             <article class="bookmark-item" data-tags="humanism humanity genocide palestine">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
@@ -308,6 +320,7 @@ Muted Background: #e1dad1
               </p>
             </article>
 
+            <!--#2-->
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
@@ -324,7 +337,7 @@ Muted Background: #e1dad1
               </p>
             </article>
 
-
+            <!--#3-->
             <article class="bookmark-item" data-tags="philosophy psychology growth">
               <span class="bookmark-link">youtube.com</span>
               <h3 class="bookmark-title">
@@ -345,17 +358,24 @@ Muted Background: #e1dad1
       </section>
 
       <section class="page-section" data-page-content="threads">
+        <!--
+         ████████ ██   ██ ██████  ███████  █████  ██████  ███████ 
+            ██    ██   ██ ██   ██ ██      ██   ██ ██   ██ ██      
+            ██    ███████ ██████  █████   ███████ ██   ██ ███████ 
+            ██    ██   ██ ██   ██ ██      ██   ██ ██   ██      ██ 
+            ██    ██   ██ ██   ██ ███████ ██   ██ ██████  ███████ 
+
+        -->
         <div class="about-hero">
-      <h1 class="about-title">Threads</h1>
-      <p class="about-sub">
-       Conversations from across articles and site-wide discussions appear here. Make sure to follow <strong><a class="underline-hover" href="articles/rules.html">Site TOS</a></strong> for commenting. 
-      </p>
-    </div>
-    <div class="article-rule"></div>
+          <h1 class="about-title">Threads</h1>
+          <p class="about-sub">
+            Conversations from across articles and site-wide discussions appear here. Make sure to follow <strong><a
+                class="underline-hover" href="articles/rules.html">Site TOS</a></strong> for commenting.
+          </p>
+        </div>
+        <div class="article-rule"></div>
 
         <div class="discussions-layout">
-          <!-- LEFT SIDE: ARTICLE LIST -->
-
           <div class="discussion-list">
             <!--this article to be remained pinned-->
             <button class="discussion-item" data-system="new" data-mapping="announcements" data-title="Announcements">
@@ -365,7 +385,7 @@ Muted Background: #e1dad1
               General
             </button>
             <div class="article-rule-mini"></div>
-            <!-- ===== OLD SYSTEM (numeric) ===== -->
+
             <button class="discussion-item" data-system="new" data-mapping="the-weaponization-of-you"
               data-title="The Weaponization of You">
               The Weaponization of You
@@ -393,13 +413,10 @@ Muted Background: #e1dad1
 
           </div>
 
-          <!-- RIGHT SIDE: VIEWER -->
-
           <div class="discussion-viewer">
             <h3 id="discussionTitle">
               Select a Topic To View The Thread
             </h3>
-
             <div id="giscusContainer"></div>
           </div>
 
@@ -407,66 +424,81 @@ Muted Background: #e1dad1
       </section>
 
 
-<section class="page-section" data-page-content="about">
-  <div class="about-wrap">
-    <!-- HERO -->
-    <div class="about-hero">
-      <h1 class="about-title">About</h1>
-      <p class="about-sub">
-        A deeper look behind the scenes into the purpose that drives this work, the goals that shape its direction, and the story that makes it meaningful.
-      </p>
-    </div>
-
-    <div class="article-rule"></div>
-
-    <!-- TWO COLUMN: LEFT BODY + RIGHT SIDEBAR -->
-    <div class="about-grid">
-      <!-- LEFT -->
-      <div class="about-main">
-        <div class="about-card">
-          <h3 class="about-h">What this site is</h3>
-          <p>
-            <strong>sjapanwala.com</strong> is where I publish opinion, analysis, and current events writing im not trying to
-            “win” arguments, but to release ideas in public. If something here makes you pause, disagree, or
-            re-check your assumptions, it’s doing its job.
-          </p>
-        </div>
-
-        <div class="about-card">
-          <h3 class="about-h">What I believe about writing</h3>
-          <p>
-            I’m not interested in performative neutrality. I’m interested in clarity: what happened, what it means, who it
-            benefits, and what we pretend not to see.
-          </p>
-        </div>
-
-        
-      </div>
-
-        <div class="about-panel">
-          <h3 class="about-h">Policy Links</h3>
-          <p class="about-muted" style="margin-top:10px;">
-            Any sort of policies, guidelines or extra information needed is available here.
-          </p>
-
-          <div class="about-links">
-            <div class="article-rule-mini"></div>
+      <section class="page-section" data-page-content="about">
+              <!--
+        █████  ██████   ██████  ██    ██ ████████ 
+        ██   ██ ██   ██ ██    ██ ██    ██    ██    
+        ███████ ██████  ██    ██ ██    ██    ██    
+        ██   ██ ██   ██ ██    ██ ██    ██    ██    
+        ██   ██ ██████   ██████   ██████     ██                                          
+        -->
+        <div class="about-wrap">
+          <div class="about-hero">
+            <h1 class="about-title">About</h1>
+            <p class="about-sub">
+              A deeper look behind the scenes into the purpose that drives this work, the goals that shape its
+              direction, and the story that makes it meaningful.
+            </p>
           </div>
-          <a class="underline-hover" href="articles/rules.html">∙ Site Rules</a><br>
-          <a class="underline-hover" href="articles/disclaimer.html">∙ Disclaimer</a><br>
-          <a class="underline-hover" href="articles/legal.html">∙ Legal</a>
+
+          <div class="article-rule"></div>
+          <div class="about-grid">
+            <!-- LEFT -->
+            <div class="about-main">
+              <div class="about-card">
+                <h3 class="about-h">What this site is</h3>
+                <p>
+                  <strong>sjapanwala.com</strong> is where I publish opinion, analysis, and current events writing im
+                  not trying to
+                  “win” arguments, but to release ideas in public. If something here makes you pause, disagree, or
+                  re-check your assumptions, it’s doing its job.
+                </p>
+              </div>
+
+              <div class="about-card">
+                <h3 class="about-h">What I believe about writing</h3>
+                <p>
+                  I’m not interested in performative neutrality. I’m interested in clarity: what happened, what it
+                  means, who it
+                  benefits, and what we pretend not to see.
+                </p>
+              </div>
+
+
+            </div>
+
+            <div class="about-panel">
+              <h3 class="about-h">Policy Links</h3>
+              <p class="about-muted" style="margin-top:10px;">
+                Any sort of policies, guidelines or extra information needed is available here.
+              </p>
+
+              <div class="about-links">
+                <div class="article-rule-mini"></div>
+              </div>
+              <a class="underline-hover" href="articles/rules.html">∙ Site Rules</a><br>
+              <a class="underline-hover" href="articles/disclaimer.html">∙ Disclaimer</a><br>
+              <a class="underline-hover" href="articles/legal.html">∙ Legal</a>
+            </div>
+            </aside>
+          </div>
+
+
         </div>
-      </aside>
-    </div>
-
-
-  </div>
-</section>
+      </section>
 
   </main>
   <footer>
     <div class="wrap">
       <div class="article-rule"></div>
+      <!--
+      ███████  ██████   ██████  ████████ ███████ ██████  
+      ██      ██    ██ ██    ██    ██    ██      ██   ██ 
+      █████   ██    ██ ██    ██    ██    █████   ██████  
+      ██      ██    ██ ██    ██    ██    ██      ██   ██ 
+      ██       ██████   ██████     ██    ███████ ██   ██ 
+                                                                                                          
+      -->
       <div class="footer-content">
         <div class="footer-info">
           <div class="footer-brand">Saaim Japanwala</div>
@@ -474,7 +506,7 @@ Muted Background: #e1dad1
         </div>
         <div class="footer-links">
           <div class="connections-icons" aria-label="External links">
-            <a href="/cdn-cgi/l/email-protection#60030f0e1401031420130a0110010e17010c014e030f0d" aria-label="Email">
+            <a href="mailto:contact@sjapanwala.com" aria-label="Email">
               <img src="assets/icons/mail.png" alt="">
             </a>
             <a href="https://github.com/sjapanwala" target="_blank" rel="noopener" aria-label="GitHub">
@@ -500,7 +532,7 @@ Muted Background: #e1dad1
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const navLinks = document.querySelectorAll('[data-page]');
     const pageSections = document.querySelectorAll('[data-page-content]');
     const menuBtn = document.getElementById("menuBtn");
@@ -759,4 +791,5 @@ Muted Background: #e1dad1
 
   </script>
 </body>
+
 </html>
